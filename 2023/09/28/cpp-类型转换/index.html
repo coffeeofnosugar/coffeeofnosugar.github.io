@@ -22,29 +22,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="记录个人生活日常、学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://example.com/tags/index.html">
+    <meta name="description" content="静态转换(Static Cast)静态转换是将一种数据类型的值强制转换为另一种数据类型的值。 静态转换通常用于比较类型相似的对象之间的转换，例如将 int 类型转换为 float 类型。 静态转换不进行任何运行时类型检查，因此可能会导致运行时错误。 12int i &#x3D; 10;float f &#x3D; static_cast&lt;float&gt;(i); &#x2F;&#x2F; 静态将int类型转换为float类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【c++】类型转换">
+<meta property="og:url" content="http://example.com/2023/09/28/cpp-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="咖啡丶七">
-<meta property="og:description" content="记录个人生活日常、学习笔记">
+<meta property="og:description" content="静态转换(Static Cast)静态转换是将一种数据类型的值强制转换为另一种数据类型的值。 静态转换通常用于比较类型相似的对象之间的转换，例如将 int 类型转换为 float 类型。 静态转换不进行任何运行时类型检查，因此可能会导致运行时错误。 12int i &#x3D; 10;float f &#x3D; static_cast&lt;float&gt;(i); &#x2F;&#x2F; 静态将int类型转换为float类型">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-08T14:37:23.000Z">
-<meta property="article:modified_time" content="2023-08-26T17:00:34.841Z">
+<meta property="article:published_time" content="2023-09-28T02:56:06.000Z">
+<meta property="article:modified_time" content="2023-10-07T12:56:58.060Z">
 <meta property="article:author" content="咖啡丶七">
-<meta property="article:tag" content="Unity, Python, Game">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/tags/">
+<link rel="canonical" href="http://example.com/2023/09/28/cpp-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://example.com/tags/index.html","path":"tags/index.html","title":"标签"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/09/28/cpp-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/","path":"2023/09/28/cpp-类型转换/","title":"【c++】类型转换"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签 | 咖啡丶七
-</title>
+<title>【c++】类型转换 | 咖啡丶七</title>
   
 
 
@@ -131,7 +130,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,6 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%BD%AC%E6%8D%A2-Static-Cast"><span class="nav-number">1.</span> <span class="nav-text">静态转换(Static Cast)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%BD%AC%E6%8D%A2-Dynamic-Cast"><span class="nav-number">2.</span> <span class="nav-text">动态转换(Dynamic Cast)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E8%BD%AC%E6%8D%A2-Const-Cast"><span class="nav-number">3.</span> <span class="nav-text">常量转换(Const Cast)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E8%A7%A3%E9%87%8A%E8%BD%AC%E6%8D%A2-Reinterpret-Cast"><span class="nav-number">4.</span> <span class="nav-text">重新解释转换(Reinterpret Cast)</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -205,41 +205,111 @@
 
     </div>
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/28/cpp-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/Link.jpg">
+      <meta itemprop="name" content="咖啡丶七">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡丶七">
+      <meta itemprop="description" content="记录个人生活日常、学习笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【c++】类型转换 | 咖啡丶七">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【c++】类型转换
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-28 10:56:06" itemprop="dateCreated datePublished" datetime="2023-09-28T10:56:06+08:00">2023-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-07 20:56:58" itemprop="dateModified" datetime="2023-10-07T20:56:58+08:00">2023-10-07</time>
+    </span>
+
+  
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    目前共计 12 个标签
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/C/" style="font-size: 21px;" class="tag-cloud-5">C#</a> <a href="/tags/C/" style="font-size: 12px;" class="tag-cloud-0">C++</a> <a href="/tags/Git/" style="font-size: 25.5px;" class="tag-cloud-8">Git</a> <a href="/tags/Linux/" style="font-size: 25.5px;" class="tag-cloud-8">Linux</a> <a href="/tags/MySQL/" style="font-size: 16.5px;" class="tag-cloud-3">MySQL</a> <a href="/tags/Python/" style="font-size: 21px;" class="tag-cloud-5">Python</a> <a href="/tags/Unity/" style="font-size: 30px;" class="tag-cloud-10">Unity</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 21px;" class="tag-cloud-5">日常</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%80%9D%E7%BB%B4/" style="font-size: 12px;" class="tag-cloud-0">编程思维</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 16.5px;" class="tag-cloud-3">设计模式</a> <a href="/tags/%E8%BF%90%E5%8A%A8/" style="font-size: 12px;" class="tag-cloud-0">运动</a> <a href="/tags/%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95/" style="font-size: 12px;" class="tag-cloud-0">魔法方法</a>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="静态转换-Static-Cast"><a href="#静态转换-Static-Cast" class="headerlink" title="静态转换(Static Cast)"></a>静态转换(Static Cast)</h3><p>静态转换是将一种数据类型的值强制转换为另一种数据类型的值。</p>
+<p>静态转换通常用于比较类型相似的对象之间的转换，例如将 int 类型转换为 float 类型。</p>
+<p>静态转换不进行任何运行时类型检查，因此可能会导致运行时错误。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="built_in">static_cast</span>&lt;<span class="type">float</span>&gt;(i); <span class="comment">// 静态将int类型转换为float类型</span></span><br></pre></td></tr></table></figure>
 
-      </div>
-      
-      
-      
+<h3 id="动态转换-Dynamic-Cast"><a href="#动态转换-Dynamic-Cast" class="headerlink" title="动态转换(Dynamic Cast)"></a>动态转换(Dynamic Cast)</h3><p>动态转换通常用于将一个基类指针或引用转换为派生类指针或引用。动态转换在运行时进行类型检查，如果不能进行转换则返回空指针或引发异常。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123;&#125;;</span><br><span class="line">Base* ptr_base = <span class="keyword">new</span> Derived;</span><br><span class="line">Derived* ptr_derived = <span class="built_in">dynamic_cast</span>&lt;Derived*&gt;(ptr_base); <span class="comment">// 将基类指针转换为派生类指针</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常量转换-Const-Cast"><a href="#常量转换-Const-Cast" class="headerlink" title="常量转换(Const Cast)"></a>常量转换(Const Cast)</h3><p>常量转换用于将 const 类型的对象转换为非 const 类型的对象。</p>
+<p>常量转换只能用于转换掉 const 属性，不能改变对象的类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>&amp; r = <span class="built_in">const_cast</span>&lt;<span class="type">int</span>&amp;&gt;(i); <span class="comment">// 常量转换，将const int转换为int</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重新解释转换-Reinterpret-Cast"><a href="#重新解释转换-Reinterpret-Cast" class="headerlink" title="重新解释转换(Reinterpret Cast)"></a>重新解释转换(Reinterpret Cast)</h3><p>重新解释转换将一个数据类型的值重新解释为另一个数据类型的值，通常用于在不同的数据类型之间进行转换。</p>
+<p>重新解释转换不进行任何类型检查，因此可能会导致未定义的行为。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="built_in">reinterpret_cast</span>&lt;<span class="type">float</span>&amp;&gt;(i); <span class="comment">// 重新解释将int类型转换为float类型</span></span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/18/unity-%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="prev" title="【Unity】多线程">
+                  <i class="fa fa-angle-left"></i> 【Unity】多线程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>

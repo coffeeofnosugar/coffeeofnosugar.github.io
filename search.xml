@@ -136,6 +136,14 @@
 <h4 id="2023年9月11日"><a href="#2023年9月11日" class="headerlink" title="2023年9月11日"></a>2023年9月11日</h4><!-- more -->
 
 <p><img class="half" src="/../images/exercise/2023-09-11.jpg"></img></p>
+<hr>
+<h4 id="2023年9月14日"><a href="#2023年9月14日" class="headerlink" title="2023年9月14日"></a>2023年9月14日</h4><!-- more -->
+
+<p><img class="half" src="/../images/exercise/2023-09-14.jpg"></img></p>
+<hr>
+<h4 id="2023年9月17日"><a href="#2023年9月17日" class="headerlink" title="2023年9月17日"></a>2023年9月17日</h4><!-- more -->
+
+<p><img class="half" src="/../images/exercise/2023-09-17.jpg"></img></p>
 ]]></content>
       <tags>
         <tag>运动</tag>
@@ -155,19 +163,27 @@
       </tags>
   </entry>
   <entry>
-    <title>组装电脑</title>
-    <url>/2023/08/24/daily-2023-08-24/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/images.css">
+    <title>【c++】类型转换</title>
+    <url>/2023/09/28/cpp-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<h3 id="静态转换-Static-Cast"><a href="#静态转换-Static-Cast" class="headerlink" title="静态转换(Static Cast)"></a>静态转换(Static Cast)</h3><p>静态转换是将一种数据类型的值强制转换为另一种数据类型的值。</p>
+<p>静态转换通常用于比较类型相似的对象之间的转换，例如将 int 类型转换为 float 类型。</p>
+<p>静态转换不进行任何运行时类型检查，因此可能会导致运行时错误。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="built_in">static_cast</span>&lt;<span class="type">float</span>&gt;(i); <span class="comment">// 静态将int类型转换为float类型</span></span><br></pre></td></tr></table></figure>
 
-<p>今天从零开始组装了一台电脑，用了7年的电脑终于退休了，说实话多多少少有点舍不得</p>
-<p><img src="/../images/daily/2023-08-24/配置.png"></img></p>
-<p><img src="/../images/daily/2023-08-24/分数.png"></img></p>
-<p><img class="half" src="/../images/daily/2023-08-24/整机1.png"></img></p>
-<p><img class="half" src="/../images/daily/2023-08-24/整机2.png"></img></p>
-<p><img class="half" src="/../images/daily/2023-08-24/整机3.png"></img></p>
+<h3 id="动态转换-Dynamic-Cast"><a href="#动态转换-Dynamic-Cast" class="headerlink" title="动态转换(Dynamic Cast)"></a>动态转换(Dynamic Cast)</h3><p>动态转换通常用于将一个基类指针或引用转换为派生类指针或引用。动态转换在运行时进行类型检查，如果不能进行转换则返回空指针或引发异常。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123;&#125;;</span><br><span class="line">Base* ptr_base = <span class="keyword">new</span> Derived;</span><br><span class="line">Derived* ptr_derived = <span class="built_in">dynamic_cast</span>&lt;Derived*&gt;(ptr_base); <span class="comment">// 将基类指针转换为派生类指针</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常量转换-Const-Cast"><a href="#常量转换-Const-Cast" class="headerlink" title="常量转换(Const Cast)"></a>常量转换(Const Cast)</h3><p>常量转换用于将 const 类型的对象转换为非 const 类型的对象。</p>
+<p>常量转换只能用于转换掉 const 属性，不能改变对象的类型。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>&amp; r = <span class="built_in">const_cast</span>&lt;<span class="type">int</span>&amp;&gt;(i); <span class="comment">// 常量转换，将const int转换为int</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重新解释转换-Reinterpret-Cast"><a href="#重新解释转换-Reinterpret-Cast" class="headerlink" title="重新解释转换(Reinterpret Cast)"></a>重新解释转换(Reinterpret Cast)</h3><p>重新解释转换将一个数据类型的值重新解释为另一个数据类型的值，通常用于在不同的数据类型之间进行转换。</p>
+<p>重新解释转换不进行任何类型检查，因此可能会导致未定义的行为。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="built_in">reinterpret_cast</span>&lt;<span class="type">float</span>&amp;&gt;(i); <span class="comment">// 重新解释将int类型转换为float类型</span></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
-        <tag>日常</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -202,13 +218,58 @@
 </li>
 </ol>
 <hr>
+<h3 id="Git远程命令"><a href="#Git远程命令" class="headerlink" title="Git远程命令"></a>Git远程命令</h3><h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 查看绑定了哪些远程仓库</span><br><span class="line">git remote -v</span><br><span class="line">// 删除远程的绑定</span><br><span class="line">git remote remove &lt;name&gt;</span><br><span class="line">// 将本地仓库的&lt;branch_name&gt;分支推送到远程仓库的&lt;branch_name&gt;分支上</span><br><span class="line">git push -u &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line">// 将远程仓库的branch_name拉取到本地工作区</span><br><span class="line">git pull &lt;origin_name&gt; &lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将本地的&lt;branch_name&gt;分支推送到远程的&lt;branch_name&gt;分支上</span></span><br><span class="line">git push &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将本地的分支推送到远程分支上</span></span><br><span class="line">git push &lt;origin_name&gt; &lt;本地分支&gt;:&lt;远程分支&gt;</span><br></pre></td></tr></table></figure>
+
+<p>还可以添加<code>-u</code>参数设置默认的推送和拉取映射关系<br>使用这个参数之后可以直接使用<code>git push</code>和<code>git pull</code>而不用再添加参数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将本地的master分支推送到origin的master分支上，并设置这个为默认的推送和拉取映射</span></span><br><span class="line">git push -u origin master</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后面如果需要推送或者拉取可不用携带参数，默认为origin远程的master分支</span></span><br><span class="line">git push # 将本地的master分支推送到远程的master分支上</span><br><span class="line">git pull # 将远程的master分支拉取到本地的master分支上</span><br></pre></td></tr></table></figure>
+
+<p>注意：<br>经过测试发现携带<code>-u</code>参数时使用<code>master:main</code>的映射方法，后续使用<code>git push</code>无法成功的将本地的master分支推送到远程的main上<br>也就是说，如果使用了<code>-u</code>参数，那么需要推送到的远程分支名必须与本地分支名一致</p>
+<h4 id="拉取"><a href="#拉取" class="headerlink" title="拉取"></a>拉取</h4><h5 id="将远程分支上的内容和到本地分支"><a href="#将远程分支上的内容和到本地分支" class="headerlink" title="将远程分支上的内容和到本地分支"></a>将远程分支上的内容和到本地分支</h5><p>有两种方法<code>git pull</code>和<code>git fetch</code><br>两者的关系是：<code>git pull</code>是执行了<code>git fetch</code>和<code>git merge</code>两个操作</p>
+<h5 id="pull命令"><a href="#pull命令" class="headerlink" title="pull命令"></a>pull命令</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将远程的&lt;branch_name&gt;分支拉取到本地的&lt;branch_name&gt;分支上</span></span><br><span class="line">git pull &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将远程的分支拉取到本地分支上</span></span><br><span class="line">git pull &lt;origin_name&gt; &lt;远程分支&gt;:&lt;本地分支&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可直接使用<code>git pull &lt;origin_name&gt; &lt;branch_name&gt;</code>将<code>&lt;origin_name&gt;/&lt;branch_name&gt;</code>的内容直接合并到本地</p>
+<h5 id="fetch命令"><a href="#fetch命令" class="headerlink" title="fetch命令"></a>fetch命令</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git fetch &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line">git merge FETCH_HEAD</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用<code>git fetch &lt;origin_name&gt; &lt;branch_name&gt;</code>将<code>&lt;origin_name&gt;/&lt;branch_name&gt;</code>的内容保存到<code>.git/FETCH_HEAD</code>文件中</li>
+<li>使用<code>git merge FETCH_HEAD</code>将<code>FETCH_HEAD</code>中的信息合并到当前分支</li>
+</ol>
+<h5 id="将远程分支拉取到本地作为一个新的分支"><a href="#将远程分支拉取到本地作为一个新的分支" class="headerlink" title="将远程分支拉取到本地作为一个新的分支"></a>将远程分支拉取到本地作为一个新的分支</h5><p><code>git checkout -b &lt;new_local_branch&gt; &lt;origin/remote_banch_name&gt;</code></p>
+<p>在本地创建一个<code>&lt;new_local_branch&gt;</code>分支并将<code>&lt;origin/remote_banch_name&gt;</code></p>
+<hr>
+<h3 id="查看log"><a href="#查看log" class="headerlink" title="查看log"></a>查看log</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看所有分支的提交记录之间的关系(以一行显示)</span></span><br><span class="line">git log --oneline --graph --all</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看每个提交记录修改了哪些文件</span></span><br><span class="line">git log --stat</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看每个提交记录具体的修改内容</span></span><br><span class="line">git log -p</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定显示多少条日志</span></span><br><span class="line">git log -2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定跳过多少条日志</span></span><br><span class="line">git log --skip=3</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<center class="moderate">持续更新</center>]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Git】合并分支及如何解决冲突</title>
+    <url>/2023/09/15/git-%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
+<link rel="stylesheet" href="/../css/images.css">
+
+
 <h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>使用<code>git merge &lt;branchName&gt;</code>命令将<code>&lt;branchName&gt;</code>分支上的内容合并到当前所在的分支上</p>
 <p><code>&lt;branchName&gt;</code> 可以是分支的名字，也可以是<code>commitID</code></p>
 <h4 id="出现冲突"><a href="#出现冲突" class="headerlink" title="出现冲突"></a>出现冲突</h4><p>出现如下内容，说明自动合并发生了冲突，需要手动解决冲突</p>
 <p><img class="base" src="/../images/git/合并分支_冲突.png"></img></p>
 <p>使用<code>git status</code>查看冲突文件<br><img class="base" src="/../images/git/合并分支_冲突文件.png"></img></p>
 <p>使用<code>git diff</code>查看冲突内容<br><img class="base" src="/../images/git/合并分支_冲突内容.png"></img></p>
-<h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的两种方法"><a href="#解决冲突的两种方法" class="headerlink" title="解决冲突的两种方法"></a>解决冲突的两种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
 <p>修改前：</p>
 <p><img class="base" src="/../images/git/合并分支_编辑文件.png"></img></p>
 <p>修改后：</p>
@@ -221,18 +282,7 @@
 
 <h4 id="保存提交"><a href="#保存提交" class="headerlink" title="保存提交"></a>保存提交</h4><p>最后再重新提交一遍就成功的解决了冲突</p>
 <p><img class="base" src="/../images/git/合并分支_提交冲突文件.png"></img></p>
-<hr>
-<h3 id="Git远程命令"><a href="#Git远程命令" class="headerlink" title="Git远程命令"></a>Git远程命令</h3><h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 查看绑定了哪些远程仓库</span><br><span class="line">git remote -v</span><br><span class="line">// 删除远程的绑定</span><br><span class="line">git remote remove &lt;name&gt;</span><br><span class="line">// 将本地仓库的内容推送到远程仓库的branch_name分支上</span><br><span class="line">git push -u &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line">// 将远程仓库的branch_name拉取到本地工作区</span><br><span class="line">git pull &lt;origin_name&gt; &lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="将远程分支上的内容和到本地分支"><a href="#将远程分支上的内容和到本地分支" class="headerlink" title="将远程分支上的内容和到本地分支"></a>将远程分支上的内容和到本地分支</h4><p>有两种方法<code>git pull</code>和<code>git fetch</code>，但其实<code>git pull</code>是执行了<code>git fetch</code>和<code>git merge</code>两个操作</p>
-<h5 id="git-pull-命令"><a href="#git-pull-命令" class="headerlink" title="git pull &lt;origin_name&gt; &lt;branch_name&gt;命令"></a><code>git pull &lt;origin_name&gt; &lt;branch_name&gt;</code>命令</h5><p>可直接使用<code>git pull &lt;origin_name&gt; &lt;branch_name&gt;</code>将<code>&lt;origin_name&gt;/&lt;branch_name&gt;</code>的内容直接合并到本地</p>
-<h5 id="git-fetch-命令"><a href="#git-fetch-命令" class="headerlink" title="git fetch &lt;origin_name&gt; &lt;branch_name&gt;命令"></a><code>git fetch &lt;origin_name&gt; &lt;branch_name&gt;</code>命令</h5><ol>
-<li>使用<code>git fetch &lt;origin_name&gt; &lt;branch_name&gt;</code>将<code>&lt;origin_name&gt;/&lt;branch_name&gt;</code>的内容保存到<code>.git/FETCH_HEAD</code>文件中</li>
-<li>使用<code>git merge FETCH_HEAD</code>将<code>FETCH_HEAD</code>中的信息合并到当前分支、</li>
-</ol>
-<h4 id="将远程分支拉取到本地作为一个新的分支"><a href="#将远程分支拉取到本地作为一个新的分支" class="headerlink" title="将远程分支拉取到本地作为一个新的分支"></a>将远程分支拉取到本地作为一个新的分支</h4><p><code>git checkout -b &lt;new_local_branch&gt; &lt;origin/remote_banch_name&gt;</code></p>
-<p>在本地创建一个<code>&lt;new_local_branch&gt;</code>分支并将<code>&lt;origin/remote_banch_name&gt;</code></p>
-<center class="moderate">持续更新</center>]]></content>
+]]></content>
       <tags>
         <tag>Git</tag>
       </tags>
@@ -257,30 +307,24 @@
 
 <p>参考</p>
 <p><a href="https://zhuanlan.zhihu.com/p/559692211">一文带你彻底搞懂Git！</a></p>
+<hr>
+<h1 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h1><p>在此记录一下各个项目的<code>.gitignore</code>文件内容</p>
+<h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Byte-compiled / optimized / DLL files</span><br><span class="line">__pycache__/</span><br><span class="line">*.py[cod]</span><br><span class="line">*$py.class</span><br><span class="line"></span><br><span class="line"># C extensions</span><br><span class="line">*.so</span><br><span class="line"></span><br><span class="line"># Distribution / packaging</span><br><span class="line">.Python</span><br><span class="line">build/</span><br><span class="line">develop-eggs/</span><br><span class="line">dist/</span><br><span class="line">downloads/</span><br><span class="line">eggs/</span><br><span class="line">.eggs/</span><br><span class="line">lib/</span><br><span class="line">lib64/</span><br><span class="line">parts/</span><br><span class="line">sdist/</span><br><span class="line">var/</span><br><span class="line">wheels/</span><br><span class="line">share/python-wheels/</span><br><span class="line">*.egg-info/</span><br><span class="line">.installed.cfg</span><br><span class="line">*.egg</span><br><span class="line">MANIFEST</span><br><span class="line"></span><br><span class="line"># PyInstaller</span><br><span class="line">#  Usually these files are written by a python script from a template</span><br><span class="line">#  before PyInstaller builds the exe, so as to inject date/other infos into it.</span><br><span class="line">*.manifest</span><br><span class="line">*.spec</span><br><span class="line"></span><br><span class="line"># Installer logs</span><br><span class="line">pip-log.txt</span><br><span class="line">pip-delete-this-directory.txt</span><br><span class="line"></span><br><span class="line"># Unit test / coverage reports</span><br><span class="line">htmlcov/</span><br><span class="line">.tox/</span><br><span class="line">.nox/</span><br><span class="line">.coverage</span><br><span class="line">.coverage.*</span><br><span class="line">.cache</span><br><span class="line">nosetests.xml</span><br><span class="line">coverage.xml</span><br><span class="line">*.cover</span><br><span class="line">*.py,cover</span><br><span class="line">.hypothesis/</span><br><span class="line">.pytest_cache/</span><br><span class="line">cover/</span><br><span class="line"></span><br><span class="line"># Translations</span><br><span class="line">*.mo</span><br><span class="line">*.pot</span><br><span class="line"></span><br><span class="line"># Django stuff:</span><br><span class="line">*.log</span><br><span class="line">local_settings.py</span><br><span class="line">db.sqlite3</span><br><span class="line">db.sqlite3-journal</span><br><span class="line"></span><br><span class="line"># Flask stuff:</span><br><span class="line">instance/</span><br><span class="line">.webassets-cache</span><br><span class="line"></span><br><span class="line"># Scrapy stuff:</span><br><span class="line">.scrapy</span><br><span class="line"></span><br><span class="line"># Sphinx documentation</span><br><span class="line">docs/_build/</span><br><span class="line"></span><br><span class="line"># PyBuilder</span><br><span class="line">.pybuilder/</span><br><span class="line">target/</span><br><span class="line"></span><br><span class="line"># Jupyter Notebook</span><br><span class="line">.ipynb_checkpoints</span><br><span class="line"></span><br><span class="line"># IPython</span><br><span class="line">profile_default/</span><br><span class="line">ipython_config.py</span><br><span class="line"></span><br><span class="line"># pyenv</span><br><span class="line">#   For a library or package, you might want to ignore these files since the code is</span><br><span class="line">#   intended to run in multiple environments; otherwise, check them in:</span><br><span class="line"># .python-version</span><br><span class="line"></span><br><span class="line"># pipenv</span><br><span class="line">#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.</span><br><span class="line">#   However, in case of collaboration, if having platform-specific dependencies or dependencies</span><br><span class="line">#   having no cross-platform support, pipenv may install dependencies that don&#x27;t work, or not</span><br><span class="line">#   install all needed dependencies.</span><br><span class="line">#Pipfile.lock</span><br><span class="line"></span><br><span class="line"># poetry</span><br><span class="line">#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.</span><br><span class="line">#   This is especially recommended for binary packages to ensure reproducibility, and is more</span><br><span class="line">#   commonly ignored for libraries.</span><br><span class="line">#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control</span><br><span class="line">#poetry.lock</span><br><span class="line"></span><br><span class="line"># pdm</span><br><span class="line">#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.</span><br><span class="line">#pdm.lock</span><br><span class="line">#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it</span><br><span class="line">#   in version control.</span><br><span class="line">#   https://pdm.fming.dev/#use-with-ide</span><br><span class="line">.pdm.toml</span><br><span class="line"></span><br><span class="line"># PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm</span><br><span class="line">__pypackages__/</span><br><span class="line"></span><br><span class="line"># Celery stuff</span><br><span class="line">celerybeat-schedule</span><br><span class="line">celerybeat.pid</span><br><span class="line"></span><br><span class="line"># SageMath parsed files</span><br><span class="line">*.sage.py</span><br><span class="line"></span><br><span class="line"># Environments</span><br><span class="line">.env</span><br><span class="line">.venv</span><br><span class="line">env/</span><br><span class="line">venv/</span><br><span class="line">ENV/</span><br><span class="line">env.bak/</span><br><span class="line">venv.bak/</span><br><span class="line"></span><br><span class="line"># Spyder project settings</span><br><span class="line">.spyderproject</span><br><span class="line">.spyproject</span><br><span class="line"></span><br><span class="line"># Rope project settings</span><br><span class="line">.ropeproject</span><br><span class="line"></span><br><span class="line"># mkdocs documentation</span><br><span class="line">/site</span><br><span class="line"></span><br><span class="line"># mypy</span><br><span class="line">.mypy_cache/</span><br><span class="line">.dmypy.json</span><br><span class="line">dmypy.json</span><br><span class="line"></span><br><span class="line"># Pyre type checker</span><br><span class="line">.pyre/</span><br><span class="line"></span><br><span class="line"># pytype static type analyzer</span><br><span class="line">.pytype/</span><br><span class="line"></span><br><span class="line"># Cython debug symbols</span><br><span class="line">cython_debug/</span><br><span class="line"></span><br><span class="line"># PyCharm</span><br><span class="line">#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can</span><br><span class="line">#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore</span><br><span class="line">#  and can be added to the global gitignore or merged into this file.  For a more nuclear</span><br><span class="line">#  option (not recommended) you can uncomment the following to ignore the entire idea folder.</span><br><span class="line">#.idea/</span><br></pre></td></tr></table></figure>
+
+<h4 id="Unity"><a href="#Unity" class="headerlink" title="Unity"></a>Unity</h4><p>项目中大量自动生成的*.meta文件是需要加入版本管理的</p>
+<p>这个文件包含的信息：</p>
+<ul>
+<li>描述如何导入这个资产文件</li>
+<li>如何在项目中准备资产</li>
+</ul>
+<p>根目录下的sln和csproj文件是为了能更好的使用Visual Studio，实际上Unity是用不上这个的，也是可以忽略掉的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This .gitignore file should be placed at the root of your Unity project directory</span><br><span class="line">#</span><br><span class="line"># Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore</span><br><span class="line">#</span><br><span class="line">/[Ll]ibrary/</span><br><span class="line">/[Tt]emp/</span><br><span class="line">/[Oo]bj/</span><br><span class="line">/[Bb]uild/</span><br><span class="line">/[Bb]uilds/</span><br><span class="line">/[Ll]ogs/</span><br><span class="line">/[Uu]ser[Ss]ettings/</span><br><span class="line"></span><br><span class="line"># MemoryCaptures can get excessive in size.</span><br><span class="line"># They also could contain extremely sensitive data</span><br><span class="line">/[Mm]emoryCaptures/</span><br><span class="line"></span><br><span class="line"># Asset meta data should only be ignored when the corresponding asset is also ignored</span><br><span class="line">!/[Aa]ssets/**/*.meta</span><br><span class="line"></span><br><span class="line"># Uncomment this line if you wish to ignore the asset store tools plugin</span><br><span class="line"># /[Aa]ssets/AssetStoreTools*</span><br><span class="line"></span><br><span class="line"># Autogenerated Jetbrains Rider plugin</span><br><span class="line">/[Aa]ssets/Plugins/Editor/JetBrains*</span><br><span class="line"></span><br><span class="line"># Visual Studio cache directory</span><br><span class="line">.vs/</span><br><span class="line"></span><br><span class="line"># Gradle cache directory</span><br><span class="line">.gradle/</span><br><span class="line"></span><br><span class="line"># Autogenerated VS/MD/Consulo solution and project files</span><br><span class="line">ExportedObj/</span><br><span class="line">.consulo/</span><br><span class="line">*.csproj</span><br><span class="line">*.unityproj</span><br><span class="line">*.sln</span><br><span class="line">*.suo</span><br><span class="line">*.tmp</span><br><span class="line">*.user</span><br><span class="line">*.userprefs</span><br><span class="line">*.pidb</span><br><span class="line">*.booproj</span><br><span class="line">*.svd</span><br><span class="line">*.pdb</span><br><span class="line">*.mdb</span><br><span class="line">*.opendb</span><br><span class="line">*.VC.db</span><br><span class="line"></span><br><span class="line"># Unity3D generated meta files</span><br><span class="line">*.pidb.meta</span><br><span class="line">*.pdb.meta</span><br><span class="line">*.mdb.meta</span><br><span class="line"></span><br><span class="line"># Unity3D generated file on crash reports</span><br><span class="line">sysinfo.txt</span><br><span class="line"></span><br><span class="line"># Builds</span><br><span class="line">*.apk</span><br><span class="line">*.unitypackage</span><br><span class="line"></span><br><span class="line"># Crashlytics generated file</span><br><span class="line">crashlytics-build.properties</span><br><span class="line"></span><br><span class="line"># Packed Addressables</span><br><span class="line">/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*</span><br><span class="line"></span><br><span class="line"># Temporary auto-generated Android Assets</span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa.meta</span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa/*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="vs的C-项目"><a href="#vs的C-项目" class="headerlink" title="vs的C#项目"></a>vs的C#项目</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Ignore Visual Studio temporary files, build results, and</span><br><span class="line">## files generated by popular Visual Studio add-ons.</span><br><span class="line">##</span><br><span class="line">## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore</span><br><span class="line"></span><br><span class="line"># User-specific files</span><br><span class="line">*.rsuser</span><br><span class="line">*.suo</span><br><span class="line">*.user</span><br><span class="line">*.userosscache</span><br><span class="line">*.sln.docstates</span><br><span class="line"></span><br><span class="line"># User-specific files (MonoDevelop/Xamarin Studio)</span><br><span class="line">*.userprefs</span><br><span class="line"></span><br><span class="line"># Mono auto generated files</span><br><span class="line">mono_crash.*</span><br><span class="line"></span><br><span class="line"># Build results</span><br><span class="line">[Dd]ebug/</span><br><span class="line">[Dd]ebugPublic/</span><br><span class="line">[Rr]elease/</span><br><span class="line">[Rr]eleases/</span><br><span class="line">x64/</span><br><span class="line">x86/</span><br><span class="line">[Ww][Ii][Nn]32/</span><br><span class="line">[Aa][Rr][Mm]/</span><br><span class="line">[Aa][Rr][Mm]64/</span><br><span class="line">bld/</span><br><span class="line">[Bb]in/</span><br><span class="line">[Oo]bj/</span><br><span class="line">[Ll]og/</span><br><span class="line">[Ll]ogs/</span><br><span class="line"></span><br><span class="line"># Visual Studio 2015/2017 cache/options directory</span><br><span class="line">.vs/</span><br><span class="line"># Uncomment if you have tasks that create the project&#x27;s static files in wwwroot</span><br><span class="line">#wwwroot/</span><br><span class="line"></span><br><span class="line"># Visual Studio 2017 auto generated files</span><br><span class="line">Generated Files/</span><br><span class="line"></span><br><span class="line"># MSTest test Results</span><br><span class="line">[Tt]est[Rr]esult*/</span><br><span class="line">[Bb]uild[Ll]og.*</span><br><span class="line"></span><br><span class="line"># NUnit</span><br><span class="line">*.VisualState.xml</span><br><span class="line">TestResult.xml</span><br><span class="line">nunit-*.xml</span><br><span class="line"></span><br><span class="line"># Build Results of an ATL Project</span><br><span class="line">[Dd]ebugPS/</span><br><span class="line">[Rr]eleasePS/</span><br><span class="line">dlldata.c</span><br><span class="line"></span><br><span class="line"># Benchmark Results</span><br><span class="line">BenchmarkDotNet.Artifacts/</span><br><span class="line"></span><br><span class="line"># .NET Core</span><br><span class="line">project.lock.json</span><br><span class="line">project.fragment.lock.json</span><br><span class="line">artifacts/</span><br><span class="line"></span><br><span class="line"># ASP.NET Scaffolding</span><br><span class="line">ScaffoldingReadMe.txt</span><br><span class="line"></span><br><span class="line"># StyleCop</span><br><span class="line">StyleCopReport.xml</span><br><span class="line"></span><br><span class="line"># Files built by Visual Studio</span><br><span class="line">*_i.c</span><br><span class="line">*_p.c</span><br><span class="line">*_h.h</span><br><span class="line">*.ilk</span><br><span class="line">*.meta</span><br><span class="line">*.obj</span><br><span class="line">*.iobj</span><br><span class="line">*.pch</span><br><span class="line">*.pdb</span><br><span class="line">*.ipdb</span><br><span class="line">*.pgc</span><br><span class="line">*.pgd</span><br><span class="line">*.rsp</span><br><span class="line">*.sbr</span><br><span class="line">*.tlb</span><br><span class="line">*.tli</span><br><span class="line">*.tlh</span><br><span class="line">*.tmp</span><br><span class="line">*.tmp_proj</span><br><span class="line">*_wpftmp.csproj</span><br><span class="line">*.log</span><br><span class="line">*.vspscc</span><br><span class="line">*.vssscc</span><br><span class="line">.builds</span><br><span class="line">*.pidb</span><br><span class="line">*.svclog</span><br><span class="line">*.scc</span><br><span class="line"></span><br><span class="line"># Chutzpah Test files</span><br><span class="line">_Chutzpah*</span><br><span class="line"></span><br><span class="line"># Visual C++ cache files</span><br><span class="line">ipch/</span><br><span class="line">*.aps</span><br><span class="line">*.ncb</span><br><span class="line">*.opendb</span><br><span class="line">*.opensdf</span><br><span class="line">*.sdf</span><br><span class="line">*.cachefile</span><br><span class="line">*.VC.db</span><br><span class="line">*.VC.VC.opendb</span><br><span class="line"></span><br><span class="line"># Visual Studio profiler</span><br><span class="line">*.psess</span><br><span class="line">*.vsp</span><br><span class="line">*.vspx</span><br><span class="line">*.sap</span><br><span class="line"></span><br><span class="line"># Visual Studio Trace Files</span><br><span class="line">*.e2e</span><br><span class="line"></span><br><span class="line"># TFS 2012 Local Workspace</span><br><span class="line">$tf/</span><br><span class="line"></span><br><span class="line"># Guidance Automation Toolkit</span><br><span class="line">*.gpState</span><br><span class="line"></span><br><span class="line"># ReSharper is a .NET coding add-in</span><br><span class="line">_ReSharper*/</span><br><span class="line">*.[Rr]e[Ss]harper</span><br><span class="line">*.DotSettings.user</span><br><span class="line"></span><br><span class="line"># TeamCity is a build add-in</span><br><span class="line">_TeamCity*</span><br><span class="line"></span><br><span class="line"># DotCover is a Code Coverage Tool</span><br><span class="line">*.dotCover</span><br><span class="line"></span><br><span class="line"># AxoCover is a Code Coverage Tool</span><br><span class="line">.axoCover/*</span><br><span class="line">!.axoCover/settings.json</span><br><span class="line"></span><br><span class="line"># Coverlet is a free, cross platform Code Coverage Tool</span><br><span class="line">coverage*.json</span><br><span class="line">coverage*.xml</span><br><span class="line">coverage*.info</span><br><span class="line"></span><br><span class="line"># Visual Studio code coverage results</span><br><span class="line">*.coverage</span><br><span class="line">*.coveragexml</span><br><span class="line"></span><br><span class="line"># NCrunch</span><br><span class="line">_NCrunch_*</span><br><span class="line">.*crunch*.local.xml</span><br><span class="line">nCrunchTemp_*</span><br><span class="line"></span><br><span class="line"># MightyMoose</span><br><span class="line">*.mm.*</span><br><span class="line">AutoTest.Net/</span><br><span class="line"></span><br><span class="line"># Web workbench (sass)</span><br><span class="line">.sass-cache/</span><br><span class="line"></span><br><span class="line"># Installshield output folder</span><br><span class="line">[Ee]xpress/</span><br><span class="line"></span><br><span class="line"># DocProject is a documentation generator add-in</span><br><span class="line">DocProject/buildhelp/</span><br><span class="line">DocProject/Help/*.HxT</span><br><span class="line">DocProject/Help/*.HxC</span><br><span class="line">DocProject/Help/*.hhc</span><br><span class="line">DocProject/Help/*.hhk</span><br><span class="line">DocProject/Help/*.hhp</span><br><span class="line">DocProject/Help/Html2</span><br><span class="line">DocProject/Help/html</span><br><span class="line"></span><br><span class="line"># Click-Once directory</span><br><span class="line">publish/</span><br><span class="line"></span><br><span class="line"># Publish Web Output</span><br><span class="line">*.[Pp]ublish.xml</span><br><span class="line">*.azurePubxml</span><br><span class="line"># Note: Comment the next line if you want to checkin your web deploy settings,</span><br><span class="line"># but database connection strings (with potential passwords) will be unencrypted</span><br><span class="line">*.pubxml</span><br><span class="line">*.publishproj</span><br><span class="line"></span><br><span class="line"># Microsoft Azure Web App publish settings. Comment the next line if you want to</span><br><span class="line"># checkin your Azure Web App publish settings, but sensitive information contained</span><br><span class="line"># in these scripts will be unencrypted</span><br><span class="line">PublishScripts/</span><br><span class="line"></span><br><span class="line"># NuGet Packages</span><br><span class="line">*.nupkg</span><br><span class="line"># NuGet Symbol Packages</span><br><span class="line">*.snupkg</span><br><span class="line"># The packages folder can be ignored because of Package Restore</span><br><span class="line">**/[Pp]ackages/*</span><br><span class="line"># except build/, which is used as an MSBuild target.</span><br><span class="line">!**/[Pp]ackages/build/</span><br><span class="line"># Uncomment if necessary however generally it will be regenerated when needed</span><br><span class="line">#!**/[Pp]ackages/repositories.config</span><br><span class="line"># NuGet v3&#x27;s project.json files produces more ignorable files</span><br><span class="line">*.nuget.props</span><br><span class="line">*.nuget.targets</span><br><span class="line"></span><br><span class="line"># Microsoft Azure Build Output</span><br><span class="line">csx/</span><br><span class="line">*.build.csdef</span><br><span class="line"></span><br><span class="line"># Microsoft Azure Emulator</span><br><span class="line">ecf/</span><br><span class="line">rcf/</span><br><span class="line"></span><br><span class="line"># Windows Store app package directories and files</span><br><span class="line">AppPackages/</span><br><span class="line">BundleArtifacts/</span><br><span class="line">Package.StoreAssociation.xml</span><br><span class="line">_pkginfo.txt</span><br><span class="line">*.appx</span><br><span class="line">*.appxbundle</span><br><span class="line">*.appxupload</span><br><span class="line"></span><br><span class="line"># Visual Studio cache files</span><br><span class="line"># files ending in .cache can be ignored</span><br><span class="line">*.[Cc]ache</span><br><span class="line"># but keep track of directories ending in .cache</span><br><span class="line">!?*.[Cc]ache/</span><br><span class="line"></span><br><span class="line"># Others</span><br><span class="line">ClientBin/</span><br><span class="line">~$*</span><br><span class="line">*~</span><br><span class="line">*.dbmdl</span><br><span class="line">*.dbproj.schemaview</span><br><span class="line">*.jfm</span><br><span class="line">*.pfx</span><br><span class="line">*.publishsettings</span><br><span class="line">orleans.codegen.cs</span><br><span class="line"></span><br><span class="line"># Including strong name files can present a security risk</span><br><span class="line"># (https://github.com/github/gitignore/pull/2483#issue-259490424)</span><br><span class="line">#*.snk</span><br><span class="line"></span><br><span class="line"># Since there are multiple workflows, uncomment next line to ignore bower_components</span><br><span class="line"># (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)</span><br><span class="line">#bower_components/</span><br><span class="line"></span><br><span class="line"># RIA/Silverlight projects</span><br><span class="line">Generated_Code/</span><br><span class="line"></span><br><span class="line"># Backup &amp; report files from converting an old project file</span><br><span class="line"># to a newer Visual Studio version. Backup files are not needed,</span><br><span class="line"># because we have git ;-)</span><br><span class="line">_UpgradeReport_Files/</span><br><span class="line">Backup*/</span><br><span class="line">UpgradeLog*.XML</span><br><span class="line">UpgradeLog*.htm</span><br><span class="line">ServiceFabricBackup/</span><br><span class="line">*.rptproj.bak</span><br><span class="line"></span><br><span class="line"># SQL Server files</span><br><span class="line">*.mdf</span><br><span class="line">*.ldf</span><br><span class="line">*.ndf</span><br><span class="line"></span><br><span class="line"># Business Intelligence projects</span><br><span class="line">*.rdl.data</span><br><span class="line">*.bim.layout</span><br><span class="line">*.bim_*.settings</span><br><span class="line">*.rptproj.rsuser</span><br><span class="line">*- [Bb]ackup.rdl</span><br><span class="line">*- [Bb]ackup ([0-9]).rdl</span><br><span class="line">*- [Bb]ackup ([0-9][0-9]).rdl</span><br><span class="line"></span><br><span class="line"># Microsoft Fakes</span><br><span class="line">FakesAssemblies/</span><br><span class="line"></span><br><span class="line"># GhostDoc plugin setting file</span><br><span class="line">*.GhostDoc.xml</span><br><span class="line"></span><br><span class="line"># Node.js Tools for Visual Studio</span><br><span class="line">.ntvs_analysis.dat</span><br><span class="line">node_modules/</span><br><span class="line"></span><br><span class="line"># Visual Studio 6 build log</span><br><span class="line">*.plg</span><br><span class="line"></span><br><span class="line"># Visual Studio 6 workspace options file</span><br><span class="line">*.opt</span><br><span class="line"></span><br><span class="line"># Visual Studio 6 auto-generated workspace file (contains which files were open etc.)</span><br><span class="line">*.vbw</span><br><span class="line"></span><br><span class="line"># Visual Studio LightSwitch build output</span><br><span class="line">**/*.HTMLClient/GeneratedArtifacts</span><br><span class="line">**/*.DesktopClient/GeneratedArtifacts</span><br><span class="line">**/*.DesktopClient/ModelManifest.xml</span><br><span class="line">**/*.Server/GeneratedArtifacts</span><br><span class="line">**/*.Server/ModelManifest.xml</span><br><span class="line">_Pvt_Extensions</span><br><span class="line"></span><br><span class="line"># Paket dependency manager</span><br><span class="line">.paket/paket.exe</span><br><span class="line">paket-files/</span><br><span class="line"></span><br><span class="line"># FAKE - F# Make</span><br><span class="line">.fake/</span><br><span class="line"></span><br><span class="line"># CodeRush personal settings</span><br><span class="line">.cr/personal</span><br><span class="line"></span><br><span class="line"># Python Tools for Visual Studio (PTVS)</span><br><span class="line">__pycache__/</span><br><span class="line">*.pyc</span><br><span class="line"></span><br><span class="line"># Cake - Uncomment if you are using it</span><br><span class="line"># tools/**</span><br><span class="line"># !tools/packages.config</span><br><span class="line"></span><br><span class="line"># Tabs Studio</span><br><span class="line">*.tss</span><br><span class="line"></span><br><span class="line"># Telerik&#x27;s JustMock configuration file</span><br><span class="line">*.jmconfig</span><br><span class="line"></span><br><span class="line"># BizTalk build output</span><br><span class="line">*.btp.cs</span><br><span class="line">*.btm.cs</span><br><span class="line">*.odx.cs</span><br><span class="line">*.xsd.cs</span><br><span class="line"></span><br><span class="line"># OpenCover UI analysis results</span><br><span class="line">OpenCover/</span><br><span class="line"></span><br><span class="line"># Azure Stream Analytics local run output</span><br><span class="line">ASALocalRun/</span><br><span class="line"></span><br><span class="line"># MSBuild Binary and Structured Log</span><br><span class="line">*.binlog</span><br><span class="line"></span><br><span class="line"># NVidia Nsight GPU debugger configuration file</span><br><span class="line">*.nvuser</span><br><span class="line"></span><br><span class="line"># MFractors (Xamarin productivity tool) working folder</span><br><span class="line">.mfractor/</span><br><span class="line"></span><br><span class="line"># Local History for Visual Studio</span><br><span class="line">.localhistory/</span><br><span class="line"></span><br><span class="line"># BeatPulse healthcheck temp database</span><br><span class="line">healthchecksdb</span><br><span class="line"></span><br><span class="line"># Backup folder for Package Reference Convert tool in Visual Studio 2017</span><br><span class="line">MigrationBackup/</span><br><span class="line"></span><br><span class="line"># Ionide (cross platform F# VS Code tools) working folder</span><br><span class="line">.ionide/</span><br><span class="line"></span><br><span class="line"># Fody - auto-generated XML schema</span><br><span class="line">FodyWeavers.xsd</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Linux】【Git】Linux系统安装Git</title>
-    <url>/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://github.com/git/git/tags">下载包体</a></p>
-<h3 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install libcurl-devel</span><br><span class="line">sudo yum install expat-devel</span><br><span class="line">sudo yum install asciidoc</span><br><span class="line">sudo yum install xmlto</span><br><span class="line">sudo yum install docbook2X</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置软连接</span></span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
-
-<p>根据git官网的指示，安装相关依赖包：<code>yum install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel libxslt asciidoc xmlto docbook2X autoconf install-info getopt</code></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>解压<code>tar -zxvf git-2.42.0.tar.gz</code></p>
-<p>编译<code>make prefix=/usr/local all doc info</code></p>
-<p>安装<code>make prefix=/usr/local install install-doc install-html install-info</code></p>
-<h3 id="可能会出现的问题"><a href="#可能会出现的问题" class="headerlink" title="可能会出现的问题"></a>可能会出现的问题</h3><p>提示找不到<code>docbook2x-texi</code>或者<code>docbook2texi</code></p>
-<p>在执行<code>yum install docbook2X</code>后设置软连接</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/qq_42108074/article/details/123027943">使用源码方法在阿里云服务器CentOS 7安装Git</a></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -320,6 +364,27 @@
 
 ]]></content>
       <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Linux】【Git】Linux系统安装Git</title>
+    <url>/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://github.com/git/git/tags">下载包体</a></p>
+<h3 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install libcurl-devel</span><br><span class="line">sudo yum install expat-devel</span><br><span class="line">sudo yum install asciidoc</span><br><span class="line">sudo yum install xmlto</span><br><span class="line">sudo yum install docbook2X</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置软连接</span></span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+
+<p>根据git官网的指示，安装相关依赖包：<code>yum install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel libxslt asciidoc xmlto docbook2X autoconf install-info getopt</code></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>解压<code>tar -zxvf git-2.42.0.tar.gz</code></p>
+<p>编译<code>make prefix=/usr/local all doc info</code></p>
+<p>安装<code>make prefix=/usr/local install install-doc install-html install-info</code></p>
+<h3 id="可能会出现的问题"><a href="#可能会出现的问题" class="headerlink" title="可能会出现的问题"></a>可能会出现的问题</h3><p>提示找不到<code>docbook2x-texi</code>或者<code>docbook2texi</code></p>
+<p>在执行<code>yum install docbook2X</code>后设置软连接</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/qq_42108074/article/details/123027943">使用源码方法在阿里云服务器CentOS 7安装Git</a></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
         <tag>Linux</tag>
       </tags>
   </entry>
@@ -407,64 +472,65 @@
       </tags>
   </entry>
   <entry>
-    <title>【MySQL】MySQL安装</title>
-    <url>/2023/08/21/mysql-MySQL%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>官网网址：<a href="https://dev.mysql.com/downloads/">MySQL :: MySQL Community Downloads</a></p>
-<p><img src="/../images/linux/mysql/安装网址1.png"></img></p>
-<p><img src="/../images/linux/mysql/安装网址2.png"></img></p>
-<p><img src="/../images/linux/mysql/安装网址3.png"></img></p>
-<p>将文件解压到一个新建的文件夹中<code>tar -xvf mysql-8.0.33-1.el7.x86_64.rpm-bundle.tar -C mysql-8.0.33</code></p>
-<p>安装<code>openssl-devel</code>插件，mysql里有些rpm的安装依赖于该插件</p>
-<h4 id="安装rpm包"><a href="#安装rpm包" class="headerlink" title="安装rpm包"></a>安装rpm包</h4><p>依次执行以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-common-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端插件，提供额外的功能和扩展。具体需要哪些插件取决于你的使用情况。你可以根据你的需要来决定是否安装这些插件。</span></span><br><span class="line">rpm -ivh mysql-community-client-plugins-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 库文件，用于在应用程序中连接到 MySQL 数据库。这是 MySQL 连接所必需的，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-compat-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 开发包，包含开发所需的头文件和库文件。如果你打算在该系统上开发与 MySQL 相关的应用程序，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-devel-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端工具，用于连接和管理 MySQL 服务器。通常情况下，如果你计划从该系统上远程连接到其他 MySQL 服务器，你需要安装此包。如果你的系统不需要连接其他 MySQL 服务器，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-client-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># ICU 数据文件，用于支持国际化和字符集处理。如果你的应用程序不需要特定的国际化功能，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-icu-data-files-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 服务器，用于托管数据库实例。如果你计划在该系统上安装 MySQL 数据库服务器，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-server-8.0.33-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+    <title>组装电脑</title>
+    <url>/2023/08/24/daily-2023-08-24/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/images.css">
 
-<hr>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>使用<code>systemctl start mysqld</code>命令启动服务器</p>
-<p>rpm安装MySQL会自动生成一个随机密码，可以在<code>/var/log/mysqld.log</code>中查看</p>
-<img src="/../images/linux/mysql/随机密码.png">
-
-<p>使用<code>mysql -u root -p</code>进入客户端</p>
-<img src="/../images/linux/mysql/输入密码.png">
-
-<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>连接MySQL之后，使用<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456789&#39;;</code>修改密码</p>
-<img src="/../images/linux/mysql/设置密码.png">
-
-<p>出现<code>Your password does not satisfy the current policy requirements</code>提示，意思是您的密码不符合当前规定的要求，你要么就把你的密码设置得复杂点，要么就去降低密码的校验规则。</p>
-<p>在 Linux 上安装 MySQL 时会自动安装一个校验密码的插件，默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。修改密码时新密码是否符合当前的策略，不满足则会提示ERROR</p>
-<p>可以将这个限制密码位数设小一点，复杂度类型调底一点</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将密码复杂度校验调整简单类型</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.policy = 0;</span><br><span class="line"><span class="comment"># 设置密码最少位数限制为 4 位</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.length = 4;</span><br></pre></td></tr></table></figure>
-
-<img src="/../images/linux/mysql/设置密码复杂度.png">
-
-<hr>
-<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>可能遇到的问题</p>
-<h4 id="MySQL自身原因"><a href="#MySQL自身原因" class="headerlink" title="MySQL自身原因"></a>MySQL自身原因</h4><p>MySQL默认不允许远程连接，修改配置</p>
-<ol>
-<li>使用<code>mysql -u root -p</code>链接服务器</li>
-<li><code>show databases;</code>查看当前所有数据库</li>
-<li><code>use mysql;</code>进入mysql数据库（配置mysql的一个数据库）</li>
-<li><code>select user,host from user;</code>查看用户的链接方式</li>
-</ol>
-<img src="/../images/linux/mysql/连接方式.png">
-
-<ol start="5">
-<li>使用<code>update user set host=&#39;%&#39; where user=&#39;root&#39;;</code>将root的链接方式修改为%</li>
-<li><code>systemctl restart mysqld</code>重启mysql服务器</li>
-</ol>
-<h4 id="外在原因"><a href="#外在原因" class="headerlink" title="外在原因"></a>外在原因</h4><ol>
-<li>MySQL是否关掉了</li>
-<li>防火墙的3306端口是否对外开放了</li>
-<li>如果你是云服务器还需要开放3306的安全组</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开放80端口，`--premanent`表示永久开放，重启后也依然开放</span></span><br><span class="line">sudo firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"><span class="comment"># 重新加载防火墙</span></span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p>参考连接：<a href="https://blog.csdn.net/u013733643/article/details/128970496">Linux-安装MySQL（详细教程）</a></p>
+<p>今天从零开始组装了一台电脑，用了7年的电脑终于退休了，说实话多多少少有点舍不得</p>
+<p><img src="/../images/daily/2023-08-24/配置.png"></img></p>
+<p><img src="/../images/daily/2023-08-24/分数.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机1.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机2.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机3.png"></img></p>
 ]]></content>
       <tags>
-        <tag>MySQL</tag>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】【魔法方法】【装饰器】【上下文管理器】contextlib模块</title>
+    <url>/2023/08/12/python-contextlib%E6%A8%A1%E5%9D%97/</url>
+    <content><![CDATA[<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p> 装饰器可以灵活的控制两个函数的执行顺序</p>
+<h4 id="无返回值"><a href="#无返回值" class="headerlink" title="无返回值"></a>无返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@sum</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">take</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<h4 id="有返回值"><a href="#有返回值" class="headerlink" title="有返回值"></a>有返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;outer&quot;</span>)            <span class="comment"># ----------1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">x, y</span>):        <span class="comment"># ----------3</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;wrapper&quot;</span>)      <span class="comment"># ----------4</span></span><br><span class="line">        res = func(x, y)      <span class="comment"># ----------5</span></span><br><span class="line">        <span class="keyword">return</span> res            <span class="comment"># ----------9</span></span><br><span class="line">    <span class="keyword">return</span> wrapper            <span class="comment"># ----------2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@outer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">x, y</span>):              <span class="comment"># ----------6</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;inner&quot;</span>)            <span class="comment"># ----------7</span></span><br><span class="line">    <span class="keyword">return</span> x+y                <span class="comment"># ----------8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(inner(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">outer</span><br><span class="line">wrapper</span><br><span class="line">inner</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h3><p>在 Python 中，上下文管理器常常与 <code>with</code> 语句一起使用。<code>with</code> 语句会在代码块进入时调用上下文管理器的 <code>__enter__()</code> 方法，而在代码块退出时会调用上下文管理器的 <code>__exit__()</code> 方法。这种机制确保了资源在适当的时候被初始化和清理。</p>
+<p>最基础的上下管理器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;a.txt&quot;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.read()</span><br></pre></td></tr></table></figure>
+
+<p>自己定义一个上下文管理器</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyContext</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering the context&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        exc_type: 异常类型，如果没有异常则为None</span></span><br><span class="line"><span class="string">        exc_value: 异常值，如果没有异常则为None</span></span><br><span class="line"><span class="string">        traceback: 追溯信息，如果没有异常则为None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting the context&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;An exception of type <span class="subst">&#123;exc_type&#125;</span> occurred with value <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># Return True if you want to suppress the exception</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用with语句创建上下文管理器</span></span><br><span class="line"><span class="keyword">with</span> MyContext() <span class="keyword">as</span> context:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Inside the context&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Outside the context&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Entering the context</span><br><span class="line">Inside the context</span><br><span class="line">Exiting the context</span><br><span class="line">Outside the context</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="contextlib模块"><a href="#contextlib模块" class="headerlink" title="contextlib模块"></a>contextlib模块</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><p>上面我们自定义上下文管理器确实很方便，但是Python标准库还提供了更加易用的上下文管理器工具模块contextlib，它是通过生成器实现的，我们不需要再创建类以及<code>__enter__</code>和<code>__exit__</code>这两个特俗的方法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_open_context</span>(<span class="params">filename, mode</span>):</span><br><span class="line">    fp = <span class="built_in">open</span>(filename, mode)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> fp</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        fp.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_open_context(<span class="string">&#x27;/tmp/a.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> file_obj:</span><br><span class="line">    file_obj.write(<span class="string">&quot;hello carson666&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在上文中，<code>yield</code>关键词把上下文分割成两部分：</p>
+<ul>
+<li><code>yiled</code>之前就是<code>__enter__</code>中的代码块</li>
+<li><code>yield</code>之后就是<code>__exit__</code>中的代码块</li>
+</ul>
+<p><code>yeild</code>生成的值会绑定到<code>with</code>语句的<code>as</code>子句中的变量。例如上面的例子中<code>yield</code>生成的值是文件句柄对象fp，在下面的with语句中，会将<code>fp</code>和<code>file_obj</code>绑定到一起，也就是说<code>file_obj</code>此时就是一个文件句柄对象，那么它就可以操作文件了，因此就可以调用<code>file_obj.write(&quot;hello world&quot;)</code></p>
+<p>另外要注意的是，如果<code>yield</code>没有生成值，那么在<code>with</code>语句中就不需要写<code>as</code>子句了</p>
+<h4 id="将普通的类变为上下文管理器类"><a href="#将普通的类变为上下文管理器类" class="headerlink" title="将普通的类变为上下文管理器类"></a>将普通的类变为上下文管理器类</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyResource</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;query data&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_myresource</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line">    <span class="keyword">yield</span> MyResource()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_myresource() <span class="keyword">as</span> r:</span><br><span class="line">    r.query()</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">connect to resource</span><br><span class="line">quert data</span><br><span class="line">connect to resource</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>魔法方法</tag>
       </tags>
   </entry>
   <entry>
@@ -822,49 +888,71 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】【魔法方法】【装饰器】【上下文管理器】contextlib模块</title>
-    <url>/2023/08/12/python-contextlib%E6%A8%A1%E5%9D%97/</url>
-    <content><![CDATA[<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p> 装饰器可以灵活的控制两个函数的执行顺序</p>
-<h4 id="无返回值"><a href="#无返回值" class="headerlink" title="无返回值"></a>无返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@sum</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">take</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+    <title>【Python】【编程思维】Python中的泛型</title>
+    <url>/2023/08/12/python-%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/font.css">
 
-<p>输出结果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
 
-<h4 id="有返回值"><a href="#有返回值" class="headerlink" title="有返回值"></a>有返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;outer&quot;</span>)            <span class="comment"># ----------1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">x, y</span>):        <span class="comment"># ----------3</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;wrapper&quot;</span>)      <span class="comment"># ----------4</span></span><br><span class="line">        res = func(x, y)      <span class="comment"># ----------5</span></span><br><span class="line">        <span class="keyword">return</span> res            <span class="comment"># ----------9</span></span><br><span class="line">    <span class="keyword">return</span> wrapper            <span class="comment"># ----------2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@outer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">x, y</span>):              <span class="comment"># ----------6</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;inner&quot;</span>)            <span class="comment"># ----------7</span></span><br><span class="line">    <span class="keyword">return</span> x+y                <span class="comment"># ----------8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(inner(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>作用：限制数据类型的范围</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>], num1: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]</span>) -&gt; <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
 
-<p>输出结果</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">outer</span><br><span class="line">wrapper</span><br><span class="line">inner</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p><code>a: Union[int, float]</code>表示变量a可以是int，也可以是float<br><font class="moderate"><br>扩展：<br>Any可以表示任意类型，如果写成<code>a: Any</code>那么就相当于没有做任何事，因为如果只写a的话本身就是能代指任意类型</font></p>
+<h3 id="TypeVar"><a href="#TypeVar" class="headerlink" title="TypeVar"></a>TypeVar</h3><p>制作模板——自己定义一个类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&quot;T&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: T, num1: T</span>) -&gt; T:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h3 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h3><p>在 Python 中，上下文管理器常常与 <code>with</code> 语句一起使用。<code>with</code> 语句会在代码块进入时调用上下文管理器的 <code>__enter__()</code> 方法，而在代码块退出时会调用上下文管理器的 <code>__exit__()</code> 方法。这种机制确保了资源在适当的时候被初始化和清理。</p>
-<p>最基础的上下管理器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;a.txt&quot;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.read()</span><br></pre></td></tr></table></figure>
+<p><code>T  = TypeVar(&quot;T&quot;)</code>表示定义了一个泛型类型变量T，并没有指定他的类型上限，也就是说传给这个函数的参数可以是任意类型</p>
+<p>通常在创建泛型类变量时会使用<code>bound</code>参数指定上限：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义了一个泛型类型变量T_Config，他的类上限是BasePluginConfig</span></span><br><span class="line"><span class="comment"># 意味着T_Config可以被替代为BasePluginConfig类型或BasePluginConfig的子类</span></span><br><span class="line">T_Config = TypeVar(<span class="string">&quot;T_Config&quot;</span>, bound=BasePluginConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BasePluginConfig</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
-<p>自己定义一个上下文管理器</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyContext</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering the context&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        exc_type: 异常类型，如果没有异常则为None</span></span><br><span class="line"><span class="string">        exc_value: 异常值，如果没有异常则为None</span></span><br><span class="line"><span class="string">        traceback: 追溯信息，如果没有异常则为None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting the context&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;An exception of type <span class="subst">&#123;exc_type&#125;</span> occurred with value <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># Return True if you want to suppress the exception</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用with语句创建上下文管理器</span></span><br><span class="line"><span class="keyword">with</span> MyContext() <span class="keyword">as</span> context:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Inside the context&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Outside the context&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h3><p>类似于where，限制传给一个函数的类型范围</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypeVar, <span class="type">Generic</span></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&#x27;T&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>(<span class="type">Generic</span>[T]):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 定义一个元素类型都是T的队列</span></span><br><span class="line">        self.items: <span class="type">List</span>[T] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item: T</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>) -&gt; T:</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.items)</span><br><span class="line"></span><br><span class="line">q = Queue[<span class="built_in">int</span>]()</span><br><span class="line">q.push(<span class="number">0</span>)</span><br><span class="line">q.push(<span class="number">1</span>)</span><br><span class="line">q.pop()             <span class="comment"># 移除0</span></span><br><span class="line">q.push(<span class="string">&#x27;string&#x27;</span>)    <span class="comment"># 并不会报错</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
 
 <p>输出</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Entering the context</span><br><span class="line">Inside the context</span><br><span class="line">Exiting the context</span><br><span class="line">Outside the context</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1, &#x27;string&#x27;]</span><br><span class="line"></span><br><span class="line">进程已结束,退出代码0</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h3 id="contextlib模块"><a href="#contextlib模块" class="headerlink" title="contextlib模块"></a>contextlib模块</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><p>上面我们自定义上下文管理器确实很方便，但是Python标准库还提供了更加易用的上下文管理器工具模块contextlib，它是通过生成器实现的，我们不需要再创建类以及<code>__enter__</code>和<code>__exit__</code>这两个特俗的方法：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_open_context</span>(<span class="params">filename, mode</span>):</span><br><span class="line">    fp = <span class="built_in">open</span>(filename, mode)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> fp</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        fp.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_open_context(<span class="string">&#x27;/tmp/a.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> file_obj:</span><br><span class="line">    file_obj.write(<span class="string">&quot;hello carson666&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在上文中，<code>yield</code>关键词把上下文分割成两部分：</p>
-<ul>
-<li><code>yiled</code>之前就是<code>__enter__</code>中的代码块</li>
-<li><code>yield</code>之后就是<code>__exit__</code>中的代码块</li>
+<p>注意最后的<code>q.push(&#39;string&#39;)</code>中<code>&#39;string&#39;</code>虽然并不是int类型，但是在实际运行中并不会报错，不过我们可以通过使用静态类型检查工具（mypy, pytype, pyright, pyre）等方法，提前发现这些错误。这也是推荐使用<code>typing</code>模块来做type annotation的理由之一。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>使用<code>typing</code>模块盒注释来提高代码的可读性</p>
+</li>
+<li><p>将自动化的类型检查工具和API生成工具部署在CI中，方便提前发现错误，方便新人员的理解</p>
+</li>
 </ul>
-<p><code>yeild</code>生成的值会绑定到<code>with</code>语句的<code>as</code>子句中的变量。例如上面的例子中<code>yield</code>生成的值是文件句柄对象fp，在下面的with语句中，会将<code>fp</code>和<code>file_obj</code>绑定到一起，也就是说<code>file_obj</code>此时就是一个文件句柄对象，那么它就可以操作文件了，因此就可以调用<code>file_obj.write(&quot;hello world&quot;)</code></p>
-<p>另外要注意的是，如果<code>yield</code>没有生成值，那么在<code>with</code>语句中就不需要写<code>as</code>子句了</p>
-<h4 id="将普通的类变为上下文管理器类"><a href="#将普通的类变为上下文管理器类" class="headerlink" title="将普通的类变为上下文管理器类"></a>将普通的类变为上下文管理器类</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyResource</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;query data&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_myresource</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line">    <span class="keyword">yield</span> MyResource()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_myresource() <span class="keyword">as</span> r:</span><br><span class="line">    r.query()</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">connect to resource</span><br><span class="line">quert data</span><br><span class="line">connect to resource</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/497801684">Python中的泛型</a></p>
 ]]></content>
       <tags>
         <tag>Python</tag>
-        <tag>魔法方法</tag>
+        <tag>编程思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】文件处理</title>
+    <url>/2023/09/13/python-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h3 id="JSON文件"><a href="#JSON文件" class="headerlink" title="JSON文件"></a>JSON文件</h3><ul>
+<li>序列：通俗来说就是字符串</li>
+<li>序列化：将代码中的对象（如：列表、字典等）转换成<strong>字符串</strong>，以便将信息保存在文件中或传输到网络上</li>
+<li>反序列化：将字符串转换成代码中的<strong>对象</strong></li>
+</ul>
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化 (Serialization)，是指<strong>把程序中的一个类转化成一个标准化的格式</strong>。标准化的意义是这个格式可以跨程序，跨平台的被使用，而且保持其原有的内容，规范。</p>
+<p><code>json.dumps(&lt;对象&gt;)</code>将对象<strong>转换</strong>成字符串，可添加参数<code>indent=4</code>设置字符串的缩进</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line">s = json.dumps(dict_)</span><br><span class="line"><span class="built_in">print</span>(s)	<span class="comment"># 输出：&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>将对象<strong>写入</strong>到file文件中，可添加参数<code>indent=4</code>设置字符串的缩进</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    json.dump(dict_, json_file)</span><br></pre></td></tr></table></figure>
+
+<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p><code>json.loads(&lt;string&gt;)</code>将<strong>string</strong>转换成对象并返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br><span class="line">dict_ = json.loads(s)</span><br><span class="line"><span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>json.load(&lt;file&gt;)</code>将<strong>file文件</strong>中的内容转换成对象并返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    dict_ = json.load(file)</span><br><span class="line">    <span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><code>json.dumps(&lt;对象&gt;)</code>：将对象<strong>转换</strong>成字符串，作用的转换</p>
+<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>：将对象<strong>写入</strong>file文件中，作用是转换并写入</p>
+<p><code>json.loads(&lt;string&gt;)</code>：将string转换成对象并返回，<strong>参数是string</strong></p>
+<p><code>json.load(&lt;file&gt;)</code>：将file文件中的内容转换成对象并返回，<strong>参数是file</strong></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -921,44 +1009,6 @@
 ]]></content>
       <tags>
         <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】【编程思维】Python中的泛型</title>
-    <url>/2023/08/12/python-%E6%B3%9B%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/font.css">
-
-
-<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>作用：限制数据类型的范围</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>], num1: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]</span>) -&gt; <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
-
-<p><code>a: Union[int, float]</code>表示变量a可以是int，也可以是float<br><font class="moderate"><br>扩展：<br>Any可以表示任意类型，如果写成<code>a: Any</code>那么就相当于没有做任何事，因为如果只写a的话本身就是能代指任意类型</font></p>
-<h3 id="TypeVar"><a href="#TypeVar" class="headerlink" title="TypeVar"></a>TypeVar</h3><p>制作模板——自己定义一个类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&quot;T&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: T, num1: T</span>) -&gt; T:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
-
-<p><code>T  = TypeVar(&quot;T&quot;)</code>表示定义了一个泛型类型变量T，并没有指定他的类型上限，也就是说传给这个函数的参数可以是任意类型</p>
-<p>通常在创建泛型类变量时会使用<code>bound</code>参数指定上限：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义了一个泛型类型变量T_Config，他的类上限是BasePluginConfig</span></span><br><span class="line"><span class="comment"># 意味着T_Config可以被替代为BasePluginConfig类型或BasePluginConfig的子类</span></span><br><span class="line">T_Config = TypeVar(<span class="string">&quot;T_Config&quot;</span>, bound=BasePluginConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BasePluginConfig</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h3><p>类似于where，限制传给一个函数的类型范围</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypeVar, <span class="type">Generic</span></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&#x27;T&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>(<span class="type">Generic</span>[T]):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 定义一个元素类型都是T的队列</span></span><br><span class="line">        self.items: <span class="type">List</span>[T] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item: T</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>) -&gt; T:</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.items)</span><br><span class="line"></span><br><span class="line">q = Queue[<span class="built_in">int</span>]()</span><br><span class="line">q.push(<span class="number">0</span>)</span><br><span class="line">q.push(<span class="number">1</span>)</span><br><span class="line">q.pop()             <span class="comment"># 移除0</span></span><br><span class="line">q.push(<span class="string">&#x27;string&#x27;</span>)    <span class="comment"># 并不会报错</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1, &#x27;string&#x27;]</span><br><span class="line"></span><br><span class="line">进程已结束,退出代码0</span><br></pre></td></tr></table></figure>
-
-<p>注意最后的<code>q.push(&#39;string&#39;)</code>中<code>&#39;string&#39;</code>虽然并不是int类型，但是在实际运行中并不会报错，不过我们可以通过使用静态类型检查工具（mypy, pytype, pyright, pyre）等方法，提前发现这些错误。这也是推荐使用<code>typing</code>模块来做type annotation的理由之一。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>使用<code>typing</code>模块盒注释来提高代码的可读性</p>
-</li>
-<li><p>将自动化的类型检查工具和API生成工具部署在CI中，方便提前发现错误，方便新人员的理解</p>
-</li>
-</ul>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/497801684">Python中的泛型</a></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>编程思维</tag>
       </tags>
   </entry>
   <entry>
@@ -1044,6 +1094,78 @@
       </tags>
   </entry>
   <entry>
+    <title>【Unity】多线程</title>
+    <url>/2023/09/18/unity-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="Task和Thread的区别"><a href="#Task和Thread的区别" class="headerlink" title="Task和Thread的区别"></a>Task和Thread的区别</h3><ul>
+<li><p>基于不同的 .NET 框架：Thread 是基于 Windows 操作系统提供的 API 实现，而 Task 则是基于 .NET框架提供的 TPL（Task Parallel Library）实现。</p>
+</li>
+<li><p>默认执行线程池：Thread 默认使用前台线程，而 Task 默认使用后台线程。这意味着，Thread 会阻塞主线程，而 Task不会。</p>
+</li>
+<li><p>异步执行：Task 支持异步执行，而 Thread 不支持。这意味着，在使用 Task 时，可以通过 await 和 async关键字轻松实现异步编程，而 Thread 则需要手动管理线程的启动和等待。</p>
+</li>
+<li><p>异常处理：Task 提供了更好的异常处理机制，可以将异常传递给调用方，而 Thread 则需要在每个线程中处理异常。</p>
+</li>
+<li><p>任务调度器：Task 提供了任务调度器（TaskScheduler），可以控制任务的并发性和调度方式，而 Thread 则没有这个功能。</p>
+</li>
+<li><p>返回值：Task 可以有返回值，而 Thread 没有。这是因为 Task 是基于 TPL 实现的，可以利用 .NET框架提供的并发编程模型来实现任务之间的依赖和调度。</p>
+</li>
+</ul>
+<h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><h4 id="Task和Task的创建"><a href="#Task和Task的创建" class="headerlink" title="Task和Task&lt;T&gt;的创建"></a><code>Task</code>和<code>Task&lt;T&gt;</code>的创建</h4><h5 id="Task的创建"><a href="#Task的创建" class="headerlink" title="Task的创建"></a>Task的创建</h5><p>使用<code>Task</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task task = <span class="keyword">new</span> Task(() =&gt; &#123;</span><br><span class="line">	<span class="comment">// 异步操作的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Task.Run</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task task = Task.Run(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="Task的创建-1"><a href="#Task的创建-1" class="headerlink" title="Task&lt;T&gt;的创建"></a><code>Task&lt;T&gt;</code>的创建</h5><p><code>Task&lt;T&gt;</code>与会返回一个类型为T的结果</p>
+<p>使用<code>Task</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task&lt;<span class="built_in">int</span>&gt; task = <span class="keyword">new</span> Task&lt;<span class="built_in">int</span>&gt;(() =&gt;&#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码，返回int类型的结果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Task.Run</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task&lt;<span class="built_in">int</span>&gt; task = Task.Run(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码，返回int类型的结果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动和等待Task和Task"><a href="#启动和等待Task和Task" class="headerlink" title="启动和等待Task和Task&lt;T&gt;"></a>启动和等待<code>Task</code>和<code>Task&lt;T&gt;</code></h4><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><p>使用<code>start</code>方法启动</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">task.Start();</span><br></pre></td></tr></table></figure>
+
+<h5 id="使用Wait-阻塞等待"><a href="#使用Wait-阻塞等待" class="headerlink" title="使用Wait()阻塞等待"></a>使用<code>Wait()</code>阻塞等待</h5><p>直接控制<code>Task</code>，实现异步等待任务的完成<br>会阻塞主线程，类似于<code>thread1.Join()</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">task.Wait();	<span class="comment">// 阻塞当前线程，等待任务完成</span></span><br><span class="line"><span class="built_in">int</span> result = task.Result;  <span class="comment">// 阻塞当前线程，等待任务完成，并获取结果</span></span><br><span class="line"></span><br><span class="line">Task.WaitAll(<span class="keyword">new</span> Task[]&#123; task1, task2 &#125;);		<span class="comment">// 等待所有的task都执行完成再解除阻塞</span></span><br><span class="line">Task.WaitAny(<span class="keyword">new</span> Task[]&#123; task1, task2 &#125;);		<span class="comment">// 只要有一个task执行完毕就解除阻塞</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用WhenAll和WhenAny控制线程"><a href="#使用WhenAll和WhenAny控制线程" class="headerlink" title="使用WhenAll和WhenAny控制线程"></a>使用<code>WhenAll</code>和<code>WhenAny</code>控制线程</h5><p>不会阻塞主线程</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task.WhenAll(task1, task2).ContinueWith((t) =&gt; &#123; Console.Writeline(<span class="string">&quot;执行异步代码&quot;</span>); &#125;);	<span class="comment">// 当task1和task2执行完毕后，再执行后续代码</span></span><br><span class="line">Task.WhenAny(task1, task2).ContinueWith((t) =&gt; &#123; Console.Writeline(<span class="string">&quot;执行异步代码&quot;</span>); &#125;);	<span class="comment">// 只要有一个执行完毕，就执行后续代码</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用await等待Task和Task"><a href="#使用await等待Task和Task" class="headerlink" title="使用await等待Task和Task&lt;T&gt;"></a>使用<code>await</code>等待<code>Task</code>和<code>Task&lt;T&gt;</code></h5><p>在异步代码中使用<code>await</code>等待其他的任务完成（为.net5.0推出的方法）<br>不会阻塞主线程</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AsyncTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主线程开始&quot;</span>);</span><br><span class="line"></span><br><span class="line">            t().Start();</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主线程结束&quot;</span>);</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Task <span class="title">t</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Task(<span class="keyword">async</span> () =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">&quot;开始执行t&quot;</span>);</span><br><span class="line">                <span class="keyword">await</span> Task.Delay(<span class="number">2000</span>);			<span class="comment">// 等待两秒，模拟一个异步操作</span></span><br><span class="line">                Console.WriteLine(<span class="string">&quot;结束执行t&quot;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">主线程开始</span><br><span class="line">主线程结束</span><br><span class="line">开始执行t</span><br><span class="line">结束执行t</span><br></pre></td></tr></table></figure>
+
+<h5 id="三个等待的区别"><a href="#三个等待的区别" class="headerlink" title="三个等待的区别"></a>三个等待的区别</h5><ul>
+<li><code>Wait()</code>针对线程操作，会阻塞主线程</li>
+<li><code>WhenAll</code>针对线程操作，不会阻塞主线程</li>
+<li><code>await</code>在线程中针对其他线程操作，不会阻塞主线程</li>
+</ul>
+<hr>
+<h3 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(A);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(B);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是A函数1&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是A函数2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">B</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是B函数1&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是B函数2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时的输出结果是不可控的，可能先执行A，也可能先执行B，这个是操作系统根据CPU自动计算出来的。<br>而且A和B是会嵌套交叉执行的</p>
+<p>如何让程序先执行A，执行完A之后在执行B；或者先执行完B再执行A：使用lock关键字</p>
+<h3 id="lock关键字"><a href="#lock关键字" class="headerlink" title="lock关键字"></a>lock关键字</h3><p>可以通过lock关键字来控制A和B的执行顺序。使用同一个lock参数的代码，程序会等待前面的代码执行完之后再执行后面的</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> Object o = <span class="keyword">new</span> <span class="built_in">object</span>();</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(A);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(B);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    Thread t3 = <span class="keyword">new</span> Thread(C);</span><br><span class="line">    t3.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">A</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">lock</span>(o)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是A函数1&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是A函数2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">B</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">lock</span>(o)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Thread.Sleep(1000);   // 暂停1秒</span></span><br><span class="line">        Debug.Log(<span class="string">&quot;我是B函数1&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是B函数2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">C</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    DEbug.Log(<span class="string">&quot;我是随机函数&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时可能会先执行A，执行完A后再执行B；也有可能先执行B，执行完B之后再执行A。C函数没有被锁住，所以他能出现在任意位置。</p>
+<p>补充：这里的o是Object类（基类）。所以，lock的参数可以是任意的类</p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>在unity中将子线程的代码转移到主线程中执行</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainThreadDispatcher</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MainThreadDispatcher instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Action&gt; actionQueue = <span class="keyword">new</span> Queue&lt;Action&gt;();		<span class="comment">// 初始化一个队列:先进先出的一个数据结构</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            instance = <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">lock</span> (actionQueue)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (actionQueue.Count &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                Action action = actionQueue.Dequeue();		<span class="comment">// 取出队列中的一个函数，并执行</span></span><br><span class="line">                action.Invoke();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RunOnMainThread</span>(<span class="params">Action action</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">lock</span> (instance.actionQueue)		<span class="comment">// 如果有其他的代码（包括自己）使用了lock(instance.actionQueue)，则会等待前面的执行完再执行自己</span></span><br><span class="line">        &#123;</span><br><span class="line">            instance.actionQueue.Enqueue(action);		<span class="comment">// 将传进来的action函数插入到队列中</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在其他函数中可以通过调用<code>RunOnMainThread()</code>函数将方法转移到主线程上执行<br>常用与数据请求上，接收到的数据一般都是在子线程上。但是在unity的子线程中无法访问transform属性等，故需要转移到主线程上执行</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">RunOnMainThread(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 转移到主线程上执行代码</span></span><br><span class="line">    textValue.text = <span class="string">&quot;你好&quot;</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Unity</tag>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Unity】【C#】【设计模式】Unity设计模式</title>
     <url>/2023/08/15/unity-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><h4 id="懒汉模式："><a href="#懒汉模式：" class="headerlink" title="懒汉模式："></a>懒汉模式：</h4><p>指在第一次访问单例对象时才创建实例</p>
@@ -1092,6 +1214,88 @@
         <tag>Unity</tag>
         <tag>C#</tag>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity】销毁子物体的两种方法</title>
+    <url>/2023/09/13/unity-%E9%94%80%E6%AF%81%E5%AD%90%E7%89%A9%E4%BD%93%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="销毁所有子物体后，获取子物体的数量为0"><a href="#销毁所有子物体后，获取子物体的数量为0" class="headerlink" title="销毁所有子物体后，获取子物体的数量为0"></a>销毁所有子物体后，获取子物体的数量为0</h3><p>如果在同一帧内需要增加子物体并统计新的子物体的数量可以使用这个方法</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; coneten.childCount; i++)</span><br><span class="line">&#123;</span><br><span class="line">    DestroyImmediate(content.GetChild(<span class="number">0</span>).gameObject);</span><br><span class="line">	Debug.Log(content.childCount);		<span class="meta"># 输出的值会慢慢的变小，直至变为0</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出为0</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的<code>for</code>循环获取子物体的方法是<code>GetChild(o)</code></p>
+<h3 id="销毁所有子物体后，获取子物体的数量为销毁前的数量"><a href="#销毁所有子物体后，获取子物体的数量为销毁前的数量" class="headerlink" title="销毁所有子物体后，获取子物体的数量为销毁前的数量"></a>销毁所有子物体后，获取子物体的数量为销毁前的数量</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; content.childCount; i++)</span><br><span class="line">&#123;</span><br><span class="line">    Destroy(content.GetChild(i).gameObject);</span><br><span class="line">	Debug.Log(content.childCount);		<span class="meta"># 输出的一直是销毁前的子物体数量</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出的是销毁前的子物体数量</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (RectTransform item <span class="keyword">in</span> content)</span><br><span class="line">&#123;</span><br><span class="line">    Destroy(item.gameObject);</span><br><span class="line">    Debug.Log(content.childCount);		<span class="meta"># 输出的一直是销毁前的子物体数量</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出的是销毁前的子物体数量</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的<code>for</code>循环中获取子物体的方法是<code>GetChild(i)</code>，这种<code>for</code>循环方式和<code>forecho</code>是一样的</p>
+<h3 id="销毁子物体错误的方法"><a href="#销毁子物体错误的方法" class="headerlink" title="销毁子物体错误的方法"></a>销毁子物体错误的方法</h3><p>这种方法销毁不干净子物体</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (RectTransform item <span class="keyword">in</span> content)</span><br><span class="line">&#123;</span><br><span class="line">    DestoryImmediate(item.gameObject);</span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【MySQL】MySQL安装</title>
+    <url>/2023/08/21/mysql-MySQL%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>官网网址：<a href="https://dev.mysql.com/downloads/">MySQL :: MySQL Community Downloads</a></p>
+<p><img src="/../images/linux/mysql/安装网址1.png"></img></p>
+<p><img src="/../images/linux/mysql/安装网址2.png"></img></p>
+<p><img src="/../images/linux/mysql/安装网址3.png"></img></p>
+<p>将文件解压到一个新建的文件夹中<code>tar -xvf mysql-8.0.33-1.el7.x86_64.rpm-bundle.tar -C mysql-8.0.33</code></p>
+<p>安装<code>openssl-devel</code>插件，mysql里有些rpm的安装依赖于该插件</p>
+<h4 id="安装rpm包"><a href="#安装rpm包" class="headerlink" title="安装rpm包"></a>安装rpm包</h4><p>依次执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-common-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端插件，提供额外的功能和扩展。具体需要哪些插件取决于你的使用情况。你可以根据你的需要来决定是否安装这些插件。</span></span><br><span class="line">rpm -ivh mysql-community-client-plugins-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 库文件，用于在应用程序中连接到 MySQL 数据库。这是 MySQL 连接所必需的，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-compat-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 开发包，包含开发所需的头文件和库文件。如果你打算在该系统上开发与 MySQL 相关的应用程序，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-devel-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端工具，用于连接和管理 MySQL 服务器。通常情况下，如果你计划从该系统上远程连接到其他 MySQL 服务器，你需要安装此包。如果你的系统不需要连接其他 MySQL 服务器，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-client-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># ICU 数据文件，用于支持国际化和字符集处理。如果你的应用程序不需要特定的国际化功能，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-icu-data-files-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 服务器，用于托管数据库实例。如果你计划在该系统上安装 MySQL 数据库服务器，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-server-8.0.33-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>使用<code>systemctl start mysqld</code>命令启动服务器</p>
+<p>rpm安装MySQL会自动生成一个随机密码，可以在<code>/var/log/mysqld.log</code>中查看</p>
+<img src="/../images/linux/mysql/随机密码.png">
+
+<p>使用<code>mysql -u root -p</code>进入客户端</p>
+<img src="/../images/linux/mysql/输入密码.png">
+
+<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>连接MySQL之后，使用<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456789&#39;;</code>修改密码</p>
+<img src="/../images/linux/mysql/设置密码.png">
+
+<p>出现<code>Your password does not satisfy the current policy requirements</code>提示，意思是您的密码不符合当前规定的要求，你要么就把你的密码设置得复杂点，要么就去降低密码的校验规则。</p>
+<p>在 Linux 上安装 MySQL 时会自动安装一个校验密码的插件，默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。修改密码时新密码是否符合当前的策略，不满足则会提示ERROR</p>
+<p>可以将这个限制密码位数设小一点，复杂度类型调底一点</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将密码复杂度校验调整简单类型</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.policy = 0;</span><br><span class="line"><span class="comment"># 设置密码最少位数限制为 4 位</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.length = 4;</span><br></pre></td></tr></table></figure>
+
+<img src="/../images/linux/mysql/设置密码复杂度.png">
+
+<hr>
+<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>可能遇到的问题</p>
+<h4 id="MySQL自身原因"><a href="#MySQL自身原因" class="headerlink" title="MySQL自身原因"></a>MySQL自身原因</h4><p>MySQL默认不允许远程连接，修改配置</p>
+<ol>
+<li>使用<code>mysql -u root -p</code>链接服务器</li>
+<li><code>show databases;</code>查看当前所有数据库</li>
+<li><code>use mysql;</code>进入mysql数据库（配置mysql的一个数据库）</li>
+<li><code>select user,host from user;</code>查看用户的链接方式</li>
+</ol>
+<img src="/../images/linux/mysql/连接方式.png">
+
+<ol start="5">
+<li>使用<code>update user set host=&#39;%&#39; where user=&#39;root&#39;;</code>将root的链接方式修改为%</li>
+<li><code>systemctl restart mysqld</code>重启mysql服务器</li>
+</ol>
+<h4 id="外在原因"><a href="#外在原因" class="headerlink" title="外在原因"></a>外在原因</h4><ol>
+<li>MySQL是否关掉了</li>
+<li>防火墙的3306端口是否对外开放了</li>
+<li>如果你是云服务器还需要开放3306的安全组</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开放80端口，`--premanent`表示永久开放，重启后也依然开放</span></span><br><span class="line">sudo firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"><span class="comment"># 重新加载防火墙</span></span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>参考连接：<a href="https://blog.csdn.net/u013733643/article/details/128970496">Linux-安装MySQL（详细教程）</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
 </search>
