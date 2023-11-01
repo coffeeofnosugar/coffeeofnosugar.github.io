@@ -477,9 +477,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-09-15 09:44:06 / 修改时间：19:54:32" itemprop="dateCreated datePublished" datetime="2023-09-15T09:44:06+08:00">2023-09-15</time>
+      <time title="创建时间：2023-09-15 09:44:06" itemprop="dateCreated datePublished" datetime="2023-09-15T09:44:06+08:00">2023-09-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-01 19:09:09" itemprop="dateModified" datetime="2023-11-01T19:09:09+08:00">2023-11-01</time>
     </span>
 
   
@@ -502,7 +508,7 @@
 <p><img class="base" src="/../images/git/合并分支_冲突.png"></img></p>
 <p>使用<code>git status</code>查看冲突文件<br><img class="base" src="/../images/git/合并分支_冲突文件.png"></img></p>
 <p>使用<code>git diff</code>查看冲突内容<br><img class="base" src="/../images/git/合并分支_冲突内容.png"></img></p>
-<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的两种方法"><a href="#解决冲突的两种方法" class="headerlink" title="解决冲突的两种方法"></a>解决冲突的两种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的三种方法"><a href="#解决冲突的三种方法" class="headerlink" title="解决冲突的三种方法"></a>解决冲突的三种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
 <p>修改前：</p>
 <p><img class="base" src="/../images/git/合并分支_编辑文件.png"></img></p>
 <p>修改后：</p>
@@ -512,6 +518,11 @@
 
 <p>选择合并分支的版本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --theirs &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法三：强行退出merge模式"><a href="#方法三：强行退出merge模式" class="headerlink" title="方法三：强行退出merge模式"></a>方法三：强行退出merge模式</h5><p>该命令将会抛弃合并过程并且尝试重建合并前的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+
+
 
 <h4 id="保存提交"><a href="#保存提交" class="headerlink" title="保存提交"></a>保存提交</h4><p>最后再重新提交一遍就成功的解决了冲突</p>
 <p><img class="base" src="/../images/git/合并分支_提交冲突文件.png"></img></p>
