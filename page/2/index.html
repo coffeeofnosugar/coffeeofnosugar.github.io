@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -203,6 +203,597 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/29/mysql-MySQL%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/Link.jpg">
+      <meta itemprop="name" content="咖啡丶七">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡丶七">
+      <meta itemprop="description" content="记录个人生活日常、学习笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 咖啡丶七">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/29/mysql-MySQL%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">【MySQL】MySQL语法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-29 20:50:06" itemprop="dateCreated datePublished" datetime="2023-08-29T20:50:06+08:00">2023-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-08 22:32:37" itemprop="dateModified" datetime="2023-10-08T22:32:37+08:00">2023-10-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="MySQL客户端"><a href="#MySQL客户端" class="headerlink" title="MySQL客户端"></a>MySQL客户端</h3><ul>
+<li>如果安装了MySQL-Shell可以直接使用<code>mysqlsh</code>进入MySQL-Shell客户端，然后使用<code>\connect root@localhost</code>来连接数据库</li>
+<li>也可以使用<code>mysql -u root -p</code>来进入MySQL客户端</li>
+</ul>
+<h4 id="MySQL-Shell语法"><a href="#MySQL-Shell语法" class="headerlink" title="MySQL-Shell语法"></a>MySQL-Shell语法</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\connect root@localhost</code></td>
+<td>连接数据库</td>
+</tr>
+<tr>
+<td><code>\help</code></td>
+<td>帮助</td>
+</tr>
+<tr>
+<td><code>\py</code></td>
+<td>切换到python语言</td>
+</tr>
+<tr>
+<td><code>\sql</code></td>
+<td>切换成sql语言</td>
+</tr>
+<tr>
+<td><code>\js</code></td>
+<td>切换成js语言</td>
+</tr>
+<tr>
+<td><code>\use &lt;database_name&gt;</code></td>
+<td>切换并进入<database_name>数据库</td>
+</tr>
+</tbody></table>
+<h4 id="数据库语法"><a href="#数据库语法" class="headerlink" title="数据库语法"></a>数据库语法</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SHOW DATABASES;</code></td>
+<td>展示所有数据库</td>
+</tr>
+<tr>
+<td><code>CREATE DATABASE &lt;database_name&gt;;</code></td>
+<td>创建数据库</td>
+</tr>
+<tr>
+<td><code>DROP DATABASE &lt;database_name&gt;;</code></td>
+<td>删除数据库</td>
+</tr>
+<tr>
+<td><code>USE &lt;database_name&gt;;</code></td>
+<td>选择数据库</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="数据导入和导出"><a href="#数据导入和导出" class="headerlink" title="数据导入和导出"></a>数据导入和导出</h3><h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><p>在MySQL-Shell中使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -u指定用户，-p后续输入密码，game &gt; game.sql将数据库game导出到game.sql文件中</span><br><span class="line">mysqldump -u root -p game &gt; game.sql</span><br><span class="line"># 将game数据库的player表导出到player.sql中</span><br><span class="line">mysqldump -u root -p game player &gt; player.sql</span><br></pre></td></tr></table></figure>
+
+<h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><p>在Shell中使用命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将game.sql的数据导入到game数据库中</span></span><br><span class="line">mysql -u root -p game &lt; game.sql</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DESC &lt;table_name&gt;</code></td>
+<td>展示表结构</td>
+</tr>
+<tr>
+<td><code>SHOW TABLES;</code></td>
+<td>展示所有表</td>
+</tr>
+<tr>
+<td><code>CREATE TABLE &lt;table_name&gt; &lt;表的结构定义&gt;;</code></td>
+<td>创建表</td>
+</tr>
+<tr>
+<td><code>DROP TABLE &lt;table_name&gt;;</code></td>
+<td>删除表</td>
+</tr>
+</tbody></table>
+<h4 id="定义表结构"><a href="#定义表结构" class="headerlink" title="定义表结构"></a>定义表结构</h4><p>在创建表的时候可以，定义列名、列的<a href="./#数据类型">数据类型</a>和<a href="./#定义表结构">表结构</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE player (</span><br><span class="line">	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,			-- 列名为id，数据类型为INT，不能为NULL，并且设置为自增长的主键</span><br><span class="line">    name VARCHAR(100) UNIQUE,	-- 长度为100的变长字符串这个字段必须为唯一值</span><br><span class="line">    level INT DEFAULT 1,  		-- 列名为level，数据类型为INT，默认值为1</span><br><span class="line">    exp INT,</span><br><span class="line">    gold DECIMAL(10,2)			-- 长度为10，并且保留两位小数的十进制数</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 添加列</span><br><span class="line">ALTER TABLE &lt;table_name&gt; ADD &lt;col&gt; &lt;value_type&gt;;</span><br><span class="line">-- 删除列</span><br><span class="line">ALTER TABLE &lt;table_name&gt; DROP &lt;col&gt;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 将player表的level列的数据类型设置为INT，默认值设置为1</span><br><span class="line">ALTER TABLE player MODIFY level INT DEFAULT 1;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ALTER TABLE &lt;table_name&gt; MODIFY &lt;col&gt; &lt;value_type&gt; DEFAULT &lt;value&gt;;</code></td>
+<td>设置默认值为&lt;value&gt;</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE &lt;table_name&gt; MODIFY &lt;col&gt; &lt;value_type&gt; [NOT] NULL;</code></td>
+<td>设置[不]可以为NULL</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE &lt;table_name&gt; ADD UNIQUE (&lt;col&gt;);</code></td>
+<td>设置为唯一性，<strong>需要使用括号</strong></td>
+</tr>
+<tr>
+<td><code>ALTER TABLE &lt;table_name&gt; MODIFT &lt;col&gt; &lt;value_type&gt; PRIMARY KEY;</code></td>
+<td>设置为主键，唯一且不为空</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE &lt;child_table&gt; ADD FOREIGN KEY (&lt;child_col&gt;) REFERENCES &lt;parent_table&gt; (parent_col);</code></td>
+<td>设置从键</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE &lt;table_name&gt; ADD INDEX &lt;index_name&gt; (col);</code></td>
+<td>设置索引</td>
+</tr>
+</tbody></table>
+<p><code>&lt;child_table&gt;</code>是从表</p>
+<p><code>&lt;child_col&gt;</code>是从表中的外键列</p>
+<p><code>&lt;parent_table&gt;</code>是主表</p>
+<p><code>&lt;parent_col&gt;</code>是主表中的主键列</p>
+<hr>
+<h3 id="数据的增删改"><a href="#数据的增删改" class="headerlink" title="数据的增删改"></a>数据的增删改</h3><h4 id="增"><a href="#增" class="headerlink" title="增"></a>增</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 在&lt;table_name&gt;表中插入&lt;col1&gt;为&lt;value1&gt;,&lt;col2&gt;为&lt;value2&gt;,&lt;col3&gt;为&lt;value3&gt;的数据</span><br><span class="line">INSERT INTO &lt;table_name&gt; (&lt;col1&gt;, &lt;col2&gt;, &lt;col3&gt;) VALUES (&lt;value1&gt;, &lt;value2&gt;, &lt;value3&gt;);</span><br></pre></td></tr></table></figure>
+
+<p>当<code>VALUES</code>后面的数据与列的个数对应，则可以不用写列</p>
+<p>e.g. <code>INSERT INTO player (id, name, level) VALUES (1, &#39;张三&#39;, 10);</code>可以写成 <code>INSERT INTO player VALUES (1, &#39;张三&#39;, 10);</code></p>
+<p>也可以只使用部分列，没有使用的列将使用默认值</p>
+<p>e.g. <code>INSERT INTO player (id, name) VALUES (2, &#39;李四&#39;);</code>没有被定义的<code>level</code>将以默认值代替</p>
+<p>也可以同时插入多条数据</p>
+<p>e.g. <code>INSERT INTO player (id, name) VALUES (3, &#39;王五&#39;), (4, &#39;赵六&#39;);</code></p>
+<h4 id="删"><a href="#删" class="headerlink" title="删"></a>删</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 删除&lt;table_name&gt;表中所有&lt;col&gt;列为&lt;value&gt;的数据</span><br><span class="line">DELETE FROM &lt;table_name&gt; WHERE &lt;col&gt;=&lt;value&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>e.g. <code>DELETE FROM test;</code>删除test表中所有的数据</p>
+<h4 id="改"><a href="#改" class="headerlink" title="改"></a>改</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 将&lt;tablue_name&gt;表的&lt;col2&gt;列为&lt;value2&gt;数据的&lt;col1&gt;赋值为&lt;value1&gt;</span><br><span class="line">UPDATE &lt;table_name&gt; SET &lt;col1&gt; = &lt;value1&gt; WHERE &lt;col2&gt; = &lt;value2&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>e.g. <code>UPDATE player SET level = 1 WHERE name = &#39;李四&#39;;</code>将李四的等级修改为1</p>
+<p>不加<code>WHERE</code>限制范围就是对所有的数据修改，多个设置可以使用<code>,</code>隔开</p>
+<p>e.g. <code>UPDATE player SET level=1, exp=0;</code>将所有玩家的等级修改为1，经验修改为0</p>
+<hr>
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SELECT &lt;col&gt; FROM &lt;table&gt;;</code></td>
+<td>显示<code>&lt;table&gt;</code>表中的<code>&lt;col&gt;</code>列中的数据</td>
+</tr>
+<tr>
+<td><code>SELECT &lt;col&gt; FROM &lt;table&gt; WHERE &lt;condition&gt;;</code></td>
+<td>显示<code>&lt;col&gt;</code>中符合<code>&lt;condition&gt;</code>的数据</td>
+</tr>
+<tr>
+<td><code>SELECT &lt;col&gt; FROM &lt;table&gt; ORDER BY &lt;col&gt; ASC|DESC;</code></td>
+<td>按照排序显示查询数据</td>
+</tr>
+</tbody></table>
+<h4 id="WHERE-限制查询目标语法"><a href="#WHERE-限制查询目标语法" class="headerlink" title="WHERE &lt;condition&gt;限制查询目标语法"></a><code>WHERE &lt;condition&gt;</code>限制查询目标语法</h4><ul>
+<li>可以使用&lt;,&gt;,&#x3D;</li>
+<li>多个条件可以使用<code>AND</code>和<code>OR</code>连接(需要注意优先级<code>AND</code>优先于<code>OR</code>，还可以使用括号改变优先顺序)</li>
+<li>使用<code>IN</code>限制范围，e.g. <code>WHERE level IN (1, 3, 5)</code>限制条件为：等级等于1,3,5</li>
+<li>使用<code>WHERE &lt;col&gt; BETWEEN &lt;num1&gt; AND &lt;num2&gt;</code>限制范围，e.g. <code>WHERE level BETWEEN 1 AND 10</code>：等级在1到10之间(包括1和10)，等价于<code>WHERE level &gt;= 1 AND level &lt;= 10</code></li>
+<li>使用<code>NOT</code>取反</li>
+<li>使用<code>LINK</code>关键字(简化版的正则表达式)：<code>WHERE name LINK &#39;王%&#39;</code>，查找所有姓王的玩家，<code>%</code>可以代替多个字符，<code>_</code>代替一个字符</li>
+<li>使用<code>REGEXP</code>关键字(正则表达式)</li>
+</ul>
+<blockquote>
+<p><strong>注意事项</strong></p>
+<p>数据库中<code>null</code> “空”不等于<code>&quot;&quot;</code> “空字符串”</p>
+<ul>
+<li>查找<code>null</code> ‘’空’’：<code>WHERE email is null</code></li>
+<li>查找<code>&quot;&quot;</code> “空字符串”：<code>WHERE email = &#39;&#39;</code></li>
+</ul>
+</blockquote>
+<h4 id="ORDER-BY-ASC-DESC排序语法"><a href="#ORDER-BY-ASC-DESC排序语法" class="headerlink" title="ORDER BY &lt;col&gt; ASC|DESC排序语法"></a><code>ORDER BY &lt;col&gt; ASC|DESC</code>排序语法</h4><ul>
+<li><code>ASC</code>升序，默认就是升序，可省略不写</li>
+<li><code>DESC</code>降序</li>
+</ul>
+<p>e.g. <code>ORDER BY level DES, exp ASC</code>等级降序，经验升序</p>
+<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><p>聚合函数对某列执行一些计算，比如返回项目<code>COUNT()</code>，求和<code>SUN()</code>、平均<code>AVG()</code>、最大值<code>MAX()</code>、最小值<code>MIN()</code>等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 返回所有玩家的总人数</span><br><span class="line">SELECT COUNT(*) FROM player</span><br><span class="line">-- 返回所有玩家的平均等级</span><br><span class="line">SELECT AVG(level) FROM player</span><br></pre></td></tr></table></figure>
+
+<h4 id="GROUP-BY分组语法"><a href="#GROUP-BY分组语法" class="headerlink" title="GROUP BY分组语法"></a><code>GROUP BY</code>分组语法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 将所有玩家以sex这一列分组，并展示其和</span><br><span class="line">SELECT sex, COUNT(*) FROM player GROUP BY sex;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：男有140，女有65，NULL有3，””有1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> MySQL  localhost:33060+ ssl  game  SQL &gt; SELECT sex, count(*) FROM player GROUP BY sex;</span><br><span class="line">+------+----------+</span><br><span class="line">| sex  | count(*) |</span><br><span class="line">+------+----------+</span><br><span class="line">| 男   |      140 |</span><br><span class="line">| 女   |       65 |</span><br><span class="line">| NULL |        3 |</span><br><span class="line">|      |        1 |</span><br><span class="line">+------+----------+</span><br><span class="line">4 rows in set (0.0008 sec)</span><br></pre></td></tr></table></figure>
+
+<p><code>GOUP BY</code>经常与<code>HAVING</code>和<code>ORDER BY</code>搭配使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 将等级分组统计数量，再显示大于4个的组</span><br><span class="line">SELECT level, COUNT(*) FROM player GROUP BY level HAVING COUNT(*) &gt; 4;</span><br><span class="line">-- 将等级分组统计数量，再显示大于4个的组，并按降序排列</span><br><span class="line">SELECT level, COUNT(*) FROM player GROUP BY level HAVING COUNT(*) &gt; 4 ORDER BY count(level) DESC;</span><br></pre></td></tr></table></figure>
+
+<h4 id="LIMIT-num1-num2语法"><a href="#LIMIT-num1-num2语法" class="headerlink" title="LIMIT [num1] num2语法"></a><code>LIMIT [num1] num2</code>语法</h4><p>用来控制显示数量和范围</p>
+<ul>
+<li><code>num1</code>可选参数，偏移量。如果为4，表示从第5个数开始展示</li>
+<li><code>num2</code>显示的数量</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 显示前三条数据</span><br><span class="line">SELECT id, name FROM player LIMIT 3;</span><br><span class="line">+----+--------+</span><br><span class="line">| id | name   |</span><br><span class="line">+----+--------+</span><br><span class="line">|  1 | 张三   |</span><br><span class="line">|  2 | 赵四儿 |</span><br><span class="line">|  3 | 王五   |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 从第5条数据开始，显示三条</span><br><span class="line">SELECT id, name FROM player LIMIT 4, 3;</span><br><span class="line">+----+--------+</span><br><span class="line">| id | name   |</span><br><span class="line">+----+--------+</span><br><span class="line">|  5 | 范德彪 |</span><br><span class="line">|  6 | 马大帅 |</span><br><span class="line">|  7 | 王小二 |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="DISTINCT-去重"><a href="#DISTINCT-去重" class="headerlink" title="DISTINCT &lt;col&gt;去重"></a><code>DISTINCT &lt;col&gt;</code>去重</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 显示去重后的性别</span><br><span class="line">SELECT DISTINCT sex FROM player;</span><br></pre></td></tr></table></figure>
+
+<h4 id="UNION-ALL-并集"><a href="#UNION-ALL-并集" class="headerlink" title="UNION [ALL]并集"></a><code>UNION [ALL]</code>并集</h4><p>集合A有α，集合B也有α，查询结果α默认只会显示一次</p>
+<p>加上<code>ALL</code>之后，α会显示两次</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 查询等级在1到3  或  经验在100到500之间的玩家，重复的只会显示一次</span><br><span class="line">SELECT * FROM player WHERE level BETWEEN 1 AND 3</span><br><span class="line">UNION</span><br><span class="line">SELECT * FROM player WHERE exp BETWEEN 100 AND 500;</span><br><span class="line">-- 查询等级在1到3  或  经验在100到500之间的玩家，重复的会多次选择</span><br><span class="line">SELECT * FROM player WHERE level BETWEEN 1 AND 3</span><br><span class="line">UNION ALL</span><br><span class="line">SELECT * FROM player WHERE exp BETWEEN 100 AND 500;</span><br></pre></td></tr></table></figure>
+
+<h4 id="INTERSECT交集"><a href="#INTERSECT交集" class="headerlink" title="INTERSECT交集"></a><code>INTERSECT</code>交集</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 查询等级在1到3  且  经验在100到500之间的玩家</span><br><span class="line">SELECT * FROM player WHERE level BETWEEN 1 AND 3</span><br><span class="line">INTERSECT</span><br><span class="line">SELECT * FROM player WHERE exp BETWEEN 100 AND 500;</span><br></pre></td></tr></table></figure>
+
+<h4 id="EXCEPT差集"><a href="#EXCEPT差集" class="headerlink" title="EXCEPT差集"></a><code>EXCEPT</code>差集</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 查询等级在1到3  且  经验 不 在100到500之间的玩家</span><br><span class="line">SELECT * FROM player WHERE level BETWEEN 1 AND 3</span><br><span class="line">EXCEPT</span><br><span class="line">SELECT * FROM player WHERE exp BETWEEN 100 AND 500;</span><br></pre></td></tr></table></figure>
+
+<h4 id="综合练习"><a href="#综合练习" class="headerlink" title="综合练习"></a>综合练习</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUBSTR(name, 1, 1), COUNT(SUBSTR(name, 1, 1)) FROM player		-- 选择表和要显示的列</span><br><span class="line">GROUP BY SUBSTR(name, 1, 1)												-- 截取name：从第一个字符串开始，截取一个长度</span><br><span class="line">HAVING COUNT(SUBSTR(name, 1, 1)) &gt;= 5									-- 展示数量大于5的</span><br><span class="line">ORDER BY COUNT(SUBSTR(name, 1, 1)) DESC									-- 降序</span><br><span class="line">LIMIT 3, 4																-- 限制显示的数量，和偏移量：只显示3个，并向后偏移4位，显示5,6,7</span><br></pre></td></tr></table></figure>
+
+<h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><p>可以将查询结果看成一个整体，使用在大多数语法中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 查询大于平均等级的玩家</span><br><span class="line">SELECT * FROM player where level &gt; (SELECT AVG(level) FROM player);</span><br><span class="line">-- 查询等级与平均等级的差值</span><br><span class="line">SELECT level,</span><br><span class="line">(SELECT AVG(level) FROM player) as average,      -- 使用as关键字将这一列的名称变为average，原名称为(SELECT AVG(level) FROM player)</span><br><span class="line">level - (SELECT AVG(level) FROM player) as diff</span><br><span class="line">FROM player;</span><br><span class="line">-- 将查询结果创建成一个新的表</span><br><span class="line">CREATE TABLE player1 (SELECT id, name, level FROM player WHERE level BETWEEN 1 AND 5);</span><br><span class="line">-- 将查询的结果添加到其他表中</span><br><span class="line">INSERT INTO player1 (SELECT id, name, level FROM player WHERE level BETWEEN 5 AND 10);		-- 这样新建的表player1中就有等级1到10的玩家了</span><br><span class="line">-- 判断是否存在值，只会返回0和1</span><br><span class="line">SELECT EXISTS (SELECT * FROM player1 WHERE level &gt; 10);  -- 返回0，没有结果</span><br><span class="line">SELECT EXISTS (SELECT * FROM player1 WHERE level &gt; 5); 	 -- 返回1，有结果</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="表关联"><a href="#表关联" class="headerlink" title="表关联"></a>表关联</h3><p>用来查询多个表中的数据，关联的表中必须有相同的字段</p>
+<p>一般会使用表的主键和外键来关联</p>
+<h4 id="INNER-JOIN内连接"><a href="#INNER-JOIN内连接" class="headerlink" title="INNER JOIN内连接"></a><code>INNER JOIN</code>内连接</h4><p>只返回两个表都有的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- 查询并显示玩家表的id和武器表的player_id相同的数据(玩家排在前面)</span><br><span class="line">SELECT * FROM player INNER JOIN equip ON player.id = equip.player_id;</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br><span class="line">|                                玩家表                           |            武器表            |</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br><span class="line">| id  | name   | sex | email               | level | exp | gold  | id | name       | player_id |</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br><span class="line">|  76 | 林克   | 男  | linke@qq.com        |    48 |  12 | 11.00 |  6 | 大师之剑   |        76 |</span><br><span class="line">| 157 | 张飞   | 男  | zhangfei@gmail.com  |    76 |  36 | 80.00 |  2 | 丈八蛇矛   |       157 |</span><br><span class="line">| 161 | 孙悟空 | 男  | sunwukong@gmail.com |    74 |  32 | 23.00 |  7 | 金箍棒     |       161 |</span><br><span class="line">| 177 | 关羽   | 男  | guanyu@gmail.com    |    19 |  60 | 36.00 |  1 | 青龙偃月刀 |       177 |</span><br><span class="line">| 186 | 曹操   | 男  | caocao@geekhour.net |    70 |  15 | 27.00 |  3 | 七星宝刀   |       186 |</span><br><span class="line">| 190 | 吕布   | 男  |                     |    77 |  43 | 31.00 |  9 | 赤兔马     |       190 |</span><br><span class="line">| 190 | 吕布   | 男  |                     |    77 |  43 | 31.00 |  8 | 方天画戟   |       190 |</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- 查询并显示武器表的player_id和玩家表的id相同的数据(武器表排在前面)</span><br><span class="line">SELECT * FROM equip INNER JOIN player ON equip.player_id = player.id;</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br><span class="line">|           武器表             |                           玩家表                                |</span><br><span class="line">+----+------------+-----------+-----+--------+-----+---------------------+-------+-----+-------+</span><br><span class="line">| id | name       | player_id | id  | name   | sex | email               | level | exp | gold  |</span><br><span class="line">+----+------------+-----------+-----+--------+-----+---------------------+-------+-----+-------+</span><br><span class="line">|  6 | 大师之剑   |        76 |  76 | 林克   | 男  | linke@qq.com        |    48 |  12 | 11.00 |</span><br><span class="line">|  2 | 丈八蛇矛   |       157 | 157 | 张飞   | 男  | zhangfei@gmail.com  |    76 |  36 | 80.00 |</span><br><span class="line">|  7 | 金箍棒     |       161 | 161 | 孙悟空 | 男  | sunwukong@gmail.com |    74 |  32 | 23.00 |</span><br><span class="line">|  1 | 青龙偃月刀 |       177 | 177 | 关羽   | 男  | guanyu@gmail.com    |    19 |  60 | 36.00 |</span><br><span class="line">|  3 | 七星宝刀   |       186 | 186 | 曹操   | 男  | caocao@geekhour.net |    70 |  15 | 27.00 |</span><br><span class="line">|  9 | 赤兔马     |       190 | 190 | 吕布   | 男  |                     |    77 |  43 | 31.00 |</span><br><span class="line">|  8 | 方天画戟   |       190 | 190 | 吕布   | 男  |                     |    77 |  43 | 31.00 |</span><br><span class="line">+----+------------+-----------+-----+--------+-----+---------------------+-------+-----+-------+</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="LEFT-INJO左连接"><a href="#LEFT-INJO左连接" class="headerlink" title="LEFT INJO左连接"></a><code>LEFT INJO</code>左连接</h4><p>返回左表中所有的数据，和右表中匹配的数据（右表中没有的数据用NULL填充）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 显示player表，并将equip表依据player.id = equip.player_id挂载在后面</span><br><span class="line">SELECT * FROM player LEFT JOIN equip ON player.id = equip.player_id;</span><br></pre></td></tr></table></figure>
+
+<p>数据较多就不显示例子了，与内连接第一个例子结果类似</p>
+<h4 id="RIGHT-INJO右连接"><a href="#RIGHT-INJO右连接" class="headerlink" title="RIGHT INJO右连接"></a><code>RIGHT INJO</code>右连接</h4><p>返回右表中所有的数据，和左表中匹配的数据（左表中没有的数据用NULL填充）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- 显示equip表，并将player表依据player.id = equip.player_id挂载在后面</span><br><span class="line">SELECT * FROM player RIGHT join equip on player.id = equip.player_id;</span><br><span class="line">+------+--------+------+---------------------+-------+------+-------+----+------------+-----------+</span><br><span class="line">| id   | name   | sex  | email               | level | exp  | gold  | id | name       | player_id |</span><br><span class="line">+------+--------+------+---------------------+-------+------+-------+----+------------+-----------+</span><br><span class="line">|  177 | 关羽   | 男   | guanyu@gmail.com    |    19 |   60 | 36.00 |  1 | 青龙偃月刀 |       177 |</span><br><span class="line">|  157 | 张飞   | 男   | zhangfei@gmail.com  |    76 |   36 | 80.00 |  2 | 丈八蛇矛   |       157 |</span><br><span class="line">|  186 | 曹操   | 男   | caocao@geekhour.net |    70 |   15 | 27.00 |  3 | 七星宝刀   |       186 |</span><br><span class="line">| NULL | NULL   | NULL | NULL                |  NULL | NULL |  NULL |  4 | 长剑       |      NULL |</span><br><span class="line">| NULL | NULL   | NULL | NULL                |  NULL | NULL |  NULL |  5 | 铁盾       |      NULL |</span><br><span class="line">|   76 | 林克   | 男   | linke@qq.com        |    48 |   12 | 11.00 |  6 | 大师之剑   |        76 |</span><br><span class="line">|  161 | 孙悟空 | 男   | sunwukong@gmail.com |    74 |   32 | 23.00 |  7 | 金箍棒     |       161 |</span><br><span class="line">|  190 | 吕布   | 男   |                     |    77 |   43 | 31.00 |  8 | 方天画戟   |       190 |</span><br><span class="line">|  190 | 吕布   | 男   |                     |    77 |   43 | 31.00 |  9 | 赤兔马     |       190 |</span><br><span class="line">+------+--------+------+---------------------+-------+------+-------+----+------------+-----------+</span><br></pre></td></tr></table></figure>
+
+<h4 id="WHERE关联"><a href="#WHERE关联" class="headerlink" title="WHERE关联"></a><code>WHERE</code>关联</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- 在player表和equip表中查询并显示player.id = equip.player_id相等的数据</span><br><span class="line">SELECT * FROM player, equip WHERE player.id = equip.player_id;</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br><span class="line">| id  | name   | sex | email               | level | exp | gold  | id | name       | player_id |</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br><span class="line">|  76 | 林克   | 男  | linke@qq.com        |    48 |  12 | 11.00 |  6 | 大师之剑   |        76 |</span><br><span class="line">| 157 | 张飞   | 男  | zhangfei@gmail.com  |    76 |  36 | 80.00 |  2 | 丈八蛇矛   |       157 |</span><br><span class="line">| 161 | 孙悟空 | 男  | sunwukong@gmail.com |    74 |  32 | 23.00 |  7 | 金箍棒     |       161 |</span><br><span class="line">| 177 | 关羽   | 男  | guanyu@gmail.com    |    19 |  60 | 36.00 |  1 | 青龙偃月刀 |       177 |</span><br><span class="line">| 186 | 曹操   | 男  | caocao@geekhour.net |    70 |  15 | 27.00 |  3 | 七星宝刀   |       186 |</span><br><span class="line">| 190 | 吕布   | 男  |                     |    77 |  43 | 31.00 |  9 | 赤兔马     |       190 |</span><br><span class="line">| 190 | 吕布   | 男  |                     |    77 |  43 | 31.00 |  8 | 方天画戟   |       190 |</span><br><span class="line">+-----+--------+-----+---------------------+-------+-----+-------+----+------------+-----------+</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 可以给表名赋上别名，和上面的结果是一样的</span><br><span class="line">SELECT * FROM player p, equip e WHERE p.id = e.player_id;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>是一种用来提高查询效率的数据结构，可以帮助我们快速的定位到我们想要的数据</p>
+<p>如果没有索引的话，就只能从头开始遍历所有的数据，直到找到满足条件的数据为止。当数据非常少的时候没有什么问题，但是当数据量非常大的时候，查询效率就会直线下降，索引就是为了解决这个问题而产生的</p>
+<h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQE|FULLTEXT|SPATYAL] INDEX &lt;index_name&gt; ON &lt;table_name(index_col_name,...)&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>[UNIQE|FULLTEXT|SPATYAL]</code>:分别代表唯一索引、全文索引、空间索引。可不写，默认为唯一索引</p>
+<p><code>&lt;index_name&gt;</code>:索引名称</p>
+<p><code>&lt;table_name(index_col_name,...)&gt;</code>:给指定的表的指定列创建索引</p>
+<p>e.g.:<code>CREATE INDEX email_index ON player(name)</code></p>
+<p>在创建表的同时添加索引：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE player (</span><br><span class="line">	id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">    name VARCHAR(50) NOT NULL,</span><br><span class="line">    email VARCHAR(50) NOT NULL,</span><br><span class="line">    INDEX name_index (name)					-- 给name列创建索引</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SHOW INDEX FROM &lt;talbe_name&gt;</span><br><span class="line"># 输出：</span><br><span class="line">+--------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+</span><br><span class="line">| Table  | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |</span><br><span class="line">+--------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+</span><br><span class="line">| player |          1 | name_index |            1 | name        | A         |         209 |     NULL | NULL   | YES  | BTREE      |         |               | YES     | NULL       |</span><br><span class="line">+--------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="索引的使用"><a href="#索引的使用" class="headerlink" title="索引的使用"></a>索引的使用</h4><p>上面使用<code>CREATE INDEX email_index ON player(name);</code>给player的name添加了索引</p>
+<p>使用方法：直接查找这个表的这个列<code>SELECT * FROM player WHERE name like &quot;王%&quot;;</code>就能很快速的查找出姓王的人了</p>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><p><code>DROP INDEX &lt;index_name&gt; ON &lt;table_name&gt;</code>;</p>
+<p>e.g.: <code>DROP INDEX name_index ON player;</code></p>
+<p>还能使用修改表结构的方式添加索引：<code>ALTER TALBE player ADD INDEX name_index (name);</code></p>
+<hr>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h4><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>大小</th>
+<th>范围(有符号)</th>
+<th>范围(无符号)</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TINYINT</td>
+<td>1 Bytes</td>
+<td>(-128，127)</td>
+<td>(0，255)</td>
+<td>小整数值</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>2 Bytes</td>
+<td>(-32,768，32,767)</td>
+<td>(0，65 535)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>MEDIUMINT</td>
+<td>3 Bytes</td>
+<td>(-8,388,608，8 388,607)</td>
+<td>(0，16 777 215)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>INT或INTEGER</td>
+<td>4 Bytes</td>
+<td>(-2,147,483,648，2,147,483,647)</td>
+<td>(0，4 294 967 295)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>8 Bytes</td>
+<td>(-9,223,372,036,854,775,808，9,223,372,036,854,775,807)</td>
+<td>(0，18 446 744 073 709 551 615)</td>
+<td>极大整数值</td>
+</tr>
+<tr>
+<td>FLOAT</td>
+<td>4 Bytes</td>
+<td>(-3.402 823 466 E+38，-1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38)</td>
+<td>0，(1.175 494 351 E-38，3.402 823 466 E+38)</td>
+<td>单精度 浮点数值</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>8 Bytes</td>
+<td>(-1.797 693 134 862 315 7 E+308，-2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)</td>
+<td>0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)</td>
+<td>双精度 浮点数值</td>
+</tr>
+<tr>
+<td>DECIMAL</td>
+<td>对DECIMAL(M,D) ，如果M&gt;D，为M+2否则为D+2</td>
+<td>依赖于M和D的值</td>
+<td>依赖于M和D的值</td>
+<td>小数值</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/24/daily-2023-08-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/Link.jpg">
+      <meta itemprop="name" content="咖啡丶七">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡丶七">
+      <meta itemprop="description" content="记录个人生活日常、学习笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 咖啡丶七">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/24/daily-2023-08-24/" class="post-title-link" itemprop="url">组装电脑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-24 20:34:31" itemprop="dateCreated datePublished" datetime="2023-08-24T20:34:31+08:00">2023-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-12 21:47:51" itemprop="dateModified" datetime="2023-09-12T21:47:51+08:00">2023-09-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <link rel="stylesheet" href="/../css/images.css">
+
+<p>今天从零开始组装了一台电脑，用了7年的电脑终于退休了，说实话多多少少有点舍不得</p>
+<p><img src="/../images/daily/2023-08-24/配置.png"></img></p>
+<p><img src="/../images/daily/2023-08-24/分数.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机1.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机2.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机3.png"></img></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/Link.jpg">
+      <meta itemprop="name" content="咖啡丶七">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡丶七">
+      <meta itemprop="description" content="记录个人生活日常、学习笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 咖啡丶七">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">【Linux】【Git】Linux系统安装Git</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-23 21:56:06" itemprop="dateCreated datePublished" datetime="2023-08-23T21:56:06+08:00">2023-08-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-27 01:00:34" itemprop="dateModified" datetime="2023-08-27T01:00:34+08:00">2023-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://github.com/git/git/tags">下载包体</a></p>
+<h3 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install libcurl-devel</span><br><span class="line">sudo yum install expat-devel</span><br><span class="line">sudo yum install asciidoc</span><br><span class="line">sudo yum install xmlto</span><br><span class="line">sudo yum install docbook2X</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置软连接</span></span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+
+<p>根据git官网的指示，安装相关依赖包：<code>yum install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel libxslt asciidoc xmlto docbook2X autoconf install-info getopt</code></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>解压<code>tar -zxvf git-2.42.0.tar.gz</code></p>
+<p>编译<code>make prefix=/usr/local all doc info</code></p>
+<p>安装<code>make prefix=/usr/local install install-doc install-html install-info</code></p>
+<h3 id="可能会出现的问题"><a href="#可能会出现的问题" class="headerlink" title="可能会出现的问题"></a>可能会出现的问题</h3><p>提示找不到<code>docbook2x-texi</code>或者<code>docbook2texi</code></p>
+<p>在执行<code>yum install docbook2X</code>后设置软连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42108074/article/details/123027943">使用源码方法在阿里云服务器CentOS 7安装Git</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -451,6 +1042,91 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/21/linux-Nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/Link.jpg">
+      <meta itemprop="name" content="咖啡丶七">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡丶七">
+      <meta itemprop="description" content="记录个人生活日常、学习笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 咖啡丶七">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/21/linux-Nginx/" class="post-title-link" itemprop="url">【Linux】Nginx</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-21 20:50:06" itemprop="dateCreated datePublished" datetime="2023-08-21T20:50:06+08:00">2023-08-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-27 02:14:37" itemprop="dateModified" datetime="2023-08-27T02:14:37+08:00">2023-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>网站：<a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">nginx: download</a></p>
+<p><img src="/../images/linux/nginx/安装网站.png"></img></p>
+<h4 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h4><p><code>tar -zxvf nginx-1.24.0.tar.gz</code></p>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code></p>
+<p><code>make</code></p>
+<p><code>make install</code></p>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>设置快捷键</p>
+<p><code>ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</code></p>
+<p>这样执行&#x2F;usr&#x2F;bin&#x2F;nginx就相当于执行了&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
+<p>而&#x2F;usr&#x2F;bin&#x2F;是全局可用的，所以在任何地方输入nginx都可以执行&#x2F;usr&#x2F;lcoal&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/21/mysql-MySQL%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -553,91 +1229,6 @@
 
 <hr>
 <p>参考连接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013733643/article/details/128970496">Linux-安装MySQL（详细教程）</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/21/linux-Nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/Link.jpg">
-      <meta itemprop="name" content="咖啡丶七">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡丶七">
-      <meta itemprop="description" content="记录个人生活日常、学习笔记">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 咖啡丶七">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/21/linux-Nginx/" class="post-title-link" itemprop="url">【Linux】Nginx</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-21 20:50:06" itemprop="dateCreated datePublished" datetime="2023-08-21T20:50:06+08:00">2023-08-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-27 02:14:37" itemprop="dateModified" datetime="2023-08-27T02:14:37+08:00">2023-08-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>网站：<a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">nginx: download</a></p>
-<p><img src="/../images/linux/nginx/安装网站.png"></img></p>
-<h4 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h4><p><code>tar -zxvf nginx-1.24.0.tar.gz</code></p>
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code></p>
-<p><code>make</code></p>
-<p><code>make install</code></p>
-<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>设置快捷键</p>
-<p><code>ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</code></p>
-<p>这样执行&#x2F;usr&#x2F;bin&#x2F;nginx就相当于执行了&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
-<p>而&#x2F;usr&#x2F;bin&#x2F;是全局可用的，所以在任何地方输入nginx都可以执行&#x2F;usr&#x2F;lcoal&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
 
       
     </div>
@@ -988,336 +1579,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/12/unity-%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%A7%94%E6%89%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/Link.jpg">
-      <meta itemprop="name" content="咖啡丶七">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡丶七">
-      <meta itemprop="description" content="记录个人生活日常、学习笔记">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 咖啡丶七">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/12/unity-%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%A7%94%E6%89%98/" class="post-title-link" itemprop="url">【Unity】【CSharp】事件和委托</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-12 11:19:06" itemprop="dateCreated datePublished" datetime="2023-08-12T11:19:06+08:00">2023-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-07 21:07:10" itemprop="dateModified" datetime="2023-10-07T21:07:10+08:00">2023-10-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><p>委托可以把一个方法代入另一个方法，相当于指向函数的指针，换句话说，委托相当于一个函数指针</p>
-<p>总的来说，委托是一个类，该类内部维护着一个字段，指向一个方法。</p>
-<p>委托的声明：<code>public delegate void DoDelegate();</code></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">$&quot;valueStr=<span class="subst">&#123;sender&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">DoDelegate</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化委托——只是实例化，并不会执行</span></span><br><span class="line">DoDelegate doDelegate = <span class="keyword">new</span> DoDelegate(Test);</span><br><span class="line"><span class="built_in">object</span> sender = <span class="number">888</span>;</span><br><span class="line">EventArgs e = <span class="keyword">new</span> EventArgs();</span><br><span class="line"><span class="comment">// 执行委托的两种方法</span></span><br><span class="line"><span class="comment">// 方法一:</span></span><br><span class="line">doDelegate?.Invoke(sender, e);</span><br><span class="line"><span class="comment">// 方法二:</span></span><br><span class="line">doDelegate(sender, e);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>事件相当于保存委托的数组</p>
-<p>事件是基于委托的，为委托提供一个订阅或发布的机制。事件是一种特殊的委托，调用事件和委托是一样的。</p>
-<p>事件可以被看作是委托类型的一个变量，通过事件注册、取消多个委托和方法。</p>
-<p>public event 委托类型 事件名称；<br>如：<code>public event DoDelegate DoEvent;</code></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">$&quot;valueStr=<span class="subst">&#123;sender&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">DoDelegate</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"><span class="comment">// 定义事件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">event</span> DODelegate DoEvent;</span><br><span class="line"></span><br><span class="line"><span class="built_in">object</span> sender = <span class="number">888</span>;</span><br><span class="line">EventArgs e = <span class="keyword">new</span> EventArgs();</span><br><span class="line"><span class="comment">// 两种用法</span></span><br><span class="line"><span class="comment">// 1.给事件注册委托</span></span><br><span class="line"><span class="comment">// 2.给事件直接注册方法</span></span><br><span class="line"><span class="comment">// 用法一（给事件注册委托）：</span></span><br><span class="line"><span class="comment">// 给事件注册委托，可注册多个委托</span></span><br><span class="line">DoEvent += <span class="keyword">new</span> DoDelegate(doDelegate);</span><br><span class="line"><span class="comment">// 执行事件内所有的委托</span></span><br><span class="line">DoEvent(sender, e);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用法二（给事件注册方法）：</span></span><br><span class="line"><span class="comment">// 给事件注册方法，可注册多个方法</span></span><br><span class="line">DoEvent += Test;</span><br><span class="line"><span class="comment">// 执行事件内所有的方法</span></span><br><span class="line">DoEvent(sender, e);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/12/git-Git%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/Link.jpg">
-      <meta itemprop="name" content="咖啡丶七">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡丶七">
-      <meta itemprop="description" content="记录个人生活日常、学习笔记">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 咖啡丶七">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/12/git-Git%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">【Git】基础命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-12 11:17:06" itemprop="dateCreated datePublished" datetime="2023-08-12T11:17:06+08:00">2023-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-15 19:54:32" itemprop="dateModified" datetime="2023-09-15T19:54:32+08:00">2023-09-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" href="/../css/center.css">
-<link rel="stylesheet" href="/../css/images.css">
-
-<h3 id="基础结构"><a href="#基础结构" class="headerlink" title="基础结构"></a>基础结构</h3><h4 id="文件状态"><a href="#文件状态" class="headerlink" title="文件状态"></a>文件状态</h4><p><img class="base" src="/../images/git/基础结构.png"></img></p>
-<ol>
-<li><p><code>Changes to be committed</code></p>
-<p>文件已经被<code>git add &lt;file&gt;</code>存放在暂存区，现在有两条路可以走</p>
-<ul>
-<li>提交：使用<code>git commit -m &quot;&quot;</code>提交</li>
-<li>恢复：使用<code>git restore --staged &lt;file&gt;</code>或<code>git reset &lt;file&gt;</code>将文件复原到工作区，文件修改的内容会保留</li>
-</ul>
-</li>
-<li><p><code>Changes not staged for commit</code></p>
-<p>文件被修改，但是还为被<code>git add &lt;file&gt;</code></p>
-<ul>
-<li>提交到暂存区：使用<code>git add &lt;file&gt;</code></li>
-<li>恢复：使用<code>git restore &lt;file&gt;</code>或<code>git checkout &lt;file&gt;</code>将文件的内容恢复成上一次提交的内容</li>
-</ul>
-</li>
-<li><p><code>Untracked files</code></p>
-<p>新建的文件，还未被跟踪。这种状态的文件可以使用<code>.gitignore</code>文件取消跟踪</p>
-<ul>
-<li>使用<code>git add &lt;file&gt;</code>跟踪文件</li>
-<li>使用<code>.gitignore</code>屏蔽文件</li>
-<li>直接删除文件</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="Git远程命令"><a href="#Git远程命令" class="headerlink" title="Git远程命令"></a>Git远程命令</h3><h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 查看绑定了哪些远程仓库</span><br><span class="line">git remote -v</span><br><span class="line">// 删除远程的绑定</span><br><span class="line">git remote remove &lt;name&gt;</span><br><span class="line">// 将本地仓库的&lt;branch_name&gt;分支推送到远程仓库的&lt;branch_name&gt;分支上</span><br><span class="line">git push -u &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line">// 将远程仓库的branch_name拉取到本地工作区</span><br><span class="line">git pull &lt;origin_name&gt; &lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将本地的&lt;branch_name&gt;分支推送到远程的&lt;branch_name&gt;分支上</span></span><br><span class="line">git push &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将本地的分支推送到远程分支上</span></span><br><span class="line">git push &lt;origin_name&gt; &lt;本地分支&gt;:&lt;远程分支&gt;</span><br></pre></td></tr></table></figure>
-
-<p>还可以添加<code>-u</code>参数设置默认的推送和拉取映射关系<br>使用这个参数之后可以直接使用<code>git push</code>和<code>git pull</code>而不用再添加参数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将本地的master分支推送到origin的master分支上，并设置这个为默认的推送和拉取映射</span></span><br><span class="line">git push -u origin master</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后面如果需要推送或者拉取可不用携带参数，默认为origin远程的master分支</span></span><br><span class="line">git push # 将本地的master分支推送到远程的master分支上</span><br><span class="line">git pull # 将远程的master分支拉取到本地的master分支上</span><br></pre></td></tr></table></figure>
-
-<p>注意：<br>经过测试发现携带<code>-u</code>参数时使用<code>master:main</code>的映射方法，后续使用<code>git push</code>无法成功的将本地的master分支推送到远程的main上<br>也就是说，如果使用了<code>-u</code>参数，那么需要推送到的远程分支名必须与本地分支名一致</p>
-<h4 id="拉取"><a href="#拉取" class="headerlink" title="拉取"></a>拉取</h4><h5 id="将远程分支上的内容和到本地分支"><a href="#将远程分支上的内容和到本地分支" class="headerlink" title="将远程分支上的内容和到本地分支"></a>将远程分支上的内容和到本地分支</h5><p>有两种方法<code>git pull</code>和<code>git fetch</code><br>两者的关系是：<code>git pull</code>是执行了<code>git fetch</code>和<code>git merge</code>两个操作</p>
-<h5 id="pull命令"><a href="#pull命令" class="headerlink" title="pull命令"></a>pull命令</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将远程的&lt;branch_name&gt;分支拉取到本地的&lt;branch_name&gt;分支上</span></span><br><span class="line">git pull &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将远程的分支拉取到本地分支上</span></span><br><span class="line">git pull &lt;origin_name&gt; &lt;远程分支&gt;:&lt;本地分支&gt;</span><br></pre></td></tr></table></figure>
-
-<p>可直接使用<code>git pull &lt;origin_name&gt; &lt;branch_name&gt;</code>将<code>&lt;origin_name&gt;/&lt;branch_name&gt;</code>的内容直接合并到本地</p>
-<h5 id="fetch命令"><a href="#fetch命令" class="headerlink" title="fetch命令"></a>fetch命令</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch &lt;origin_name&gt; &lt;branch_name&gt;</span><br><span class="line">git merge FETCH_HEAD</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>使用<code>git fetch &lt;origin_name&gt; &lt;branch_name&gt;</code>将<code>&lt;origin_name&gt;/&lt;branch_name&gt;</code>的内容保存到<code>.git/FETCH_HEAD</code>文件中</li>
-<li>使用<code>git merge FETCH_HEAD</code>将<code>FETCH_HEAD</code>中的信息合并到当前分支</li>
-</ol>
-<h5 id="将远程分支拉取到本地作为一个新的分支"><a href="#将远程分支拉取到本地作为一个新的分支" class="headerlink" title="将远程分支拉取到本地作为一个新的分支"></a>将远程分支拉取到本地作为一个新的分支</h5><p><code>git checkout -b &lt;new_local_branch&gt; &lt;origin/remote_banch_name&gt;</code></p>
-<p>在本地创建一个<code>&lt;new_local_branch&gt;</code>分支并将<code>&lt;origin/remote_banch_name&gt;</code></p>
-<hr>
-<h3 id="查看log"><a href="#查看log" class="headerlink" title="查看log"></a>查看log</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看所有分支的提交记录之间的关系(以一行显示)</span></span><br><span class="line">git log --oneline --graph --all</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看每个提交记录修改了哪些文件</span></span><br><span class="line">git log --stat</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看每个提交记录具体的修改内容</span></span><br><span class="line">git log -p</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定显示多少条日志</span></span><br><span class="line">git log -2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定跳过多少条日志</span></span><br><span class="line">git log --skip=3</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-<center class="moderate">持续更新</center>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/12/git-Git%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/Link.jpg">
-      <meta itemprop="name" content="咖啡丶七">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡丶七">
-      <meta itemprop="description" content="记录个人生活日常、学习笔记">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 咖啡丶七">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/12/git-Git%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">【Git】忽略文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-12 10:37:06" itemprop="dateCreated datePublished" datetime="2023-08-12T10:37:06+08:00">2023-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-08 22:32:37" itemprop="dateModified" datetime="2023-10-08T22:32:37+08:00">2023-10-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="忽略已跟踪的文件"><a href="#忽略已跟踪的文件" class="headerlink" title="忽略已跟踪的文件"></a>忽略已跟踪的文件</h2><p>.gitignore文件只能忽略未跟踪状态的文件，如果已经被跟踪了，可以使用下面的两种方法</p>
-<h3 id="git-rm-–cached"><a href="#git-rm-–cached" class="headerlink" title="git rm –cached &lt;file&gt;"></a>git rm –cached &lt;file&gt;</h3><p>彻底忽略该文件，push后，远程也将忽略该文件</p>
-<p>如果远程仓库已经有了logs文件夹，使用三步完成</p>
-<ol>
-<li>使用命令删除文件的跟踪状态 <code>git rm --cached logs/</code></li>
-<li>此时本地工作区修改还在，需要更新一下&#x2F;gitignore文件</li>
-<li>最后使用命令删除远程仓库对应的文件<code>git add . &amp;&amp; git commit -m &quot;xx&quot; &amp;&amp; git push</code></li>
-</ol>
-<h3 id="skip-worktree和assume-unchanged"><a href="#skip-worktree和assume-unchanged" class="headerlink" title="skip-worktree和assume-unchanged"></a>skip-worktree和assume-unchanged</h3><p>只在自己的工作区内忽略文件</p>
-<h4 id="skip-worktree"><a href="#skip-worktree" class="headerlink" title="skip-worktree"></a>skip-worktree</h4><p>skip-worktree可以实现修改本地文件不会被提交，但又可以拉取最新更改需求。适用于一些不经常变动，但是必须本地化设置的文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 添加忽略文件</span><br><span class="line">git update-index --skip-worktree &lt;file&gt;</span><br><span class="line">// 取消忽略</span><br><span class="line">git update-index --no-skip-worktree &lt;file&gt;</span><br><span class="line">// 查看skip-worktree列表</span><br><span class="line">git ls-files -v | grep &#x27;^S\&#x27;</span><br></pre></td></tr></table></figure>
-
-<h4 id="assume-unchanged"><a href="#assume-unchanged" class="headerlink" title="assume-unchanged"></a>assume-unchanged</h4><p>该命令只是假设文件没有发生变动，使用reset时会将文件修改回去。当远程仓库相应的文件被修改时，pull更新之后，–assume-unchanged会被清楚</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 添加忽略文件</span><br><span class="line">git update-index --assume-unchanged &lt;file&gt;</span><br><span class="line">// 取消忽略</span><br><span class="line">git update-index --no-assume-unchanged &lt;file&gt;</span><br><span class="line">// 查看忽略了哪些文件</span><br><span class="line">git ls-files -v | grep &#x27;^h\&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>参考</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/559692211">一文带你彻底搞懂Git！</a></p>
-<hr>
-<h2 id="gitignore文件"><a href="#gitignore文件" class="headerlink" title=".gitignore文件"></a>.gitignore文件</h2><p>在此记录一下各个项目的<code>.gitignore</code>文件内容</p>
-<h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"># Byte-compiled / optimized / DLL files</span><br><span class="line">__pycache__/</span><br><span class="line">*.py[cod]</span><br><span class="line">*$py.class</span><br><span class="line"></span><br><span class="line"># C extensions</span><br><span class="line">*.so</span><br><span class="line"></span><br><span class="line"># Distribution / packaging</span><br><span class="line">.Python</span><br><span class="line">build/</span><br><span class="line">develop-eggs/</span><br><span class="line">dist/</span><br><span class="line">downloads/</span><br><span class="line">eggs/</span><br><span class="line">.eggs/</span><br><span class="line">lib/</span><br><span class="line">lib64/</span><br><span class="line">parts/</span><br><span class="line">sdist/</span><br><span class="line">var/</span><br><span class="line">wheels/</span><br><span class="line">share/python-wheels/</span><br><span class="line">*.egg-info/</span><br><span class="line">.installed.cfg</span><br><span class="line">*.egg</span><br><span class="line">MANIFEST</span><br><span class="line"></span><br><span class="line"># PyInstaller</span><br><span class="line">#  Usually these files are written by a python script from a template</span><br><span class="line">#  before PyInstaller builds the exe, so as to inject date/other infos into it.</span><br><span class="line">*.manifest</span><br><span class="line">*.spec</span><br><span class="line"></span><br><span class="line"># Installer logs</span><br><span class="line">pip-log.txt</span><br><span class="line">pip-delete-this-directory.txt</span><br><span class="line"></span><br><span class="line"># Unit test / coverage reports</span><br><span class="line">htmlcov/</span><br><span class="line">.tox/</span><br><span class="line">.nox/</span><br><span class="line">.coverage</span><br><span class="line">.coverage.*</span><br><span class="line">.cache</span><br><span class="line">nosetests.xml</span><br><span class="line">coverage.xml</span><br><span class="line">*.cover</span><br><span class="line">*.py,cover</span><br><span class="line">.hypothesis/</span><br><span class="line">.pytest_cache/</span><br><span class="line">cover/</span><br><span class="line"></span><br><span class="line"># Translations</span><br><span class="line">*.mo</span><br><span class="line">*.pot</span><br><span class="line"></span><br><span class="line"># Django stuff:</span><br><span class="line">*.log</span><br><span class="line">local_settings.py</span><br><span class="line">db.sqlite3</span><br><span class="line">db.sqlite3-journal</span><br><span class="line"></span><br><span class="line"># Flask stuff:</span><br><span class="line">instance/</span><br><span class="line">.webassets-cache</span><br><span class="line"></span><br><span class="line"># Scrapy stuff:</span><br><span class="line">.scrapy</span><br><span class="line"></span><br><span class="line"># Sphinx documentation</span><br><span class="line">docs/_build/</span><br><span class="line"></span><br><span class="line"># PyBuilder</span><br><span class="line">.pybuilder/</span><br><span class="line">target/</span><br><span class="line"></span><br><span class="line"># Jupyter Notebook</span><br><span class="line">.ipynb_checkpoints</span><br><span class="line"></span><br><span class="line"># IPython</span><br><span class="line">profile_default/</span><br><span class="line">ipython_config.py</span><br><span class="line"></span><br><span class="line"># pyenv</span><br><span class="line">#   For a library or package, you might want to ignore these files since the code is</span><br><span class="line">#   intended to run in multiple environments; otherwise, check them in:</span><br><span class="line"># .python-version</span><br><span class="line"></span><br><span class="line"># pipenv</span><br><span class="line">#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.</span><br><span class="line">#   However, in case of collaboration, if having platform-specific dependencies or dependencies</span><br><span class="line">#   having no cross-platform support, pipenv may install dependencies that don&#x27;t work, or not</span><br><span class="line">#   install all needed dependencies.</span><br><span class="line">#Pipfile.lock</span><br><span class="line"></span><br><span class="line"># poetry</span><br><span class="line">#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.</span><br><span class="line">#   This is especially recommended for binary packages to ensure reproducibility, and is more</span><br><span class="line">#   commonly ignored for libraries.</span><br><span class="line">#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control</span><br><span class="line">#poetry.lock</span><br><span class="line"></span><br><span class="line"># pdm</span><br><span class="line">#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.</span><br><span class="line">#pdm.lock</span><br><span class="line">#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it</span><br><span class="line">#   in version control.</span><br><span class="line">#   https://pdm.fming.dev/#use-with-ide</span><br><span class="line">.pdm.toml</span><br><span class="line"></span><br><span class="line"># PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm</span><br><span class="line">__pypackages__/</span><br><span class="line"></span><br><span class="line"># Celery stuff</span><br><span class="line">celerybeat-schedule</span><br><span class="line">celerybeat.pid</span><br><span class="line"></span><br><span class="line"># SageMath parsed files</span><br><span class="line">*.sage.py</span><br><span class="line"></span><br><span class="line"># Environments</span><br><span class="line">.env</span><br><span class="line">.venv</span><br><span class="line">env/</span><br><span class="line">venv/</span><br><span class="line">ENV/</span><br><span class="line">env.bak/</span><br><span class="line">venv.bak/</span><br><span class="line"></span><br><span class="line"># Spyder project settings</span><br><span class="line">.spyderproject</span><br><span class="line">.spyproject</span><br><span class="line"></span><br><span class="line"># Rope project settings</span><br><span class="line">.ropeproject</span><br><span class="line"></span><br><span class="line"># mkdocs documentation</span><br><span class="line">/site</span><br><span class="line"></span><br><span class="line"># mypy</span><br><span class="line">.mypy_cache/</span><br><span class="line">.dmypy.json</span><br><span class="line">dmypy.json</span><br><span class="line"></span><br><span class="line"># Pyre type checker</span><br><span class="line">.pyre/</span><br><span class="line"></span><br><span class="line"># pytype static type analyzer</span><br><span class="line">.pytype/</span><br><span class="line"></span><br><span class="line"># Cython debug symbols</span><br><span class="line">cython_debug/</span><br><span class="line"></span><br><span class="line"># PyCharm</span><br><span class="line">#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can</span><br><span class="line">#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore</span><br><span class="line">#  and can be added to the global gitignore or merged into this file.  For a more nuclear</span><br><span class="line">#  option (not recommended) you can uncomment the following to ignore the entire idea folder.</span><br><span class="line">#.idea/</span><br></pre></td></tr></table></figure>
-
-<h4 id="Unity"><a href="#Unity" class="headerlink" title="Unity"></a>Unity</h4><p>项目中大量自动生成的*.meta文件是需要加入版本管理的</p>
-<p>这个文件包含的信息：</p>
-<ul>
-<li>描述如何导入这个资产文件</li>
-<li>如何在项目中准备资产</li>
-</ul>
-<p>根目录下的sln和csproj文件是为了能更好的使用Visual Studio，实际上Unity是用不上这个的，也是可以忽略掉的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"># This .gitignore file should be placed at the root of your Unity project directory</span><br><span class="line">#</span><br><span class="line"># Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore</span><br><span class="line">#</span><br><span class="line">/[Ll]ibrary/</span><br><span class="line">/[Tt]emp/</span><br><span class="line">/[Oo]bj/</span><br><span class="line">/[Bb]uild/</span><br><span class="line">/[Bb]uilds/</span><br><span class="line">/[Ll]ogs/</span><br><span class="line">/[Uu]ser[Ss]ettings/</span><br><span class="line"></span><br><span class="line"># MemoryCaptures can get excessive in size.</span><br><span class="line"># They also could contain extremely sensitive data</span><br><span class="line">/[Mm]emoryCaptures/</span><br><span class="line"></span><br><span class="line"># Asset meta data should only be ignored when the corresponding asset is also ignored</span><br><span class="line">!/[Aa]ssets/**/*.meta</span><br><span class="line"></span><br><span class="line"># Uncomment this line if you wish to ignore the asset store tools plugin</span><br><span class="line"># /[Aa]ssets/AssetStoreTools*</span><br><span class="line"></span><br><span class="line"># Autogenerated Jetbrains Rider plugin</span><br><span class="line">/[Aa]ssets/Plugins/Editor/JetBrains*</span><br><span class="line"></span><br><span class="line"># Visual Studio cache directory</span><br><span class="line">.vs/</span><br><span class="line"></span><br><span class="line"># Gradle cache directory</span><br><span class="line">.gradle/</span><br><span class="line"></span><br><span class="line"># Autogenerated VS/MD/Consulo solution and project files</span><br><span class="line">ExportedObj/</span><br><span class="line">.consulo/</span><br><span class="line">*.csproj</span><br><span class="line">*.unityproj</span><br><span class="line">*.sln</span><br><span class="line">*.suo</span><br><span class="line">*.tmp</span><br><span class="line">*.user</span><br><span class="line">*.userprefs</span><br><span class="line">*.pidb</span><br><span class="line">*.booproj</span><br><span class="line">*.svd</span><br><span class="line">*.pdb</span><br><span class="line">*.mdb</span><br><span class="line">*.opendb</span><br><span class="line">*.VC.db</span><br><span class="line"></span><br><span class="line"># Unity3D generated meta files</span><br><span class="line">*.pidb.meta</span><br><span class="line">*.pdb.meta</span><br><span class="line">*.mdb.meta</span><br><span class="line"></span><br><span class="line"># Unity3D generated file on crash reports</span><br><span class="line">sysinfo.txt</span><br><span class="line"></span><br><span class="line"># Builds</span><br><span class="line">*.apk</span><br><span class="line">*.unitypackage</span><br><span class="line"></span><br><span class="line"># Crashlytics generated file</span><br><span class="line">crashlytics-build.properties</span><br><span class="line"></span><br><span class="line"># Packed Addressables</span><br><span class="line">/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*</span><br><span class="line"></span><br><span class="line"># Temporary auto-generated Android Assets</span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa.meta</span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa/*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="vs的C-项目"><a href="#vs的C-项目" class="headerlink" title="vs的C#项目"></a>vs的C#项目</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br></pre></td><td class="code"><pre><span class="line">## Ignore Visual Studio temporary files, build results, and</span><br><span class="line">## files generated by popular Visual Studio add-ons.</span><br><span class="line">##</span><br><span class="line">## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore</span><br><span class="line"></span><br><span class="line"># User-specific files</span><br><span class="line">*.rsuser</span><br><span class="line">*.suo</span><br><span class="line">*.user</span><br><span class="line">*.userosscache</span><br><span class="line">*.sln.docstates</span><br><span class="line"></span><br><span class="line"># User-specific files (MonoDevelop/Xamarin Studio)</span><br><span class="line">*.userprefs</span><br><span class="line"></span><br><span class="line"># Mono auto generated files</span><br><span class="line">mono_crash.*</span><br><span class="line"></span><br><span class="line"># Build results</span><br><span class="line">[Dd]ebug/</span><br><span class="line">[Dd]ebugPublic/</span><br><span class="line">[Rr]elease/</span><br><span class="line">[Rr]eleases/</span><br><span class="line">x64/</span><br><span class="line">x86/</span><br><span class="line">[Ww][Ii][Nn]32/</span><br><span class="line">[Aa][Rr][Mm]/</span><br><span class="line">[Aa][Rr][Mm]64/</span><br><span class="line">bld/</span><br><span class="line">[Bb]in/</span><br><span class="line">[Oo]bj/</span><br><span class="line">[Ll]og/</span><br><span class="line">[Ll]ogs/</span><br><span class="line"></span><br><span class="line"># Visual Studio 2015/2017 cache/options directory</span><br><span class="line">.vs/</span><br><span class="line"># Uncomment if you have tasks that create the project&#x27;s static files in wwwroot</span><br><span class="line">#wwwroot/</span><br><span class="line"></span><br><span class="line"># Visual Studio 2017 auto generated files</span><br><span class="line">Generated Files/</span><br><span class="line"></span><br><span class="line"># MSTest test Results</span><br><span class="line">[Tt]est[Rr]esult*/</span><br><span class="line">[Bb]uild[Ll]og.*</span><br><span class="line"></span><br><span class="line"># NUnit</span><br><span class="line">*.VisualState.xml</span><br><span class="line">TestResult.xml</span><br><span class="line">nunit-*.xml</span><br><span class="line"></span><br><span class="line"># Build Results of an ATL Project</span><br><span class="line">[Dd]ebugPS/</span><br><span class="line">[Rr]eleasePS/</span><br><span class="line">dlldata.c</span><br><span class="line"></span><br><span class="line"># Benchmark Results</span><br><span class="line">BenchmarkDotNet.Artifacts/</span><br><span class="line"></span><br><span class="line"># .NET Core</span><br><span class="line">project.lock.json</span><br><span class="line">project.fragment.lock.json</span><br><span class="line">artifacts/</span><br><span class="line"></span><br><span class="line"># ASP.NET Scaffolding</span><br><span class="line">ScaffoldingReadMe.txt</span><br><span class="line"></span><br><span class="line"># StyleCop</span><br><span class="line">StyleCopReport.xml</span><br><span class="line"></span><br><span class="line"># Files built by Visual Studio</span><br><span class="line">*_i.c</span><br><span class="line">*_p.c</span><br><span class="line">*_h.h</span><br><span class="line">*.ilk</span><br><span class="line">*.meta</span><br><span class="line">*.obj</span><br><span class="line">*.iobj</span><br><span class="line">*.pch</span><br><span class="line">*.pdb</span><br><span class="line">*.ipdb</span><br><span class="line">*.pgc</span><br><span class="line">*.pgd</span><br><span class="line">*.rsp</span><br><span class="line">*.sbr</span><br><span class="line">*.tlb</span><br><span class="line">*.tli</span><br><span class="line">*.tlh</span><br><span class="line">*.tmp</span><br><span class="line">*.tmp_proj</span><br><span class="line">*_wpftmp.csproj</span><br><span class="line">*.log</span><br><span class="line">*.vspscc</span><br><span class="line">*.vssscc</span><br><span class="line">.builds</span><br><span class="line">*.pidb</span><br><span class="line">*.svclog</span><br><span class="line">*.scc</span><br><span class="line"></span><br><span class="line"># Chutzpah Test files</span><br><span class="line">_Chutzpah*</span><br><span class="line"></span><br><span class="line"># Visual C++ cache files</span><br><span class="line">ipch/</span><br><span class="line">*.aps</span><br><span class="line">*.ncb</span><br><span class="line">*.opendb</span><br><span class="line">*.opensdf</span><br><span class="line">*.sdf</span><br><span class="line">*.cachefile</span><br><span class="line">*.VC.db</span><br><span class="line">*.VC.VC.opendb</span><br><span class="line"></span><br><span class="line"># Visual Studio profiler</span><br><span class="line">*.psess</span><br><span class="line">*.vsp</span><br><span class="line">*.vspx</span><br><span class="line">*.sap</span><br><span class="line"></span><br><span class="line"># Visual Studio Trace Files</span><br><span class="line">*.e2e</span><br><span class="line"></span><br><span class="line"># TFS 2012 Local Workspace</span><br><span class="line">$tf/</span><br><span class="line"></span><br><span class="line"># Guidance Automation Toolkit</span><br><span class="line">*.gpState</span><br><span class="line"></span><br><span class="line"># ReSharper is a .NET coding add-in</span><br><span class="line">_ReSharper*/</span><br><span class="line">*.[Rr]e[Ss]harper</span><br><span class="line">*.DotSettings.user</span><br><span class="line"></span><br><span class="line"># TeamCity is a build add-in</span><br><span class="line">_TeamCity*</span><br><span class="line"></span><br><span class="line"># DotCover is a Code Coverage Tool</span><br><span class="line">*.dotCover</span><br><span class="line"></span><br><span class="line"># AxoCover is a Code Coverage Tool</span><br><span class="line">.axoCover/*</span><br><span class="line">!.axoCover/settings.json</span><br><span class="line"></span><br><span class="line"># Coverlet is a free, cross platform Code Coverage Tool</span><br><span class="line">coverage*.json</span><br><span class="line">coverage*.xml</span><br><span class="line">coverage*.info</span><br><span class="line"></span><br><span class="line"># Visual Studio code coverage results</span><br><span class="line">*.coverage</span><br><span class="line">*.coveragexml</span><br><span class="line"></span><br><span class="line"># NCrunch</span><br><span class="line">_NCrunch_*</span><br><span class="line">.*crunch*.local.xml</span><br><span class="line">nCrunchTemp_*</span><br><span class="line"></span><br><span class="line"># MightyMoose</span><br><span class="line">*.mm.*</span><br><span class="line">AutoTest.Net/</span><br><span class="line"></span><br><span class="line"># Web workbench (sass)</span><br><span class="line">.sass-cache/</span><br><span class="line"></span><br><span class="line"># Installshield output folder</span><br><span class="line">[Ee]xpress/</span><br><span class="line"></span><br><span class="line"># DocProject is a documentation generator add-in</span><br><span class="line">DocProject/buildhelp/</span><br><span class="line">DocProject/Help/*.HxT</span><br><span class="line">DocProject/Help/*.HxC</span><br><span class="line">DocProject/Help/*.hhc</span><br><span class="line">DocProject/Help/*.hhk</span><br><span class="line">DocProject/Help/*.hhp</span><br><span class="line">DocProject/Help/Html2</span><br><span class="line">DocProject/Help/html</span><br><span class="line"></span><br><span class="line"># Click-Once directory</span><br><span class="line">publish/</span><br><span class="line"></span><br><span class="line"># Publish Web Output</span><br><span class="line">*.[Pp]ublish.xml</span><br><span class="line">*.azurePubxml</span><br><span class="line"># Note: Comment the next line if you want to checkin your web deploy settings,</span><br><span class="line"># but database connection strings (with potential passwords) will be unencrypted</span><br><span class="line">*.pubxml</span><br><span class="line">*.publishproj</span><br><span class="line"></span><br><span class="line"># Microsoft Azure Web App publish settings. Comment the next line if you want to</span><br><span class="line"># checkin your Azure Web App publish settings, but sensitive information contained</span><br><span class="line"># in these scripts will be unencrypted</span><br><span class="line">PublishScripts/</span><br><span class="line"></span><br><span class="line"># NuGet Packages</span><br><span class="line">*.nupkg</span><br><span class="line"># NuGet Symbol Packages</span><br><span class="line">*.snupkg</span><br><span class="line"># The packages folder can be ignored because of Package Restore</span><br><span class="line">**/[Pp]ackages/*</span><br><span class="line"># except build/, which is used as an MSBuild target.</span><br><span class="line">!**/[Pp]ackages/build/</span><br><span class="line"># Uncomment if necessary however generally it will be regenerated when needed</span><br><span class="line">#!**/[Pp]ackages/repositories.config</span><br><span class="line"># NuGet v3&#x27;s project.json files produces more ignorable files</span><br><span class="line">*.nuget.props</span><br><span class="line">*.nuget.targets</span><br><span class="line"></span><br><span class="line"># Microsoft Azure Build Output</span><br><span class="line">csx/</span><br><span class="line">*.build.csdef</span><br><span class="line"></span><br><span class="line"># Microsoft Azure Emulator</span><br><span class="line">ecf/</span><br><span class="line">rcf/</span><br><span class="line"></span><br><span class="line"># Windows Store app package directories and files</span><br><span class="line">AppPackages/</span><br><span class="line">BundleArtifacts/</span><br><span class="line">Package.StoreAssociation.xml</span><br><span class="line">_pkginfo.txt</span><br><span class="line">*.appx</span><br><span class="line">*.appxbundle</span><br><span class="line">*.appxupload</span><br><span class="line"></span><br><span class="line"># Visual Studio cache files</span><br><span class="line"># files ending in .cache can be ignored</span><br><span class="line">*.[Cc]ache</span><br><span class="line"># but keep track of directories ending in .cache</span><br><span class="line">!?*.[Cc]ache/</span><br><span class="line"></span><br><span class="line"># Others</span><br><span class="line">ClientBin/</span><br><span class="line">~$*</span><br><span class="line">*~</span><br><span class="line">*.dbmdl</span><br><span class="line">*.dbproj.schemaview</span><br><span class="line">*.jfm</span><br><span class="line">*.pfx</span><br><span class="line">*.publishsettings</span><br><span class="line">orleans.codegen.cs</span><br><span class="line"></span><br><span class="line"># Including strong name files can present a security risk</span><br><span class="line"># (https://github.com/github/gitignore/pull/2483#issue-259490424)</span><br><span class="line">#*.snk</span><br><span class="line"></span><br><span class="line"># Since there are multiple workflows, uncomment next line to ignore bower_components</span><br><span class="line"># (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)</span><br><span class="line">#bower_components/</span><br><span class="line"></span><br><span class="line"># RIA/Silverlight projects</span><br><span class="line">Generated_Code/</span><br><span class="line"></span><br><span class="line"># Backup &amp; report files from converting an old project file</span><br><span class="line"># to a newer Visual Studio version. Backup files are not needed,</span><br><span class="line"># because we have git ;-)</span><br><span class="line">_UpgradeReport_Files/</span><br><span class="line">Backup*/</span><br><span class="line">UpgradeLog*.XML</span><br><span class="line">UpgradeLog*.htm</span><br><span class="line">ServiceFabricBackup/</span><br><span class="line">*.rptproj.bak</span><br><span class="line"></span><br><span class="line"># SQL Server files</span><br><span class="line">*.mdf</span><br><span class="line">*.ldf</span><br><span class="line">*.ndf</span><br><span class="line"></span><br><span class="line"># Business Intelligence projects</span><br><span class="line">*.rdl.data</span><br><span class="line">*.bim.layout</span><br><span class="line">*.bim_*.settings</span><br><span class="line">*.rptproj.rsuser</span><br><span class="line">*- [Bb]ackup.rdl</span><br><span class="line">*- [Bb]ackup ([0-9]).rdl</span><br><span class="line">*- [Bb]ackup ([0-9][0-9]).rdl</span><br><span class="line"></span><br><span class="line"># Microsoft Fakes</span><br><span class="line">FakesAssemblies/</span><br><span class="line"></span><br><span class="line"># GhostDoc plugin setting file</span><br><span class="line">*.GhostDoc.xml</span><br><span class="line"></span><br><span class="line"># Node.js Tools for Visual Studio</span><br><span class="line">.ntvs_analysis.dat</span><br><span class="line">node_modules/</span><br><span class="line"></span><br><span class="line"># Visual Studio 6 build log</span><br><span class="line">*.plg</span><br><span class="line"></span><br><span class="line"># Visual Studio 6 workspace options file</span><br><span class="line">*.opt</span><br><span class="line"></span><br><span class="line"># Visual Studio 6 auto-generated workspace file (contains which files were open etc.)</span><br><span class="line">*.vbw</span><br><span class="line"></span><br><span class="line"># Visual Studio LightSwitch build output</span><br><span class="line">**/*.HTMLClient/GeneratedArtifacts</span><br><span class="line">**/*.DesktopClient/GeneratedArtifacts</span><br><span class="line">**/*.DesktopClient/ModelManifest.xml</span><br><span class="line">**/*.Server/GeneratedArtifacts</span><br><span class="line">**/*.Server/ModelManifest.xml</span><br><span class="line">_Pvt_Extensions</span><br><span class="line"></span><br><span class="line"># Paket dependency manager</span><br><span class="line">.paket/paket.exe</span><br><span class="line">paket-files/</span><br><span class="line"></span><br><span class="line"># FAKE - F# Make</span><br><span class="line">.fake/</span><br><span class="line"></span><br><span class="line"># CodeRush personal settings</span><br><span class="line">.cr/personal</span><br><span class="line"></span><br><span class="line"># Python Tools for Visual Studio (PTVS)</span><br><span class="line">__pycache__/</span><br><span class="line">*.pyc</span><br><span class="line"></span><br><span class="line"># Cake - Uncomment if you are using it</span><br><span class="line"># tools/**</span><br><span class="line"># !tools/packages.config</span><br><span class="line"></span><br><span class="line"># Tabs Studio</span><br><span class="line">*.tss</span><br><span class="line"></span><br><span class="line"># Telerik&#x27;s JustMock configuration file</span><br><span class="line">*.jmconfig</span><br><span class="line"></span><br><span class="line"># BizTalk build output</span><br><span class="line">*.btp.cs</span><br><span class="line">*.btm.cs</span><br><span class="line">*.odx.cs</span><br><span class="line">*.xsd.cs</span><br><span class="line"></span><br><span class="line"># OpenCover UI analysis results</span><br><span class="line">OpenCover/</span><br><span class="line"></span><br><span class="line"># Azure Stream Analytics local run output</span><br><span class="line">ASALocalRun/</span><br><span class="line"></span><br><span class="line"># MSBuild Binary and Structured Log</span><br><span class="line">*.binlog</span><br><span class="line"></span><br><span class="line"># NVidia Nsight GPU debugger configuration file</span><br><span class="line">*.nvuser</span><br><span class="line"></span><br><span class="line"># MFractors (Xamarin productivity tool) working folder</span><br><span class="line">.mfractor/</span><br><span class="line"></span><br><span class="line"># Local History for Visual Studio</span><br><span class="line">.localhistory/</span><br><span class="line"></span><br><span class="line"># BeatPulse healthcheck temp database</span><br><span class="line">healthchecksdb</span><br><span class="line"></span><br><span class="line"># Backup folder for Package Reference Convert tool in Visual Studio 2017</span><br><span class="line">MigrationBackup/</span><br><span class="line"></span><br><span class="line"># Ionide (cross platform F# VS Code tools) working folder</span><br><span class="line">.ionide/</span><br><span class="line"></span><br><span class="line"># Fody - auto-generated XML schema</span><br><span class="line">FodyWeavers.xsd</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1342,14 +1603,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">17k</span>
+    <span title="站点总字数">18k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">1:06</span>
   </span>
 </div>
     </div>
