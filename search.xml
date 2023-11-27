@@ -88,21 +88,8 @@
 <p><img class="half" src="/../images/exercise/2023-08-31.jpg"></img></p>
 ]]></content>
       <tags>
-        <tag>-运动 -日常</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023年10月 运动</title>
-    <url>/2023/11/22/2023%E5%B9%B410%E6%9C%88-exercise/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/base.css">
-<link rel="stylesheet" href="/../css/center.css">
-<link rel="stylesheet" href="/../css/images.css">
-
-<hr>
-<h3 id="2023年10月30日-运动"><a href="#2023年10月30日-运动" class="headerlink" title="2023年10月30日 运动"></a>2023年10月30日 运动</h3><p><img class="half" src="/../images/exercise/2023-10-30.jpg"></img></p>
-]]></content>
-      <tags>
-        <tag>-运动 -日常</tag>
+        <tag>运动</tag>
+        <tag>日常</tag>
       </tags>
   </entry>
   <entry>
@@ -133,7 +120,23 @@
 <h3 id="2023年9月17日-运动"><a href="#2023年9月17日-运动" class="headerlink" title="2023年9月17日 运动"></a>2023年9月17日 运动</h3><p><img class="half" src="/../images/exercise/2023-09-17.jpg"></img></p>
 ]]></content>
       <tags>
-        <tag>-运动 -日常</tag>
+        <tag>运动</tag>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023年10月 运动</title>
+    <url>/2023/11/22/2023%E5%B9%B410%E6%9C%88-exercise/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/base.css">
+<link rel="stylesheet" href="/../css/center.css">
+<link rel="stylesheet" href="/../css/images.css">
+
+<hr>
+<h3 id="2023年10月30日-运动"><a href="#2023年10月30日-运动" class="headerlink" title="2023年10月30日 运动"></a>2023年10月30日 运动</h3><p><img class="half" src="/../images/exercise/2023-10-30.jpg"></img></p>
+]]></content>
+      <tags>
+        <tag>运动</tag>
+        <tag>日常</tag>
       </tags>
   </entry>
   <entry>
@@ -336,6 +339,22 @@
       </tags>
   </entry>
   <entry>
+    <title>组装电脑</title>
+    <url>/2023/08/24/daily-2023-08-24/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/images.css">
+
+<p>今天从零开始组装了一台电脑，用了7年的电脑终于退休了，说实话多多少少有点舍不得</p>
+<p><img src="/../images/daily/2023-08-24/配置.png"></img></p>
+<p><img src="/../images/daily/2023-08-24/分数.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机1.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机2.png"></img></p>
+<p><img class="half" src="/../images/daily/2023-08-24/整机3.png"></img></p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Git】基础命令</title>
     <url>/2023/08/12/git-Git%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
@@ -406,19 +425,39 @@
       </tags>
   </entry>
   <entry>
-    <title>组装电脑</title>
-    <url>/2023/08/24/daily-2023-08-24/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/images.css">
+    <title>【Git】合并分支及如何解决冲突</title>
+    <url>/2023/09/15/git-%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
+<link rel="stylesheet" href="/../css/images.css">
 
-<p>今天从零开始组装了一台电脑，用了7年的电脑终于退休了，说实话多多少少有点舍不得</p>
-<p><img src="/../images/daily/2023-08-24/配置.png"></img></p>
-<p><img src="/../images/daily/2023-08-24/分数.png"></img></p>
-<p><img class="half" src="/../images/daily/2023-08-24/整机1.png"></img></p>
-<p><img class="half" src="/../images/daily/2023-08-24/整机2.png"></img></p>
-<p><img class="half" src="/../images/daily/2023-08-24/整机3.png"></img></p>
+
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>使用<code>git merge &lt;branchName&gt;</code>命令将<code>&lt;branchName&gt;</code>分支上的内容合并到当前所在的分支上</p>
+<p><code>&lt;branchName&gt;</code> 可以是分支的名字，也可以是<code>commitID</code></p>
+<h4 id="出现冲突"><a href="#出现冲突" class="headerlink" title="出现冲突"></a>出现冲突</h4><p>出现如下内容，说明自动合并发生了冲突，需要手动解决冲突</p>
+<p><img class="base" src="/../images/git/合并分支_冲突.png"></img></p>
+<p>使用<code>git status</code>查看冲突文件<br><img class="base" src="/../images/git/合并分支_冲突文件.png"></img></p>
+<p>使用<code>git diff</code>查看冲突内容<br><img class="base" src="/../images/git/合并分支_冲突内容.png"></img></p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的三种方法"><a href="#解决冲突的三种方法" class="headerlink" title="解决冲突的三种方法"></a>解决冲突的三种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
+<p>修改前：</p>
+<p><img class="base" src="/../images/git/合并分支_编辑文件.png"></img></p>
+<p>修改后：</p>
+<p><img class="base" src="/../images/git/合并分支_修复冲突.png"></img></p>
+<h5 id="方法二-保留选择的版本"><a href="#方法二-保留选择的版本" class="headerlink" title="方法二:保留选择的版本"></a>方法二:保留选择的版本</h5><p>选择当前分支的版本作为解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --ours &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
+
+<p>选择合并分支的版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --theirs &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法三：强行退出merge模式"><a href="#方法三：强行退出merge模式" class="headerlink" title="方法三：强行退出merge模式"></a>方法三：强行退出merge模式</h5><p>该命令将会抛弃合并过程并且尝试重建合并前的状态</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="保存提交"><a href="#保存提交" class="headerlink" title="保存提交"></a>保存提交</h4><p>最后再重新提交一遍就成功的解决了冲突</p>
+<p><img class="base" src="/../images/git/合并分支_提交冲突文件.png"></img></p>
 ]]></content>
       <tags>
-        <tag>日常</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -462,42 +501,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Git】合并分支及如何解决冲突</title>
-    <url>/2023/09/15/git-%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
-<link rel="stylesheet" href="/../css/images.css">
-
-
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>使用<code>git merge &lt;branchName&gt;</code>命令将<code>&lt;branchName&gt;</code>分支上的内容合并到当前所在的分支上</p>
-<p><code>&lt;branchName&gt;</code> 可以是分支的名字，也可以是<code>commitID</code></p>
-<h4 id="出现冲突"><a href="#出现冲突" class="headerlink" title="出现冲突"></a>出现冲突</h4><p>出现如下内容，说明自动合并发生了冲突，需要手动解决冲突</p>
-<p><img class="base" src="/../images/git/合并分支_冲突.png"></img></p>
-<p>使用<code>git status</code>查看冲突文件<br><img class="base" src="/../images/git/合并分支_冲突文件.png"></img></p>
-<p>使用<code>git diff</code>查看冲突内容<br><img class="base" src="/../images/git/合并分支_冲突内容.png"></img></p>
-<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的三种方法"><a href="#解决冲突的三种方法" class="headerlink" title="解决冲突的三种方法"></a>解决冲突的三种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
-<p>修改前：</p>
-<p><img class="base" src="/../images/git/合并分支_编辑文件.png"></img></p>
-<p>修改后：</p>
-<p><img class="base" src="/../images/git/合并分支_修复冲突.png"></img></p>
-<h5 id="方法二-保留选择的版本"><a href="#方法二-保留选择的版本" class="headerlink" title="方法二:保留选择的版本"></a>方法二:保留选择的版本</h5><p>选择当前分支的版本作为解决方案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --ours &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
-
-<p>选择合并分支的版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --theirs &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="方法三：强行退出merge模式"><a href="#方法三：强行退出merge模式" class="headerlink" title="方法三：强行退出merge模式"></a>方法三：强行退出merge模式</h5><p>该命令将会抛弃合并过程并且尝试重建合并前的状态</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="保存提交"><a href="#保存提交" class="headerlink" title="保存提交"></a>保存提交</h4><p>最后再重新提交一遍就成功的解决了冲突</p>
-<p><img class="base" src="/../images/git/合并分支_提交冲突文件.png"></img></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Linux】【Git】Linux系统安装Git</title>
     <url>/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://github.com/git/git/tags">下载包体</a></p>
@@ -515,46 +518,6 @@
 ]]></content>
       <tags>
         <tag>Git</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Linux】Nvim</title>
-    <url>/2023/08/22/linux-Neovim/</url>
-    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p><a href="https://github.com/neovim/neovim/releases">https://github.com/neovim/neovim/releases</a></p>
-<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf neovim-0.8.0.tar.gz</span><br><span class="line"><span class="comment"># 解压后就可以直接用了，十分方便</span></span><br><span class="line">./nvim-linux64/bin/nvim</span><br><span class="line"><span class="comment"># 可以将其放在/usr/local下，然后创建软链接</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/nvim/bin/nvim /usr/bin/nvim</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><h5 id="默认配置文件路径："><a href="#默认配置文件路径：" class="headerlink" title="默认配置文件路径："></a>默认配置文件路径：</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建配置文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/.config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ~/.config/nvim/init.vim</span><br></pre></td></tr></table></figure>
-
-<h5 id="自定义配置文件的路径："><a href="#自定义配置文件的路径：" class="headerlink" title="自定义配置文件的路径："></a>自定义配置文件的路径：</h5><ol>
-<li>创建配置文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nvim-linux64</span><br><span class="line"><span class="built_in">mkdir</span> ./config</span><br><span class="line"><span class="built_in">mkdir</span> ./config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ./config/nvim/init.vim</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/linux/nvim/配置文件1.png"></img></p>
-<ol start="2">
-<li><code>nvim /etc/profile</code>修改环境变量</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># nvim配置文件</span></span><br><span class="line"><span class="built_in">export</span> XDG_CONFIG_HOME=/usr/local/nvim-linux64/config</span><br><span class="line"><span class="built_in">export</span> XDG_DATA_HOME=/usr/local/nvim-linux64/config</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/linux/nvim/配置文件2.png"></img></p>
-<ol start="3">
-<li>重载配置文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot; 基础键位映射</span></span><br><span class="line"><span class="string">imap jk &lt;Esc&gt;</span></span><br><span class="line"><span class="string">nmap &lt;space&gt; :</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> 显示相对行</span><br><span class="line"><span class="built_in">set</span> relativenumber</span><br><span class="line"><span class="built_in">set</span> number</span><br></pre></td></tr></table></figure>
-
-<h4 id="安装vim-plug插件管理"><a href="#安装vim-plug插件管理" class="headerlink" title="安装vim-plug插件管理"></a>安装vim-plug插件管理</h4><p>前面不是命名了全局变量<code>XDG_DATA_HOME</code>吗，这个时候就用上了</p>
-<p>创建路径<code>/usr/local/nvim-linux64/config/nvim/site/autoload/</code></p>
-<p>并将<code>plug.vim</code>文件放在这个路径下</p>
-<p><a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">Download plug.vim</a></p>
-<hr>
-<h3 id="我的配置"><a href="#我的配置" class="headerlink" title="我的配置"></a>我的配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot; 基础键位映射</span><br><span class="line">imap jk &lt;Esc&gt;</span><br><span class="line">nmap &lt;space&gt; :</span><br><span class="line"></span><br><span class="line">&quot; 显示相对行</span><br><span class="line">set relativenumber</span><br><span class="line">set number</span><br><span class="line"></span><br><span class="line">&quot; nerdtree插件绑定</span><br><span class="line">map &lt;silent&gt; &lt;C-e&gt; :NERDTreeToggle&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; python补全</span><br><span class="line">filetype plugin on</span><br><span class="line">let g:pydiction_location = &#x27;$XDG_CONFIG_HOME\\nvim-data\\plugged\\pydiction\\complete-dict&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">call plug#begin()</span><br><span class="line"></span><br><span class="line">Plug &#x27;scrooloose/nerdtree&#x27;</span><br><span class="line">Plug &#x27;rkulla/pydiction&#x27;</span><br><span class="line"></span><br><span class="line">call plug#end()</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
         <tag>Linux</tag>
       </tags>
   </entry>
@@ -624,6 +587,64 @@
       </tags>
   </entry>
   <entry>
+    <title>【Linux】Nvim</title>
+    <url>/2023/08/22/linux-Neovim/</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p><a href="https://github.com/neovim/neovim/releases">https://github.com/neovim/neovim/releases</a></p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf neovim-0.8.0.tar.gz</span><br><span class="line"><span class="comment"># 解压后就可以直接用了，十分方便</span></span><br><span class="line">./nvim-linux64/bin/nvim</span><br><span class="line"><span class="comment"># 可以将其放在/usr/local下，然后创建软链接</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/nvim/bin/nvim /usr/bin/nvim</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><h5 id="默认配置文件路径："><a href="#默认配置文件路径：" class="headerlink" title="默认配置文件路径："></a>默认配置文件路径：</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建配置文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/.config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ~/.config/nvim/init.vim</span><br></pre></td></tr></table></figure>
+
+<h5 id="自定义配置文件的路径："><a href="#自定义配置文件的路径：" class="headerlink" title="自定义配置文件的路径："></a>自定义配置文件的路径：</h5><ol>
+<li>创建配置文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nvim-linux64</span><br><span class="line"><span class="built_in">mkdir</span> ./config</span><br><span class="line"><span class="built_in">mkdir</span> ./config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ./config/nvim/init.vim</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/linux/nvim/配置文件1.png"></img></p>
+<ol start="2">
+<li><code>nvim /etc/profile</code>修改环境变量</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># nvim配置文件</span></span><br><span class="line"><span class="built_in">export</span> XDG_CONFIG_HOME=/usr/local/nvim-linux64/config</span><br><span class="line"><span class="built_in">export</span> XDG_DATA_HOME=/usr/local/nvim-linux64/config</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/linux/nvim/配置文件2.png"></img></p>
+<ol start="3">
+<li>重载配置文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot; 基础键位映射</span></span><br><span class="line"><span class="string">imap jk &lt;Esc&gt;</span></span><br><span class="line"><span class="string">nmap &lt;space&gt; :</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> 显示相对行</span><br><span class="line"><span class="built_in">set</span> relativenumber</span><br><span class="line"><span class="built_in">set</span> number</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装vim-plug插件管理"><a href="#安装vim-plug插件管理" class="headerlink" title="安装vim-plug插件管理"></a>安装vim-plug插件管理</h4><p>前面不是命名了全局变量<code>XDG_DATA_HOME</code>吗，这个时候就用上了</p>
+<p>将<a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">plug.vim</a>文件放在以下路径</p>
+<p>windows: <code>./nvim-win64/config/nvim-data/site/autoload/</code></p>
+<p>linux: <code>./nvim-linux64/config/nvim/site/autoload/</code></p>
+<hr>
+<h3 id="我的配置"><a href="#我的配置" class="headerlink" title="我的配置"></a>我的配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot; 基础键位映射</span><br><span class="line">imap jk &lt;Esc&gt;</span><br><span class="line">nmap &lt;space&gt; :</span><br><span class="line"></span><br><span class="line">&quot; 显示相对行</span><br><span class="line">set relativenumber</span><br><span class="line">set number</span><br><span class="line"></span><br><span class="line">&quot; nerdtree插件绑定</span><br><span class="line">map &lt;silent&gt; &lt;C-e&gt; :NERDTreeToggle&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; python补全</span><br><span class="line">filetype plugin on</span><br><span class="line">let g:pydiction_location = &#x27;$XDG_CONFIG_HOME\\nvim-data\\plugged\\pydiction\\complete-dict&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">call plug#begin()</span><br><span class="line"></span><br><span class="line">Plug &#x27;scrooloose/nerdtree&#x27;</span><br><span class="line">Plug &#x27;rkulla/pydiction&#x27;</span><br><span class="line"></span><br><span class="line">call plug#end()</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Linux】Nginx</title>
+    <url>/2023/08/21/linux-Nginx/</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>网站：<a href="https://nginx.org/en/download.html">nginx: download</a></p>
+<p><img src="/../images/linux/nginx/安装网站.png"></img></p>
+<h4 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h4><p><code>tar -zxvf nginx-1.24.0.tar.gz</code></p>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code></p>
+<p><code>make</code></p>
+<p><code>make install</code></p>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>设置快捷键</p>
+<p><code>ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</code></p>
+<p>这样执行&#x2F;usr&#x2F;bin&#x2F;nginx就相当于执行了&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
+<p>而&#x2F;usr&#x2F;bin&#x2F;是全局可用的，所以在任何地方输入nginx都可以执行&#x2F;usr&#x2F;lcoal&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【MySQL】MySQL安装</title>
     <url>/2023/08/21/mysql-MySQL%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>官网网址：<a href="https://dev.mysql.com/downloads/">MySQL :: MySQL Community Downloads</a></p>
@@ -682,36 +703,6 @@
 ]]></content>
       <tags>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】文件处理</title>
-    <url>/2023/09/13/python-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<h3 id="JSON文件"><a href="#JSON文件" class="headerlink" title="JSON文件"></a>JSON文件</h3><ul>
-<li>序列：通俗来说就是字符串</li>
-<li>序列化：将代码中的对象（如：列表、字典等）转换成<strong>字符串</strong>，以便将信息保存在文件中或传输到网络上</li>
-<li>反序列化：将字符串转换成代码中的<strong>对象</strong></li>
-</ul>
-<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化 (Serialization)，是指<strong>把程序中的一个类转化成一个标准化的格式</strong>。标准化的意义是这个格式可以跨程序，跨平台的被使用，而且保持其原有的内容，规范。</p>
-<p><code>json.dumps(&lt;对象&gt;)</code>将对象<strong>转换</strong>成字符串，可添加参数<code>indent=4</code>设置字符串的缩进</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line">s = json.dumps(dict_)</span><br><span class="line"><span class="built_in">print</span>(s)	<span class="comment"># 输出：&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>将对象<strong>写入</strong>到file文件中，可添加参数<code>indent=4</code>设置字符串的缩进</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    json.dump(dict_, json_file)</span><br></pre></td></tr></table></figure>
-
-<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p><code>json.loads(&lt;string&gt;)</code>将<strong>string</strong>转换成对象并返回</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br><span class="line">dict_ = json.loads(s)</span><br><span class="line"><span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>json.load(&lt;file&gt;)</code>将<strong>file文件</strong>中的内容转换成对象并返回</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    dict_ = json.load(file)</span><br><span class="line">    <span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><code>json.dumps(&lt;对象&gt;)</code>：将对象<strong>转换</strong>成字符串，作用的转换</p>
-<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>：将对象<strong>写入</strong>file文件中，作用是转换并写入</p>
-<p><code>json.loads(&lt;string&gt;)</code>：将string转换成对象并返回，<strong>参数是string</strong></p>
-<p><code>json.load(&lt;file&gt;)</code>：将file文件中的内容转换成对象并返回，<strong>参数是file</strong></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1069,24 +1060,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Linux】Nginx</title>
-    <url>/2023/08/21/linux-Nginx/</url>
-    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>网站：<a href="https://nginx.org/en/download.html">nginx: download</a></p>
-<p><img src="/../images/linux/nginx/安装网站.png"></img></p>
-<h4 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h4><p><code>tar -zxvf nginx-1.24.0.tar.gz</code></p>
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code></p>
-<p><code>make</code></p>
-<p><code>make install</code></p>
-<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>设置快捷键</p>
-<p><code>ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</code></p>
-<p>这样执行&#x2F;usr&#x2F;bin&#x2F;nginx就相当于执行了&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
-<p>而&#x2F;usr&#x2F;bin&#x2F;是全局可用的，所以在任何地方输入nginx都可以执行&#x2F;usr&#x2F;lcoal&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Python】【魔法方法】【装饰器】【上下文管理器】contextlib模块</title>
     <url>/2023/08/12/python-contextlib%E6%A8%A1%E5%9D%97/</url>
     <content><![CDATA[<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p> 装饰器可以灵活的控制两个函数的执行顺序</p>
@@ -1130,6 +1103,150 @@
       <tags>
         <tag>Python</tag>
         <tag>魔法方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】文件处理</title>
+    <url>/2023/09/13/python-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h3 id="JSON文件"><a href="#JSON文件" class="headerlink" title="JSON文件"></a>JSON文件</h3><ul>
+<li>序列：通俗来说就是字符串</li>
+<li>序列化：将代码中的对象（如：列表、字典等）转换成<strong>字符串</strong>，以便将信息保存在文件中或传输到网络上</li>
+<li>反序列化：将字符串转换成代码中的<strong>对象</strong></li>
+</ul>
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化 (Serialization)，是指<strong>把程序中的一个类转化成一个标准化的格式</strong>。标准化的意义是这个格式可以跨程序，跨平台的被使用，而且保持其原有的内容，规范。</p>
+<p><code>json.dumps(&lt;对象&gt;)</code>将对象<strong>转换</strong>成字符串，可添加参数<code>indent=4</code>设置字符串的缩进</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line">s = json.dumps(dict_)</span><br><span class="line"><span class="built_in">print</span>(s)	<span class="comment"># 输出：&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>将对象<strong>写入</strong>到file文件中，可添加参数<code>indent=4</code>设置字符串的缩进</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    json.dump(dict_, json_file)</span><br></pre></td></tr></table></figure>
+
+<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p><code>json.loads(&lt;string&gt;)</code>将<strong>string</strong>转换成对象并返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br><span class="line">dict_ = json.loads(s)</span><br><span class="line"><span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>json.load(&lt;file&gt;)</code>将<strong>file文件</strong>中的内容转换成对象并返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    dict_ = json.load(file)</span><br><span class="line">    <span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><code>json.dumps(&lt;对象&gt;)</code>：将对象<strong>转换</strong>成字符串，作用的转换</p>
+<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>：将对象<strong>写入</strong>file文件中，作用是转换并写入</p>
+<p><code>json.loads(&lt;string&gt;)</code>：将string转换成对象并返回，<strong>参数是string</strong></p>
+<p><code>json.load(&lt;file&gt;)</code>：将file文件中的内容转换成对象并返回，<strong>参数是file</strong></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】【编程思维】Python中的泛型</title>
+    <url>/2023/08/12/python-%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/font.css">
+
+
+<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>作用：限制数据类型的范围</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>], num1: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]</span>) -&gt; <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
+
+<p><code>a: Union[int, float]</code>表示变量a可以是int，也可以是float<br><font class="moderate"><br>扩展：<br>Any可以表示任意类型，如果写成<code>a: Any</code>那么就相当于没有做任何事，因为如果只写a的话本身就是能代指任意类型</font></p>
+<h3 id="TypeVar"><a href="#TypeVar" class="headerlink" title="TypeVar"></a>TypeVar</h3><p>制作模板——自己定义一个类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&quot;T&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: T, num1: T</span>) -&gt; T:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
+
+<p><code>T  = TypeVar(&quot;T&quot;)</code>表示定义了一个泛型类型变量T，并没有指定他的类型上限，也就是说传给这个函数的参数可以是任意类型</p>
+<p>通常在创建泛型类变量时会使用<code>bound</code>参数指定上限：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义了一个泛型类型变量T_Config，他的类上限是BasePluginConfig</span></span><br><span class="line"><span class="comment"># 意味着T_Config可以被替代为BasePluginConfig类型或BasePluginConfig的子类</span></span><br><span class="line">T_Config = TypeVar(<span class="string">&quot;T_Config&quot;</span>, bound=BasePluginConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BasePluginConfig</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h3><p>类似于where，限制传给一个函数的类型范围</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypeVar, <span class="type">Generic</span></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&#x27;T&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>(<span class="type">Generic</span>[T]):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 定义一个元素类型都是T的队列</span></span><br><span class="line">        self.items: <span class="type">List</span>[T] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item: T</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>) -&gt; T:</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.items)</span><br><span class="line"></span><br><span class="line">q = Queue[<span class="built_in">int</span>]()</span><br><span class="line">q.push(<span class="number">0</span>)</span><br><span class="line">q.push(<span class="number">1</span>)</span><br><span class="line">q.pop()             <span class="comment"># 移除0</span></span><br><span class="line">q.push(<span class="string">&#x27;string&#x27;</span>)    <span class="comment"># 并不会报错</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1, &#x27;string&#x27;]</span><br><span class="line"></span><br><span class="line">进程已结束,退出代码0</span><br></pre></td></tr></table></figure>
+
+<p>注意最后的<code>q.push(&#39;string&#39;)</code>中<code>&#39;string&#39;</code>虽然并不是int类型，但是在实际运行中并不会报错，不过我们可以通过使用静态类型检查工具（mypy, pytype, pyright, pyre）等方法，提前发现这些错误。这也是推荐使用<code>typing</code>模块来做type annotation的理由之一。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>使用<code>typing</code>模块盒注释来提高代码的可读性</p>
+</li>
+<li><p>将自动化的类型检查工具和API生成工具部署在CI中，方便提前发现错误，方便新人员的理解</p>
+</li>
+</ul>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/497801684">Python中的泛型</a></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>编程思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity】上下文管理器</title>
+    <url>/2023/09/12/unity-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</url>
+    <content><![CDATA[<h3 id="StreamingAssets方法"><a href="#StreamingAssets方法" class="headerlink" title="StreamingAssets方法"></a>StreamingAssets方法</h3><p>这是一个<strong>只读</strong>、<strong>不可写</strong>的目录；该文件夹的资源会保持原始格式（比如图片不会被引擎进行纹理压缩），dll文件或脚本放在该文件夹下也不会参与编译</p>
+<p>官方推荐使用<code>Application.streamingAssetsPath</code>来获取该文件夹的实际位置，其可规避平台差异：<br>对于UnityEditor，windows平台，其等价于：<code>Application.dataPath + &quot;/StreamingAssets&quot;</code><br>对于macOS，其等价于：<code>Application.dataPath+&quot;/Resources/Data/StreamingAssets&quot;</code><br>对于ios平台，其等价于：<code>Application.dataPath + &quot;/Raw&quot;;</code><br>对于android平台，其等价于：<code>&quot;jar:file://&quot; + Application.dataPath + &quot;!/assets/&quot;;</code></p>
+<h4 id="基础使用方法："><a href="#基础使用方法：" class="headerlink" title="基础使用方法："></a>基础使用方法：</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> jsonPath = Application.streamingAssetsPath + <span class="string">@&quot;/JSON/IP.json&quot;</span>;</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> jsonStr = System.IO.File.ReadAllText(jsonPath, Encoding.UTF8);</span><br></pre></td></tr></table></figure>
+
+<p>对于非Android和WebGL平台，支持File或者Stream的读取操作<br>但是对于Android和WebGL平台上无法访问StreamingAssets文件夹。在WebGL上没有文件访问权。Android使用压缩的.apk文件。这些平台无法返回URL。<br>解决方案：</p>
+<ol>
+<li>把StreamingAssets下的文件写入persistentDataPath，后续的读取和写入都在persistentDataPath进行</li>
+<li>使用UnityWebRequest对StreamingAssets下的文件进行读取</li>
+</ol>
+<h4 id="使用UnityWebRequest读取"><a href="#使用UnityWebRequest读取" class="headerlink" title="使用UnityWebRequest读取"></a>使用UnityWebRequest读取</h4><p>UnityWebRequest读取文件需要传入文件的URL，StreamingAssets目录不同平台对应的URL是不一样的，如下：</p>
+<ul>
+<li>Window平台 <code>file:///D:/DATA/StreamingAssets/data.json</code></li>
+<li>WebGL平台 <code>http://localhost/StreamingAssets/data.json</code></li>
+<li>Android平台 <code>jar:file:///data/app/xxx!/assets/data.json</code></li>
+<li>IOS平台 <code>Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/xxx.app/Data/Raw</code></li>
+</ul>
+<p>这时候最好通过构造Uri()的方式来规避平台的差异，获得真正的请求URL。如：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> uri = <span class="keyword">new</span> System.Uri(Path.Combine(Application.streamingAssetsPath, <span class="string">&quot;data.json&quot;</span>)).AbsoluteUri;</span><br></pre></td></tr></table></figure>
+
+<p>方法<code>Path.Combine(Path1, Path2)</code>在检测到path1不是以分隔符结尾的话，会自动补充分隔符</p>
+<hr>
+<h3 id="PersistentDataPath方法"><a href="#PersistentDataPath方法" class="headerlink" title="PersistentDataPath方法"></a>PersistentDataPath方法</h3><p>该方法下的文件<strong>可读</strong>、<strong>可写</strong></p>
+<p>使用这个方法生成的文件所在路径为：<code>C:\Users\Administrator\AppData\LocalLow\DefaultCompany\项目名</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> filePath = Path.Combine(Application.persistentDataPath, <span class="string">&quot;config.json&quot;</span>);</span><br><span class="line"><span class="comment">// 判断文件是否存在</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(filePath))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span>		<span class="comment">//如果文件不存在，创建一个新文件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建文件并写入内容</span></span><br><span class="line">        File.WriteAllText(filePath, <span class="string">&quot;&#123; \&quot;settingCycle\&quot;, 999 &#125;&quot;</span>));</span><br><span class="line">        Debug.Log(<span class="string">&quot;Remark file created successfully.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception ex)		<span class="comment">// 如果创建失败会捕获错误</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.LogError(<span class="string">&quot;Failed to create remark file: &quot;</span> + ex.Message);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有了前面的兜底创建文件的步骤，这一步就可以直接读取该路径下的文件了</span></span><br><span class="line"><span class="built_in">string</span> jsonContent = File.ReadAllText(filePath);</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Resources方法"><a href="#Resources方法" class="headerlink" title="Resources方法"></a>Resources方法</h3><p>是存储资源的文件的方法，如音频、视频、预制体等<br>在读取文件时可以不加后缀<br>只可读<br>打包后文件夹内容会被加密，无法直接看到该文件夹下的内容</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 读取Resources文件夹下的内容</span></span><br><span class="line">prefab = UnityEngine.Resources.Load&lt;GameObject&gt;(<span class="string">&quot;BayWindow/prefabObject&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h3><p>这种方法可以将文件存储在与Assets同级路径下<br>可以读取文本文件和资源文件</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 先制定好根路径</span></span><br><span class="line"><span class="built_in">string</span> DynamicParent = Application.dataPath + <span class="string">&quot;/../资源/&quot;</span>;</span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> descriptionPath = <span class="string">&quot;文本文件/start.text&quot;</span>;</span><br><span class="line"><span class="comment">// 创建文件，后立刻释放相关资源</span></span><br><span class="line">File.Create(DynamicParent + descriptionPath).Dispose();</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> content = File.ReadAllText(DynamicParent + descriptionPath)</span><br></pre></td></tr></table></figure>
+
+<p>拓展：在创建文件前可以先创建该文件的父级文件夹</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取文件的父级文件夹路径</span></span><br><span class="line">parentPath = System.IO.Path.GetDirectoryName(DynamicParent + descriptionPath);</span><br><span class="line"><span class="comment">// 判断父级文件夹是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!Directory.Exists(parentPath))</span><br><span class="line">    Directory.CreateDirectory(parentPath)</span><br><span class="line"><span class="comment">// 判断该文件是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(DynamicParent + descriptionPath))</span><br><span class="line">    File.Create(DynamicParent + descriptionPath).Dispose();</span><br></pre></td></tr></table></figure>
+
+<p><code>Path.GetDirectoryName(path)</code>是获取path这个路径的父文件路径，具体用法如下：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> filePath = <span class="string">@&quot;C:\MyDir\MySubDir\myfile.ext&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> directoryName;</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (filePath != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    directoryName = Path.GetDirectoryName(filePath);</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;GetDirectoryName(&#x27;&#123;0&#125;&#x27;) returns &#x27;&#123;1&#125;&#x27;&quot;</span>,</span><br><span class="line">        filePath, directoryName);</span><br><span class="line">    filePath = directoryName;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        filePath = directoryName + <span class="string">@&quot;\&quot;</span>;  <span class="comment">// this will preserve the previous path</span></span><br><span class="line">    &#125;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">This code produces the following output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir\myfile.ext&#x27;) returns &#x27;C:\MyDir\MySubDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir&#x27;) returns &#x27;C:\&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\&#x27;) returns &#x27;&#x27;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/iningwei/article/details/89097130">详解Unity中的StreamingAssets文件夹</a></p>
+]]></content>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity】【CSharp】事件和委托</title>
+    <url>/2023/08/12/unity-%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%A7%94%E6%89%98/</url>
+    <content><![CDATA[<h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><p>委托可以把一个方法代入另一个方法，相当于指向函数的指针，换句话说，委托相当于一个函数指针</p>
+<p>总的来说，委托是一个类，该类内部维护着一个字段，指向一个方法。</p>
+<p>委托的声明：<code>public delegate void DoDelegate();</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">$&quot;valueStr=<span class="subst">&#123;sender&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">DoDelegate</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化委托——只是实例化，并不会执行</span></span><br><span class="line">DoDelegate doDelegate = <span class="keyword">new</span> DoDelegate(Test);</span><br><span class="line"><span class="built_in">object</span> sender = <span class="number">888</span>;</span><br><span class="line">EventArgs e = <span class="keyword">new</span> EventArgs();</span><br><span class="line"><span class="comment">// 执行委托的两种方法</span></span><br><span class="line"><span class="comment">// 方法一:</span></span><br><span class="line">doDelegate?.Invoke(sender, e);</span><br><span class="line"><span class="comment">// 方法二:</span></span><br><span class="line">doDelegate(sender, e);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>事件相当于保存委托的数组</p>
+<p>事件是基于委托的，为委托提供一个订阅或发布的机制。事件是一种特殊的委托，调用事件和委托是一样的。</p>
+<p>事件可以被看作是委托类型的一个变量，通过事件注册、取消多个委托和方法。</p>
+<p>public event 委托类型 事件名称；<br>如：<code>public event DoDelegate DoEvent;</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">$&quot;valueStr=<span class="subst">&#123;sender&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">DoDelegate</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"><span class="comment">// 定义事件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">event</span> DODelegate DoEvent;</span><br><span class="line"></span><br><span class="line"><span class="built_in">object</span> sender = <span class="number">888</span>;</span><br><span class="line">EventArgs e = <span class="keyword">new</span> EventArgs();</span><br><span class="line"><span class="comment">// 两种用法</span></span><br><span class="line"><span class="comment">// 1.给事件注册委托</span></span><br><span class="line"><span class="comment">// 2.给事件直接注册方法</span></span><br><span class="line"><span class="comment">// 用法一（给事件注册委托）：</span></span><br><span class="line"><span class="comment">// 给事件注册委托，可注册多个委托</span></span><br><span class="line">DoEvent += <span class="keyword">new</span> DoDelegate(doDelegate);</span><br><span class="line"><span class="comment">// 执行事件内所有的委托</span></span><br><span class="line">DoEvent(sender, e);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用法二（给事件注册方法）：</span></span><br><span class="line"><span class="comment">// 给事件注册方法，可注册多个方法</span></span><br><span class="line">DoEvent += Test;</span><br><span class="line"><span class="comment">// 执行事件内所有的方法</span></span><br><span class="line">DoEvent(sender, e);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Unity</tag>
+        <tag>CSharp</tag>
       </tags>
   </entry>
   <entry>
@@ -1267,120 +1384,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Unity】【CSharp】事件和委托</title>
-    <url>/2023/08/12/unity-%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%A7%94%E6%89%98/</url>
-    <content><![CDATA[<h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><p>委托可以把一个方法代入另一个方法，相当于指向函数的指针，换句话说，委托相当于一个函数指针</p>
-<p>总的来说，委托是一个类，该类内部维护着一个字段，指向一个方法。</p>
-<p>委托的声明：<code>public delegate void DoDelegate();</code></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">$&quot;valueStr=<span class="subst">&#123;sender&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">DoDelegate</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化委托——只是实例化，并不会执行</span></span><br><span class="line">DoDelegate doDelegate = <span class="keyword">new</span> DoDelegate(Test);</span><br><span class="line"><span class="built_in">object</span> sender = <span class="number">888</span>;</span><br><span class="line">EventArgs e = <span class="keyword">new</span> EventArgs();</span><br><span class="line"><span class="comment">// 执行委托的两种方法</span></span><br><span class="line"><span class="comment">// 方法一:</span></span><br><span class="line">doDelegate?.Invoke(sender, e);</span><br><span class="line"><span class="comment">// 方法二:</span></span><br><span class="line">doDelegate(sender, e);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>事件相当于保存委托的数组</p>
-<p>事件是基于委托的，为委托提供一个订阅或发布的机制。事件是一种特殊的委托，调用事件和委托是一样的。</p>
-<p>事件可以被看作是委托类型的一个变量，通过事件注册、取消多个委托和方法。</p>
-<p>public event 委托类型 事件名称；<br>如：<code>public event DoDelegate DoEvent;</code></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">$&quot;valueStr=<span class="subst">&#123;sender&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">DoDelegate</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"><span class="comment">// 定义事件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">event</span> DODelegate DoEvent;</span><br><span class="line"></span><br><span class="line"><span class="built_in">object</span> sender = <span class="number">888</span>;</span><br><span class="line">EventArgs e = <span class="keyword">new</span> EventArgs();</span><br><span class="line"><span class="comment">// 两种用法</span></span><br><span class="line"><span class="comment">// 1.给事件注册委托</span></span><br><span class="line"><span class="comment">// 2.给事件直接注册方法</span></span><br><span class="line"><span class="comment">// 用法一（给事件注册委托）：</span></span><br><span class="line"><span class="comment">// 给事件注册委托，可注册多个委托</span></span><br><span class="line">DoEvent += <span class="keyword">new</span> DoDelegate(doDelegate);</span><br><span class="line"><span class="comment">// 执行事件内所有的委托</span></span><br><span class="line">DoEvent(sender, e);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用法二（给事件注册方法）：</span></span><br><span class="line"><span class="comment">// 给事件注册方法，可注册多个方法</span></span><br><span class="line">DoEvent += Test;</span><br><span class="line"><span class="comment">// 执行事件内所有的方法</span></span><br><span class="line">DoEvent(sender, e);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Unity</tag>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity】上下文管理器</title>
-    <url>/2023/09/12/unity-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</url>
-    <content><![CDATA[<h3 id="StreamingAssets方法"><a href="#StreamingAssets方法" class="headerlink" title="StreamingAssets方法"></a>StreamingAssets方法</h3><p>这是一个<strong>只读</strong>、<strong>不可写</strong>的目录；该文件夹的资源会保持原始格式（比如图片不会被引擎进行纹理压缩），dll文件或脚本放在该文件夹下也不会参与编译</p>
-<p>官方推荐使用<code>Application.streamingAssetsPath</code>来获取该文件夹的实际位置，其可规避平台差异：<br>对于UnityEditor，windows平台，其等价于：<code>Application.dataPath + &quot;/StreamingAssets&quot;</code><br>对于macOS，其等价于：<code>Application.dataPath+&quot;/Resources/Data/StreamingAssets&quot;</code><br>对于ios平台，其等价于：<code>Application.dataPath + &quot;/Raw&quot;;</code><br>对于android平台，其等价于：<code>&quot;jar:file://&quot; + Application.dataPath + &quot;!/assets/&quot;;</code></p>
-<h4 id="基础使用方法："><a href="#基础使用方法：" class="headerlink" title="基础使用方法："></a>基础使用方法：</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> jsonPath = Application.streamingAssetsPath + <span class="string">@&quot;/JSON/IP.json&quot;</span>;</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> jsonStr = System.IO.File.ReadAllText(jsonPath, Encoding.UTF8);</span><br></pre></td></tr></table></figure>
-
-<p>对于非Android和WebGL平台，支持File或者Stream的读取操作<br>但是对于Android和WebGL平台上无法访问StreamingAssets文件夹。在WebGL上没有文件访问权。Android使用压缩的.apk文件。这些平台无法返回URL。<br>解决方案：</p>
-<ol>
-<li>把StreamingAssets下的文件写入persistentDataPath，后续的读取和写入都在persistentDataPath进行</li>
-<li>使用UnityWebRequest对StreamingAssets下的文件进行读取</li>
-</ol>
-<h4 id="使用UnityWebRequest读取"><a href="#使用UnityWebRequest读取" class="headerlink" title="使用UnityWebRequest读取"></a>使用UnityWebRequest读取</h4><p>UnityWebRequest读取文件需要传入文件的URL，StreamingAssets目录不同平台对应的URL是不一样的，如下：</p>
-<ul>
-<li>Window平台 <code>file:///D:/DATA/StreamingAssets/data.json</code></li>
-<li>WebGL平台 <code>http://localhost/StreamingAssets/data.json</code></li>
-<li>Android平台 <code>jar:file:///data/app/xxx!/assets/data.json</code></li>
-<li>IOS平台 <code>Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/xxx.app/Data/Raw</code></li>
-</ul>
-<p>这时候最好通过构造Uri()的方式来规避平台的差异，获得真正的请求URL。如：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> uri = <span class="keyword">new</span> System.Uri(Path.Combine(Application.streamingAssetsPath, <span class="string">&quot;data.json&quot;</span>)).AbsoluteUri;</span><br></pre></td></tr></table></figure>
-
-<p>方法<code>Path.Combine(Path1, Path2)</code>在检测到path1不是以分隔符结尾的话，会自动补充分隔符</p>
-<hr>
-<h3 id="PersistentDataPath方法"><a href="#PersistentDataPath方法" class="headerlink" title="PersistentDataPath方法"></a>PersistentDataPath方法</h3><p>该方法下的文件<strong>可读</strong>、<strong>可写</strong></p>
-<p>使用这个方法生成的文件所在路径为：<code>C:\Users\Administrator\AppData\LocalLow\DefaultCompany\项目名</code></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> filePath = Path.Combine(Application.persistentDataPath, <span class="string">&quot;config.json&quot;</span>);</span><br><span class="line"><span class="comment">// 判断文件是否存在</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(filePath))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span>		<span class="comment">//如果文件不存在，创建一个新文件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建文件并写入内容</span></span><br><span class="line">        File.WriteAllText(filePath, <span class="string">&quot;&#123; \&quot;settingCycle\&quot;, 999 &#125;&quot;</span>));</span><br><span class="line">        Debug.Log(<span class="string">&quot;Remark file created successfully.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception ex)		<span class="comment">// 如果创建失败会捕获错误</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.LogError(<span class="string">&quot;Failed to create remark file: &quot;</span> + ex.Message);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有了前面的兜底创建文件的步骤，这一步就可以直接读取该路径下的文件了</span></span><br><span class="line"><span class="built_in">string</span> jsonContent = File.ReadAllText(filePath);</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Resources方法"><a href="#Resources方法" class="headerlink" title="Resources方法"></a>Resources方法</h3><p>是存储资源的文件的方法，如音频、视频、预制体等<br>在读取文件时可以不加后缀<br>只可读<br>打包后文件夹内容会被加密，无法直接看到该文件夹下的内容</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 读取Resources文件夹下的内容</span></span><br><span class="line">prefab = UnityEngine.Resources.Load&lt;GameObject&gt;(<span class="string">&quot;BayWindow/prefabObject&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h3><p>这种方法可以将文件存储在与Assets同级路径下<br>可以读取文本文件和资源文件</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 先制定好根路径</span></span><br><span class="line"><span class="built_in">string</span> DynamicParent = Application.dataPath + <span class="string">&quot;/../资源/&quot;</span>;</span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> descriptionPath = <span class="string">&quot;文本文件/start.text&quot;</span>;</span><br><span class="line"><span class="comment">// 创建文件，后立刻释放相关资源</span></span><br><span class="line">File.Create(DynamicParent + descriptionPath).Dispose();</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> content = File.ReadAllText(DynamicParent + descriptionPath)</span><br></pre></td></tr></table></figure>
-
-<p>拓展：在创建文件前可以先创建该文件的父级文件夹</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取文件的父级文件夹路径</span></span><br><span class="line">parentPath = System.IO.Path.GetDirectoryName(DynamicParent + descriptionPath);</span><br><span class="line"><span class="comment">// 判断父级文件夹是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!Directory.Exists(parentPath))</span><br><span class="line">    Directory.CreateDirectory(parentPath)</span><br><span class="line"><span class="comment">// 判断该文件是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(DynamicParent + descriptionPath))</span><br><span class="line">    File.Create(DynamicParent + descriptionPath).Dispose();</span><br></pre></td></tr></table></figure>
-
-<p><code>Path.GetDirectoryName(path)</code>是获取path这个路径的父文件路径，具体用法如下：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> filePath = <span class="string">@&quot;C:\MyDir\MySubDir\myfile.ext&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> directoryName;</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (filePath != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    directoryName = Path.GetDirectoryName(filePath);</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;GetDirectoryName(&#x27;&#123;0&#125;&#x27;) returns &#x27;&#123;1&#125;&#x27;&quot;</span>,</span><br><span class="line">        filePath, directoryName);</span><br><span class="line">    filePath = directoryName;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        filePath = directoryName + <span class="string">@&quot;\&quot;</span>;  <span class="comment">// this will preserve the previous path</span></span><br><span class="line">    &#125;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">This code produces the following output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir\myfile.ext&#x27;) returns &#x27;C:\MyDir\MySubDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir&#x27;) returns &#x27;C:\&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\&#x27;) returns &#x27;&#x27;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/iningwei/article/details/89097130">详解Unity中的StreamingAssets文件夹</a></p>
-]]></content>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】【编程思维】Python中的泛型</title>
-    <url>/2023/08/12/python-%E6%B3%9B%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/font.css">
-
-
-<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>作用：限制数据类型的范围</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>], num1: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]</span>) -&gt; <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
-
-<p><code>a: Union[int, float]</code>表示变量a可以是int，也可以是float<br><font class="moderate"><br>扩展：<br>Any可以表示任意类型，如果写成<code>a: Any</code>那么就相当于没有做任何事，因为如果只写a的话本身就是能代指任意类型</font></p>
-<h3 id="TypeVar"><a href="#TypeVar" class="headerlink" title="TypeVar"></a>TypeVar</h3><p>制作模板——自己定义一个类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&quot;T&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: T, num1: T</span>) -&gt; T:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
-
-<p><code>T  = TypeVar(&quot;T&quot;)</code>表示定义了一个泛型类型变量T，并没有指定他的类型上限，也就是说传给这个函数的参数可以是任意类型</p>
-<p>通常在创建泛型类变量时会使用<code>bound</code>参数指定上限：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义了一个泛型类型变量T_Config，他的类上限是BasePluginConfig</span></span><br><span class="line"><span class="comment"># 意味着T_Config可以被替代为BasePluginConfig类型或BasePluginConfig的子类</span></span><br><span class="line">T_Config = TypeVar(<span class="string">&quot;T_Config&quot;</span>, bound=BasePluginConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BasePluginConfig</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h3><p>类似于where，限制传给一个函数的类型范围</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypeVar, <span class="type">Generic</span></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&#x27;T&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>(<span class="type">Generic</span>[T]):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 定义一个元素类型都是T的队列</span></span><br><span class="line">        self.items: <span class="type">List</span>[T] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item: T</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>) -&gt; T:</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.items)</span><br><span class="line"></span><br><span class="line">q = Queue[<span class="built_in">int</span>]()</span><br><span class="line">q.push(<span class="number">0</span>)</span><br><span class="line">q.push(<span class="number">1</span>)</span><br><span class="line">q.pop()             <span class="comment"># 移除0</span></span><br><span class="line">q.push(<span class="string">&#x27;string&#x27;</span>)    <span class="comment"># 并不会报错</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1, &#x27;string&#x27;]</span><br><span class="line"></span><br><span class="line">进程已结束,退出代码0</span><br></pre></td></tr></table></figure>
-
-<p>注意最后的<code>q.push(&#39;string&#39;)</code>中<code>&#39;string&#39;</code>虽然并不是int类型，但是在实际运行中并不会报错，不过我们可以通过使用静态类型检查工具（mypy, pytype, pyright, pyre）等方法，提前发现这些错误。这也是推荐使用<code>typing</code>模块来做type annotation的理由之一。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>使用<code>typing</code>模块盒注释来提高代码的可读性</p>
-</li>
-<li><p>将自动化的类型检查工具和API生成工具部署在CI中，方便提前发现错误，方便新人员的理解</p>
-</li>
-</ul>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/497801684">Python中的泛型</a></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>编程思维</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【CSharp】深拷贝</title>
     <url>/2023/11/23/unity-%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
     <content><![CDATA[<h3 id="浅拷贝和深拷贝的区别"><a href="#浅拷贝和深拷贝的区别" class="headerlink" title="浅拷贝和深拷贝的区别"></a>浅拷贝和深拷贝的区别</h3><ul>
@@ -1401,27 +1404,6 @@
 ]]></content>
       <tags>
         <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity】销毁子物体的两种方法</title>
-    <url>/2023/09/13/unity-%E9%94%80%E6%AF%81%E5%AD%90%E7%89%A9%E4%BD%93%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="销毁所有子物体后，获取子物体的数量为0"><a href="#销毁所有子物体后，获取子物体的数量为0" class="headerlink" title="销毁所有子物体后，获取子物体的数量为0"></a>销毁所有子物体后，获取子物体的数量为0</h3><p>如果在同一帧内需要增加子物体并统计新的子物体的数量可以使用这个方法</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; coneten.childCount; i++)</span><br><span class="line">&#123;</span><br><span class="line">    DestroyImmediate(content.GetChild(<span class="number">0</span>).gameObject);</span><br><span class="line">	Debug.Log(content.childCount);		<span class="meta"># 输出的值会慢慢的变小，直至变为0</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出为0</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：这里的<code>for</code>循环获取子物体的方法是<code>GetChild(o)</code></p>
-<h3 id="销毁所有子物体后，获取子物体的数量为销毁前的数量"><a href="#销毁所有子物体后，获取子物体的数量为销毁前的数量" class="headerlink" title="销毁所有子物体后，获取子物体的数量为销毁前的数量"></a>销毁所有子物体后，获取子物体的数量为销毁前的数量</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; content.childCount; i++)</span><br><span class="line">&#123;</span><br><span class="line">    Destroy(content.GetChild(i).gameObject);</span><br><span class="line">	Debug.Log(content.childCount);		<span class="meta"># 输出的一直是销毁前的子物体数量</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出的是销毁前的子物体数量</span></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (RectTransform item <span class="keyword">in</span> content)</span><br><span class="line">&#123;</span><br><span class="line">    Destroy(item.gameObject);</span><br><span class="line">    Debug.Log(content.childCount);		<span class="meta"># 输出的一直是销毁前的子物体数量</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出的是销毁前的子物体数量</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：这里的<code>for</code>循环中获取子物体的方法是<code>GetChild(i)</code>，这种<code>for</code>循环方式和<code>forecho</code>是一样的</p>
-<h3 id="销毁子物体错误的方法"><a href="#销毁子物体错误的方法" class="headerlink" title="销毁子物体错误的方法"></a>销毁子物体错误的方法</h3><p>这种方法销毁不干净子物体</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (RectTransform item <span class="keyword">in</span> content)</span><br><span class="line">&#123;</span><br><span class="line">    DestoryImmediate(item.gameObject);</span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>
@@ -1471,8 +1453,29 @@
 ]]></content>
       <tags>
         <tag>Unity</tag>
-        <tag>设计模式</tag>
         <tag>CSharp</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity】销毁子物体的两种方法</title>
+    <url>/2023/09/13/unity-%E9%94%80%E6%AF%81%E5%AD%90%E7%89%A9%E4%BD%93%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="销毁所有子物体后，获取子物体的数量为0"><a href="#销毁所有子物体后，获取子物体的数量为0" class="headerlink" title="销毁所有子物体后，获取子物体的数量为0"></a>销毁所有子物体后，获取子物体的数量为0</h3><p>如果在同一帧内需要增加子物体并统计新的子物体的数量可以使用这个方法</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; coneten.childCount; i++)</span><br><span class="line">&#123;</span><br><span class="line">    DestroyImmediate(content.GetChild(<span class="number">0</span>).gameObject);</span><br><span class="line">	Debug.Log(content.childCount);		<span class="meta"># 输出的值会慢慢的变小，直至变为0</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出为0</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的<code>for</code>循环获取子物体的方法是<code>GetChild(o)</code></p>
+<h3 id="销毁所有子物体后，获取子物体的数量为销毁前的数量"><a href="#销毁所有子物体后，获取子物体的数量为销毁前的数量" class="headerlink" title="销毁所有子物体后，获取子物体的数量为销毁前的数量"></a>销毁所有子物体后，获取子物体的数量为销毁前的数量</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; content.childCount; i++)</span><br><span class="line">&#123;</span><br><span class="line">    Destroy(content.GetChild(i).gameObject);</span><br><span class="line">	Debug.Log(content.childCount);		<span class="meta"># 输出的一直是销毁前的子物体数量</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出的是销毁前的子物体数量</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (RectTransform item <span class="keyword">in</span> content)</span><br><span class="line">&#123;</span><br><span class="line">    Destroy(item.gameObject);</span><br><span class="line">    Debug.Log(content.childCount);		<span class="meta"># 输出的一直是销毁前的子物体数量</span></span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);		<span class="meta"># 输出的是销毁前的子物体数量</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的<code>for</code>循环中获取子物体的方法是<code>GetChild(i)</code>，这种<code>for</code>循环方式和<code>forecho</code>是一样的</p>
+<h3 id="销毁子物体错误的方法"><a href="#销毁子物体错误的方法" class="headerlink" title="销毁子物体错误的方法"></a>销毁子物体错误的方法</h3><p>这种方法销毁不干净子物体</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (RectTransform item <span class="keyword">in</span> content)</span><br><span class="line">&#123;</span><br><span class="line">    DestoryImmediate(item.gameObject);</span><br><span class="line">&#125;</span><br><span class="line">Debug.Log(content.childCount);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Unity</tag>
       </tags>
   </entry>
 </search>
