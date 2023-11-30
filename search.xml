@@ -355,6 +355,90 @@
       </tags>
   </entry>
   <entry>
+    <title>【Python】【魔法方法】【装饰器】【上下文管理器】contextlib模块</title>
+    <url>/2023/08/12/python-contextlib%E6%A8%A1%E5%9D%97/</url>
+    <content><![CDATA[<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p> 装饰器可以灵活的控制两个函数的执行顺序</p>
+<h4 id="无返回值"><a href="#无返回值" class="headerlink" title="无返回值"></a>无返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@sum</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">take</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<h4 id="有返回值"><a href="#有返回值" class="headerlink" title="有返回值"></a>有返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;outer&quot;</span>)            <span class="comment"># ----------1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">x, y</span>):        <span class="comment"># ----------3</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;wrapper&quot;</span>)      <span class="comment"># ----------4</span></span><br><span class="line">        res = func(x, y)      <span class="comment"># ----------5</span></span><br><span class="line">        <span class="keyword">return</span> res            <span class="comment"># ----------9</span></span><br><span class="line">    <span class="keyword">return</span> wrapper            <span class="comment"># ----------2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@outer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">x, y</span>):              <span class="comment"># ----------6</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;inner&quot;</span>)            <span class="comment"># ----------7</span></span><br><span class="line">    <span class="keyword">return</span> x+y                <span class="comment"># ----------8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(inner(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">outer</span><br><span class="line">wrapper</span><br><span class="line">inner</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h3><p>在 Python 中，上下文管理器常常与 <code>with</code> 语句一起使用。<code>with</code> 语句会在代码块进入时调用上下文管理器的 <code>__enter__()</code> 方法，而在代码块退出时会调用上下文管理器的 <code>__exit__()</code> 方法。这种机制确保了资源在适当的时候被初始化和清理。</p>
+<p>最基础的上下管理器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;a.txt&quot;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.read()</span><br></pre></td></tr></table></figure>
+
+<p>自己定义一个上下文管理器</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyContext</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering the context&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        exc_type: 异常类型，如果没有异常则为None</span></span><br><span class="line"><span class="string">        exc_value: 异常值，如果没有异常则为None</span></span><br><span class="line"><span class="string">        traceback: 追溯信息，如果没有异常则为None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting the context&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;An exception of type <span class="subst">&#123;exc_type&#125;</span> occurred with value <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># Return True if you want to suppress the exception</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用with语句创建上下文管理器</span></span><br><span class="line"><span class="keyword">with</span> MyContext() <span class="keyword">as</span> context:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Inside the context&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Outside the context&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Entering the context</span><br><span class="line">Inside the context</span><br><span class="line">Exiting the context</span><br><span class="line">Outside the context</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="contextlib模块"><a href="#contextlib模块" class="headerlink" title="contextlib模块"></a>contextlib模块</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><p>上面我们自定义上下文管理器确实很方便，但是Python标准库还提供了更加易用的上下文管理器工具模块contextlib，它是通过生成器实现的，我们不需要再创建类以及<code>__enter__</code>和<code>__exit__</code>这两个特俗的方法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_open_context</span>(<span class="params">filename, mode</span>):</span><br><span class="line">    fp = <span class="built_in">open</span>(filename, mode)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> fp</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        fp.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_open_context(<span class="string">&#x27;/tmp/a.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> file_obj:</span><br><span class="line">    file_obj.write(<span class="string">&quot;hello carson666&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在上文中，<code>yield</code>关键词把上下文分割成两部分：</p>
+<ul>
+<li><code>yiled</code>之前就是<code>__enter__</code>中的代码块</li>
+<li><code>yield</code>之后就是<code>__exit__</code>中的代码块</li>
+</ul>
+<p><code>yeild</code>生成的值会绑定到<code>with</code>语句的<code>as</code>子句中的变量。例如上面的例子中<code>yield</code>生成的值是文件句柄对象fp，在下面的with语句中，会将<code>fp</code>和<code>file_obj</code>绑定到一起，也就是说<code>file_obj</code>此时就是一个文件句柄对象，那么它就可以操作文件了，因此就可以调用<code>file_obj.write(&quot;hello world&quot;)</code></p>
+<p>另外要注意的是，如果<code>yield</code>没有生成值，那么在<code>with</code>语句中就不需要写<code>as</code>子句了</p>
+<h4 id="将普通的类变为上下文管理器类"><a href="#将普通的类变为上下文管理器类" class="headerlink" title="将普通的类变为上下文管理器类"></a>将普通的类变为上下文管理器类</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyResource</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;query data&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_myresource</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line">    <span class="keyword">yield</span> MyResource()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_myresource() <span class="keyword">as</span> r:</span><br><span class="line">    r.query()</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">connect to resource</span><br><span class="line">quert data</span><br><span class="line">connect to resource</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>魔法方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】【编程思维】Python中的泛型</title>
+    <url>/2023/08/12/python-%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/font.css">
+
+
+<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>作用：限制数据类型的范围</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>], num1: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]</span>) -&gt; <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
+
+<p><code>a: Union[int, float]</code>表示变量a可以是int，也可以是float<br><font class="moderate"><br>扩展：<br>Any可以表示任意类型，如果写成<code>a: Any</code>那么就相当于没有做任何事，因为如果只写a的话本身就是能代指任意类型</font></p>
+<h3 id="TypeVar"><a href="#TypeVar" class="headerlink" title="TypeVar"></a>TypeVar</h3><p>制作模板——自己定义一个类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&quot;T&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: T, num1: T</span>) -&gt; T:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
+
+<p><code>T  = TypeVar(&quot;T&quot;)</code>表示定义了一个泛型类型变量T，并没有指定他的类型上限，也就是说传给这个函数的参数可以是任意类型</p>
+<p>通常在创建泛型类变量时会使用<code>bound</code>参数指定上限：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义了一个泛型类型变量T_Config，他的类上限是BasePluginConfig</span></span><br><span class="line"><span class="comment"># 意味着T_Config可以被替代为BasePluginConfig类型或BasePluginConfig的子类</span></span><br><span class="line">T_Config = TypeVar(<span class="string">&quot;T_Config&quot;</span>, bound=BasePluginConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BasePluginConfig</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h3><p>类似于where，限制传给一个函数的类型范围</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypeVar, <span class="type">Generic</span></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&#x27;T&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>(<span class="type">Generic</span>[T]):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 定义一个元素类型都是T的队列</span></span><br><span class="line">        self.items: <span class="type">List</span>[T] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item: T</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>) -&gt; T:</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.items)</span><br><span class="line"></span><br><span class="line">q = Queue[<span class="built_in">int</span>]()</span><br><span class="line">q.push(<span class="number">0</span>)</span><br><span class="line">q.push(<span class="number">1</span>)</span><br><span class="line">q.pop()             <span class="comment"># 移除0</span></span><br><span class="line">q.push(<span class="string">&#x27;string&#x27;</span>)    <span class="comment"># 并不会报错</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1, &#x27;string&#x27;]</span><br><span class="line"></span><br><span class="line">进程已结束,退出代码0</span><br></pre></td></tr></table></figure>
+
+<p>注意最后的<code>q.push(&#39;string&#39;)</code>中<code>&#39;string&#39;</code>虽然并不是int类型，但是在实际运行中并不会报错，不过我们可以通过使用静态类型检查工具（mypy, pytype, pyright, pyre）等方法，提前发现这些错误。这也是推荐使用<code>typing</code>模块来做type annotation的理由之一。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>使用<code>typing</code>模块盒注释来提高代码的可读性</p>
+</li>
+<li><p>将自动化的类型检查工具和API生成工具部署在CI中，方便提前发现错误，方便新人员的理解</p>
+</li>
+</ul>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/497801684">Python中的泛型</a></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>编程思维</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Git】基础命令</title>
     <url>/2023/08/12/git-Git%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
@@ -425,42 +509,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Git】合并分支及如何解决冲突</title>
-    <url>/2023/09/15/git-%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
-<link rel="stylesheet" href="/../css/images.css">
-
-
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>使用<code>git merge &lt;branchName&gt;</code>命令将<code>&lt;branchName&gt;</code>分支上的内容合并到当前所在的分支上</p>
-<p><code>&lt;branchName&gt;</code> 可以是分支的名字，也可以是<code>commitID</code></p>
-<h4 id="出现冲突"><a href="#出现冲突" class="headerlink" title="出现冲突"></a>出现冲突</h4><p>出现如下内容，说明自动合并发生了冲突，需要手动解决冲突</p>
-<p><img class="base" src="/../images/git/合并分支_冲突.png"></img></p>
-<p>使用<code>git status</code>查看冲突文件<br><img class="base" src="/../images/git/合并分支_冲突文件.png"></img></p>
-<p>使用<code>git diff</code>查看冲突内容<br><img class="base" src="/../images/git/合并分支_冲突内容.png"></img></p>
-<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的三种方法"><a href="#解决冲突的三种方法" class="headerlink" title="解决冲突的三种方法"></a>解决冲突的三种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
-<p>修改前：</p>
-<p><img class="base" src="/../images/git/合并分支_编辑文件.png"></img></p>
-<p>修改后：</p>
-<p><img class="base" src="/../images/git/合并分支_修复冲突.png"></img></p>
-<h5 id="方法二-保留选择的版本"><a href="#方法二-保留选择的版本" class="headerlink" title="方法二:保留选择的版本"></a>方法二:保留选择的版本</h5><p>选择当前分支的版本作为解决方案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --ours &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
-
-<p>选择合并分支的版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --theirs &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="方法三：强行退出merge模式"><a href="#方法三：强行退出merge模式" class="headerlink" title="方法三：强行退出merge模式"></a>方法三：强行退出merge模式</h5><p>该命令将会抛弃合并过程并且尝试重建合并前的状态</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="保存提交"><a href="#保存提交" class="headerlink" title="保存提交"></a>保存提交</h4><p>最后再重新提交一遍就成功的解决了冲突</p>
-<p><img class="base" src="/../images/git/合并分支_提交冲突文件.png"></img></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Git】忽略文件</title>
     <url>/2023/08/12/git-Git%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="忽略已跟踪的文件"><a href="#忽略已跟踪的文件" class="headerlink" title="忽略已跟踪的文件"></a>忽略已跟踪的文件</h2><p>.gitignore文件只能忽略未跟踪状态的文件，如果已经被跟踪了，可以使用下面的两种方法</p>
@@ -501,208 +549,33 @@
       </tags>
   </entry>
   <entry>
-    <title>【Linux】【Git】Linux系统安装Git</title>
-    <url>/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://github.com/git/git/tags">下载包体</a></p>
-<h3 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install libcurl-devel</span><br><span class="line">sudo yum install expat-devel</span><br><span class="line">sudo yum install asciidoc</span><br><span class="line">sudo yum install xmlto</span><br><span class="line">sudo yum install docbook2X</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置软连接</span></span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+    <title>【Python】文件处理</title>
+    <url>/2023/09/13/python-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h3 id="JSON文件"><a href="#JSON文件" class="headerlink" title="JSON文件"></a>JSON文件</h3><ul>
+<li>序列：通俗来说就是字符串</li>
+<li>序列化：将代码中的对象（如：列表、字典等）转换成<strong>字符串</strong>，以便将信息保存在文件中或传输到网络上</li>
+<li>反序列化：将字符串转换成代码中的<strong>对象</strong></li>
+</ul>
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化 (Serialization)，是指<strong>把程序中的一个类转化成一个标准化的格式</strong>。标准化的意义是这个格式可以跨程序，跨平台的被使用，而且保持其原有的内容，规范。</p>
+<p><code>json.dumps(&lt;对象&gt;)</code>将对象<strong>转换</strong>成字符串，可添加参数<code>indent=4</code>设置字符串的缩进</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line">s = json.dumps(dict_)</span><br><span class="line"><span class="built_in">print</span>(s)	<span class="comment"># 输出：&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>根据git官网的指示，安装相关依赖包：<code>yum install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel libxslt asciidoc xmlto docbook2X autoconf install-info getopt</code></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>解压<code>tar -zxvf git-2.42.0.tar.gz</code></p>
-<p>编译<code>make prefix=/usr/local all doc info</code></p>
-<p>安装<code>make prefix=/usr/local install install-doc install-html install-info</code></p>
-<h3 id="可能会出现的问题"><a href="#可能会出现的问题" class="headerlink" title="可能会出现的问题"></a>可能会出现的问题</h3><p>提示找不到<code>docbook2x-texi</code>或者<code>docbook2texi</code></p>
-<p>在执行<code>yum install docbook2X</code>后设置软连接</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>将对象<strong>写入</strong>到file文件中，可添加参数<code>indent=4</code>设置字符串的缩进</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    json.dump(dict_, json_file)</span><br></pre></td></tr></table></figure>
 
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/qq_42108074/article/details/123027943">使用源码方法在阿里云服务器CentOS 7安装Git</a></p>
+<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p><code>json.loads(&lt;string&gt;)</code>将<strong>string</strong>转换成对象并返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br><span class="line">dict_ = json.loads(s)</span><br><span class="line"><span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>json.load(&lt;file&gt;)</code>将<strong>file文件</strong>中的内容转换成对象并返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    dict_ = json.load(file)</span><br><span class="line">    <span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><code>json.dumps(&lt;对象&gt;)</code>：将对象<strong>转换</strong>成字符串，作用的转换</p>
+<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>：将对象<strong>写入</strong>file文件中，作用是转换并写入</p>
+<p><code>json.loads(&lt;string&gt;)</code>：将string转换成对象并返回，<strong>参数是string</strong></p>
+<p><code>json.load(&lt;file&gt;)</code>：将file文件中的内容转换成对象并返回，<strong>参数是file</strong></p>
 ]]></content>
       <tags>
-        <tag>Git</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Linux】Linux基础命令</title>
-    <url>/2023/08/22/linux-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><table>
-<thead>
-<tr>
-<th>基础命令</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>systemctl start firewalld.service</code></td>
-<td>开启防火墙</td>
-</tr>
-<tr>
-<td><code>systemctl status firewalld.service</code></td>
-<td>查看防火墙状态</td>
-</tr>
-<tr>
-<td><code>systemctl stop firewalld.service</code></td>
-<td>关闭防火墙</td>
-</tr>
-<tr>
-<td><code>systemctl enable firewalld.service</code></td>
-<td>开启时自启</td>
-</tr>
-<tr>
-<td><code>systemctl disable firewall.service</code></td>
-<td>关闭开机自启</td>
-</tr>
-<tr>
-<td><code>systemctl is-enable firewall.service</code></td>
-<td>查看服务是否开机自启</td>
-</tr>
-<tr>
-<td><code>systemctl --failed</code></td>
-<td>查看启动失败的服务列表</td>
-</tr>
-</tbody></table>
-<h4 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>firewall-cmd --zone=public --list-ports</code></td>
-<td>查看开放的端口</td>
-</tr>
-<tr>
-<td><code>firewall-cmd --reload</code></td>
-<td>重新载入防火墙</td>
-</tr>
-<tr>
-<td><code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></td>
-<td>开放80端口，<code>--premanent</code>表示永久开放，重启后也依然开放</td>
-</tr>
-</tbody></table>
-<p>每次在配置完防火墙之后需使用<code>firewall-cmd --reload</code>更新配置</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Linux】Nvim</title>
-    <url>/2023/08/22/linux-Neovim/</url>
-    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p><a href="https://github.com/neovim/neovim/releases">https://github.com/neovim/neovim/releases</a></p>
-<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf neovim-0.8.0.tar.gz</span><br><span class="line"><span class="comment"># 解压后就可以直接用了，十分方便</span></span><br><span class="line">./nvim-linux64/bin/nvim</span><br><span class="line"><span class="comment"># 可以将其放在/usr/local下，然后创建软链接</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/nvim/bin/nvim /usr/bin/nvim</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><h5 id="默认配置文件路径："><a href="#默认配置文件路径：" class="headerlink" title="默认配置文件路径："></a>默认配置文件路径：</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建配置文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/.config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ~/.config/nvim/init.vim</span><br></pre></td></tr></table></figure>
-
-<h5 id="自定义配置文件的路径："><a href="#自定义配置文件的路径：" class="headerlink" title="自定义配置文件的路径："></a>自定义配置文件的路径：</h5><ol>
-<li>创建配置文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nvim-linux64</span><br><span class="line"><span class="built_in">mkdir</span> ./config</span><br><span class="line"><span class="built_in">mkdir</span> ./config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ./config/nvim/init.vim</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/linux/nvim/配置文件1.png"></img></p>
-<ol start="2">
-<li><code>nvim /etc/profile</code>修改环境变量</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># nvim配置文件</span></span><br><span class="line"><span class="built_in">export</span> XDG_CONFIG_HOME=/usr/local/nvim-linux64/config</span><br><span class="line"><span class="built_in">export</span> XDG_DATA_HOME=/usr/local/nvim-linux64/config</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/linux/nvim/配置文件2.png"></img></p>
-<ol start="3">
-<li>重载配置文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot; 基础键位映射</span></span><br><span class="line"><span class="string">imap jk &lt;Esc&gt;</span></span><br><span class="line"><span class="string">nmap &lt;space&gt; :</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> 显示相对行</span><br><span class="line"><span class="built_in">set</span> relativenumber</span><br><span class="line"><span class="built_in">set</span> number</span><br></pre></td></tr></table></figure>
-
-<h4 id="安装vim-plug插件管理"><a href="#安装vim-plug插件管理" class="headerlink" title="安装vim-plug插件管理"></a>安装vim-plug插件管理</h4><p>前面不是命名了全局变量<code>XDG_DATA_HOME</code>吗，这个时候就用上了</p>
-<p>将<a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">plug.vim</a>文件放在以下路径</p>
-<p>windows: <code>./nvim-win64/config/nvim-data/site/autoload/</code></p>
-<p>linux: <code>./nvim-linux64/config/nvim/site/autoload/</code></p>
-<hr>
-<h3 id="我的配置"><a href="#我的配置" class="headerlink" title="我的配置"></a>我的配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot; 基础键位映射</span><br><span class="line">imap jk &lt;Esc&gt;</span><br><span class="line">nmap &lt;space&gt; :</span><br><span class="line"></span><br><span class="line">&quot; 显示相对行</span><br><span class="line">set relativenumber</span><br><span class="line">set number</span><br><span class="line"></span><br><span class="line">&quot; nerdtree插件绑定</span><br><span class="line">map &lt;silent&gt; &lt;C-e&gt; :NERDTreeToggle&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; python补全</span><br><span class="line">filetype plugin on</span><br><span class="line">let g:pydiction_location = &#x27;$XDG_CONFIG_HOME\\nvim-data\\plugged\\pydiction\\complete-dict&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">call plug#begin()</span><br><span class="line"></span><br><span class="line">Plug &#x27;scrooloose/nerdtree&#x27;</span><br><span class="line">Plug &#x27;rkulla/pydiction&#x27;</span><br><span class="line"></span><br><span class="line">call plug#end()</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Linux】Nginx</title>
-    <url>/2023/08/21/linux-Nginx/</url>
-    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>网站：<a href="https://nginx.org/en/download.html">nginx: download</a></p>
-<p><img src="/../images/linux/nginx/安装网站.png"></img></p>
-<h4 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h4><p><code>tar -zxvf nginx-1.24.0.tar.gz</code></p>
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code></p>
-<p><code>make</code></p>
-<p><code>make install</code></p>
-<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>设置快捷键</p>
-<p><code>ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</code></p>
-<p>这样执行&#x2F;usr&#x2F;bin&#x2F;nginx就相当于执行了&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
-<p>而&#x2F;usr&#x2F;bin&#x2F;是全局可用的，所以在任何地方输入nginx都可以执行&#x2F;usr&#x2F;lcoal&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【MySQL】MySQL安装</title>
-    <url>/2023/08/21/mysql-MySQL%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>官网网址：<a href="https://dev.mysql.com/downloads/">MySQL :: MySQL Community Downloads</a></p>
-<p><img src="/../images/linux/mysql/安装网址1.png"></img></p>
-<p><img src="/../images/linux/mysql/安装网址2.png"></img></p>
-<p><img src="/../images/linux/mysql/安装网址3.png"></img></p>
-<p>将文件解压到一个新建的文件夹中<code>tar -xvf mysql-8.0.33-1.el7.x86_64.rpm-bundle.tar -C mysql-8.0.33</code></p>
-<p>安装<code>openssl-devel</code>插件，mysql里有些rpm的安装依赖于该插件</p>
-<h4 id="安装rpm包"><a href="#安装rpm包" class="headerlink" title="安装rpm包"></a>安装rpm包</h4><p>依次执行以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-common-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端插件，提供额外的功能和扩展。具体需要哪些插件取决于你的使用情况。你可以根据你的需要来决定是否安装这些插件。</span></span><br><span class="line">rpm -ivh mysql-community-client-plugins-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 库文件，用于在应用程序中连接到 MySQL 数据库。这是 MySQL 连接所必需的，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-compat-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 开发包，包含开发所需的头文件和库文件。如果你打算在该系统上开发与 MySQL 相关的应用程序，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-devel-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端工具，用于连接和管理 MySQL 服务器。通常情况下，如果你计划从该系统上远程连接到其他 MySQL 服务器，你需要安装此包。如果你的系统不需要连接其他 MySQL 服务器，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-client-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># ICU 数据文件，用于支持国际化和字符集处理。如果你的应用程序不需要特定的国际化功能，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-icu-data-files-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 服务器，用于托管数据库实例。如果你计划在该系统上安装 MySQL 数据库服务器，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-server-8.0.33-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>使用<code>systemctl start mysqld</code>命令启动服务器</p>
-<p>rpm安装MySQL会自动生成一个随机密码，可以在<code>/var/log/mysqld.log</code>中查看</p>
-<img src="/../images/linux/mysql/随机密码.png">
-
-<p>使用<code>mysql -u root -p</code>进入客户端</p>
-<img src="/../images/linux/mysql/输入密码.png">
-
-<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>连接MySQL之后，使用<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456789&#39;;</code>修改密码</p>
-<img src="/../images/linux/mysql/设置密码.png">
-
-<p>出现<code>Your password does not satisfy the current policy requirements</code>提示，意思是您的密码不符合当前规定的要求，你要么就把你的密码设置得复杂点，要么就去降低密码的校验规则。</p>
-<p>在 Linux 上安装 MySQL 时会自动安装一个校验密码的插件，默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。修改密码时新密码是否符合当前的策略，不满足则会提示ERROR</p>
-<p>可以将这个限制密码位数设小一点，复杂度类型调底一点</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将密码复杂度校验调整简单类型</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.policy = 0;</span><br><span class="line"><span class="comment"># 设置密码最少位数限制为 4 位</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.length = 4;</span><br></pre></td></tr></table></figure>
-
-<img src="/../images/linux/mysql/设置密码复杂度.png">
-
-<hr>
-<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>可能遇到的问题</p>
-<h4 id="MySQL自身原因"><a href="#MySQL自身原因" class="headerlink" title="MySQL自身原因"></a>MySQL自身原因</h4><p>MySQL默认不允许远程连接，修改配置</p>
-<ol>
-<li>使用<code>mysql -u root -p</code>链接服务器</li>
-<li><code>show databases;</code>查看当前所有数据库</li>
-<li><code>use mysql;</code>进入mysql数据库（配置mysql的一个数据库）</li>
-<li><code>select user,host from user;</code>查看用户的链接方式</li>
-</ol>
-<img src="/../images/linux/mysql/连接方式.png">
-
-<ol start="5">
-<li>使用<code>update user set host=&#39;%&#39; where user=&#39;root&#39;;</code>将root的链接方式修改为%</li>
-<li><code>systemctl restart mysqld</code>重启mysql服务器</li>
-</ol>
-<h4 id="外在原因"><a href="#外在原因" class="headerlink" title="外在原因"></a>外在原因</h4><ol>
-<li>MySQL是否关掉了</li>
-<li>防火墙的3306端口是否对外开放了</li>
-<li>如果你是云服务器还需要开放3306的安全组</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开放80端口，`--premanent`表示永久开放，重启后也依然开放</span></span><br><span class="line">sudo firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"><span class="comment"># 重新加载防火墙</span></span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p>参考连接：<a href="https://blog.csdn.net/u013733643/article/details/128970496">Linux-安装MySQL（详细教程）</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1060,173 +933,205 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】【魔法方法】【装饰器】【上下文管理器】contextlib模块</title>
-    <url>/2023/08/12/python-contextlib%E6%A8%A1%E5%9D%97/</url>
-    <content><![CDATA[<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p> 装饰器可以灵活的控制两个函数的执行顺序</p>
-<h4 id="无返回值"><a href="#无返回值" class="headerlink" title="无返回值"></a>无返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@sum</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">take</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+    <title>【Git】合并分支及如何解决冲突</title>
+    <url>/2023/09/15/git-%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/../css/center.css">
+<link rel="stylesheet" href="/../css/images.css">
 
-<p>输出结果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
 
-<h4 id="有返回值"><a href="#有返回值" class="headerlink" title="有返回值"></a>有返回值</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;outer&quot;</span>)            <span class="comment"># ----------1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">x, y</span>):        <span class="comment"># ----------3</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;wrapper&quot;</span>)      <span class="comment"># ----------4</span></span><br><span class="line">        res = func(x, y)      <span class="comment"># ----------5</span></span><br><span class="line">        <span class="keyword">return</span> res            <span class="comment"># ----------9</span></span><br><span class="line">    <span class="keyword">return</span> wrapper            <span class="comment"># ----------2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@outer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">x, y</span>):              <span class="comment"># ----------6</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;inner&quot;</span>)            <span class="comment"># ----------7</span></span><br><span class="line">    <span class="keyword">return</span> x+y                <span class="comment"># ----------8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(inner(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>使用<code>git merge &lt;branchName&gt;</code>命令将<code>&lt;branchName&gt;</code>分支上的内容合并到当前所在的分支上</p>
+<p><code>&lt;branchName&gt;</code> 可以是分支的名字，也可以是<code>commitID</code></p>
+<h4 id="出现冲突"><a href="#出现冲突" class="headerlink" title="出现冲突"></a>出现冲突</h4><p>出现如下内容，说明自动合并发生了冲突，需要手动解决冲突</p>
+<p><img class="base" src="/../images/git/合并分支_冲突.png"></img></p>
+<p>使用<code>git status</code>查看冲突文件<br><img class="base" src="/../images/git/合并分支_冲突文件.png"></img></p>
+<p>使用<code>git diff</code>查看冲突内容<br><img class="base" src="/../images/git/合并分支_冲突内容.png"></img></p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><h4 id="解决冲突的三种方法"><a href="#解决冲突的三种方法" class="headerlink" title="解决冲突的三种方法"></a>解决冲突的三种方法</h4><h5 id="方法一-直接编辑"><a href="#方法一-直接编辑" class="headerlink" title="方法一:直接编辑"></a>方法一:直接编辑</h5><p>使用<code>vim &lt;fielName&gt;</code>编辑该文件，留下我们需要的内容<br>随便怎么改都行，你就把它想成是重新编辑文件，只不过给了你两个版本的提示</p>
+<p>修改前：</p>
+<p><img class="base" src="/../images/git/合并分支_编辑文件.png"></img></p>
+<p>修改后：</p>
+<p><img class="base" src="/../images/git/合并分支_修复冲突.png"></img></p>
+<h5 id="方法二-保留选择的版本"><a href="#方法二-保留选择的版本" class="headerlink" title="方法二:保留选择的版本"></a>方法二:保留选择的版本</h5><p>选择当前分支的版本作为解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --ours &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
 
-<p>输出结果</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">outer</span><br><span class="line">wrapper</span><br><span class="line">inner</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>选择合并分支的版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --theirs &lt;fileName&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法三：强行退出merge模式"><a href="#方法三：强行退出merge模式" class="headerlink" title="方法三：强行退出merge模式"></a>方法三：强行退出merge模式</h5><p>该命令将会抛弃合并过程并且尝试重建合并前的状态</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="保存提交"><a href="#保存提交" class="headerlink" title="保存提交"></a>保存提交</h4><p>最后再重新提交一遍就成功的解决了冲突</p>
+<p><img class="base" src="/../images/git/合并分支_提交冲突文件.png"></img></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Linux】Linux基础命令</title>
+    <url>/2023/08/22/linux-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><table>
+<thead>
+<tr>
+<th>基础命令</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>systemctl start firewalld.service</code></td>
+<td>开启防火墙</td>
+</tr>
+<tr>
+<td><code>systemctl status firewalld.service</code></td>
+<td>查看防火墙状态</td>
+</tr>
+<tr>
+<td><code>systemctl stop firewalld.service</code></td>
+<td>关闭防火墙</td>
+</tr>
+<tr>
+<td><code>systemctl enable firewalld.service</code></td>
+<td>开启时自启</td>
+</tr>
+<tr>
+<td><code>systemctl disable firewall.service</code></td>
+<td>关闭开机自启</td>
+</tr>
+<tr>
+<td><code>systemctl is-enable firewall.service</code></td>
+<td>查看服务是否开机自启</td>
+</tr>
+<tr>
+<td><code>systemctl --failed</code></td>
+<td>查看启动失败的服务列表</td>
+</tr>
+</tbody></table>
+<h4 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>firewall-cmd --zone=public --list-ports</code></td>
+<td>查看开放的端口</td>
+</tr>
+<tr>
+<td><code>firewall-cmd --reload</code></td>
+<td>重新载入防火墙</td>
+</tr>
+<tr>
+<td><code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></td>
+<td>开放80端口，<code>--premanent</code>表示永久开放，重启后也依然开放</td>
+</tr>
+</tbody></table>
+<p>每次在配置完防火墙之后需使用<code>firewall-cmd --reload</code>更新配置</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Linux】Nvim</title>
+    <url>/2023/08/22/linux-Neovim/</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p><a href="https://github.com/neovim/neovim/releases">https://github.com/neovim/neovim/releases</a></p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf neovim-0.8.0.tar.gz</span><br><span class="line"><span class="comment"># 解压后就可以直接用了，十分方便</span></span><br><span class="line">./nvim-linux64/bin/nvim</span><br><span class="line"><span class="comment"># 可以将其放在/usr/local下，然后创建软链接</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/nvim/bin/nvim /usr/bin/nvim</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h3><p>在 Python 中，上下文管理器常常与 <code>with</code> 语句一起使用。<code>with</code> 语句会在代码块进入时调用上下文管理器的 <code>__enter__()</code> 方法，而在代码块退出时会调用上下文管理器的 <code>__exit__()</code> 方法。这种机制确保了资源在适当的时候被初始化和清理。</p>
-<p>最基础的上下管理器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;a.txt&quot;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.read()</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><h5 id="默认配置文件路径："><a href="#默认配置文件路径：" class="headerlink" title="默认配置文件路径："></a>默认配置文件路径：</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建配置文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/.config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ~/.config/nvim/init.vim</span><br></pre></td></tr></table></figure>
 
-<p>自己定义一个上下文管理器</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyContext</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering the context&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        exc_type: 异常类型，如果没有异常则为None</span></span><br><span class="line"><span class="string">        exc_value: 异常值，如果没有异常则为None</span></span><br><span class="line"><span class="string">        traceback: 追溯信息，如果没有异常则为None</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting the context&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;An exception of type <span class="subst">&#123;exc_type&#125;</span> occurred with value <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># Return True if you want to suppress the exception</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用with语句创建上下文管理器</span></span><br><span class="line"><span class="keyword">with</span> MyContext() <span class="keyword">as</span> context:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Inside the context&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Outside the context&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Entering the context</span><br><span class="line">Inside the context</span><br><span class="line">Exiting the context</span><br><span class="line">Outside the context</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="contextlib模块"><a href="#contextlib模块" class="headerlink" title="contextlib模块"></a>contextlib模块</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><p>上面我们自定义上下文管理器确实很方便，但是Python标准库还提供了更加易用的上下文管理器工具模块contextlib，它是通过生成器实现的，我们不需要再创建类以及<code>__enter__</code>和<code>__exit__</code>这两个特俗的方法：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_open_context</span>(<span class="params">filename, mode</span>):</span><br><span class="line">    fp = <span class="built_in">open</span>(filename, mode)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> fp</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        fp.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_open_context(<span class="string">&#x27;/tmp/a.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> file_obj:</span><br><span class="line">    file_obj.write(<span class="string">&quot;hello carson666&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在上文中，<code>yield</code>关键词把上下文分割成两部分：</p>
-<ul>
-<li><code>yiled</code>之前就是<code>__enter__</code>中的代码块</li>
-<li><code>yield</code>之后就是<code>__exit__</code>中的代码块</li>
-</ul>
-<p><code>yeild</code>生成的值会绑定到<code>with</code>语句的<code>as</code>子句中的变量。例如上面的例子中<code>yield</code>生成的值是文件句柄对象fp，在下面的with语句中，会将<code>fp</code>和<code>file_obj</code>绑定到一起，也就是说<code>file_obj</code>此时就是一个文件句柄对象，那么它就可以操作文件了，因此就可以调用<code>file_obj.write(&quot;hello world&quot;)</code></p>
-<p>另外要注意的是，如果<code>yield</code>没有生成值，那么在<code>with</code>语句中就不需要写<code>as</code>子句了</p>
-<h4 id="将普通的类变为上下文管理器类"><a href="#将普通的类变为上下文管理器类" class="headerlink" title="将普通的类变为上下文管理器类"></a>将普通的类变为上下文管理器类</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyResource</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;query data&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_myresource</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line">    <span class="keyword">yield</span> MyResource()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;connect to resource&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> make_myresource() <span class="keyword">as</span> r:</span><br><span class="line">    r.query()</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">connect to resource</span><br><span class="line">quert data</span><br><span class="line">connect to resource</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>魔法方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】文件处理</title>
-    <url>/2023/09/13/python-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<h3 id="JSON文件"><a href="#JSON文件" class="headerlink" title="JSON文件"></a>JSON文件</h3><ul>
-<li>序列：通俗来说就是字符串</li>
-<li>序列化：将代码中的对象（如：列表、字典等）转换成<strong>字符串</strong>，以便将信息保存在文件中或传输到网络上</li>
-<li>反序列化：将字符串转换成代码中的<strong>对象</strong></li>
-</ul>
-<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化 (Serialization)，是指<strong>把程序中的一个类转化成一个标准化的格式</strong>。标准化的意义是这个格式可以跨程序，跨平台的被使用，而且保持其原有的内容，规范。</p>
-<p><code>json.dumps(&lt;对象&gt;)</code>将对象<strong>转换</strong>成字符串，可添加参数<code>indent=4</code>设置字符串的缩进</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line">s = json.dumps(dict_)</span><br><span class="line"><span class="built_in">print</span>(s)	<span class="comment"># 输出：&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>将对象<strong>写入</strong>到file文件中，可添加参数<code>indent=4</code>设置字符串的缩进</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict_ = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;John&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">30</span>&#125;</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    json.dump(dict_, json_file)</span><br></pre></td></tr></table></figure>
-
-<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p><code>json.loads(&lt;string&gt;)</code>将<strong>string</strong>转换成对象并返回</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;&#x27;</span></span><br><span class="line">dict_ = json.loads(s)</span><br><span class="line"><span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>json.load(&lt;file&gt;)</code>将<strong>file文件</strong>中的内容转换成对象并返回</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    dict_ = json.load(file)</span><br><span class="line">    <span class="built_in">print</span>(dict_)	<span class="comment"># 输出：&#123;&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><code>json.dumps(&lt;对象&gt;)</code>：将对象<strong>转换</strong>成字符串，作用的转换</p>
-<p><code>json.dump(&lt;对象&gt;, &lt;file&gt;)</code>：将对象<strong>写入</strong>file文件中，作用是转换并写入</p>
-<p><code>json.loads(&lt;string&gt;)</code>：将string转换成对象并返回，<strong>参数是string</strong></p>
-<p><code>json.load(&lt;file&gt;)</code>：将file文件中的内容转换成对象并返回，<strong>参数是file</strong></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】【编程思维】Python中的泛型</title>
-    <url>/2023/08/12/python-%E6%B3%9B%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" href="/../css/font.css">
-
-
-<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>作用：限制数据类型的范围</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>], num1: <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]</span>) -&gt; <span class="type">Union</span>[<span class="built_in">int</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
-
-<p><code>a: Union[int, float]</code>表示变量a可以是int，也可以是float<br><font class="moderate"><br>扩展：<br>Any可以表示任意类型，如果写成<code>a: Any</code>那么就相当于没有做任何事，因为如果只写a的话本身就是能代指任意类型</font></p>
-<h3 id="TypeVar"><a href="#TypeVar" class="headerlink" title="TypeVar"></a>TypeVar</h3><p>制作模板——自己定义一个类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&quot;T&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">give_me_the_bigger_one</span>(<span class="params">num0: T, num1: T</span>) -&gt; T:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(num0) != <span class="built_in">type</span>(num1):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;The two number <span class="subst">&#123;num0&#125;</span> and <span class="subst">&#123;num1&#125;</span> must have the same type!&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num0 &gt; num1:</span><br><span class="line">        <span class="keyword">return</span> num0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> num1</span><br></pre></td></tr></table></figure>
-
-<p><code>T  = TypeVar(&quot;T&quot;)</code>表示定义了一个泛型类型变量T，并没有指定他的类型上限，也就是说传给这个函数的参数可以是任意类型</p>
-<p>通常在创建泛型类变量时会使用<code>bound</code>参数指定上限：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> TypeVar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义了一个泛型类型变量T_Config，他的类上限是BasePluginConfig</span></span><br><span class="line"><span class="comment"># 意味着T_Config可以被替代为BasePluginConfig类型或BasePluginConfig的子类</span></span><br><span class="line">T_Config = TypeVar(<span class="string">&quot;T_Config&quot;</span>, bound=BasePluginConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BasePluginConfig</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h3><p>类似于where，限制传给一个函数的类型范围</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypeVar, <span class="type">Generic</span></span><br><span class="line"></span><br><span class="line">T = TypeVar(<span class="string">&#x27;T&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>(<span class="type">Generic</span>[T]):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 定义一个元素类型都是T的队列</span></span><br><span class="line">        self.items: <span class="type">List</span>[T] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item: T</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>) -&gt; T:</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.items)</span><br><span class="line"></span><br><span class="line">q = Queue[<span class="built_in">int</span>]()</span><br><span class="line">q.push(<span class="number">0</span>)</span><br><span class="line">q.push(<span class="number">1</span>)</span><br><span class="line">q.pop()             <span class="comment"># 移除0</span></span><br><span class="line">q.push(<span class="string">&#x27;string&#x27;</span>)    <span class="comment"># 并不会报错</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1, &#x27;string&#x27;]</span><br><span class="line"></span><br><span class="line">进程已结束,退出代码0</span><br></pre></td></tr></table></figure>
-
-<p>注意最后的<code>q.push(&#39;string&#39;)</code>中<code>&#39;string&#39;</code>虽然并不是int类型，但是在实际运行中并不会报错，不过我们可以通过使用静态类型检查工具（mypy, pytype, pyright, pyre）等方法，提前发现这些错误。这也是推荐使用<code>typing</code>模块来做type annotation的理由之一。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>使用<code>typing</code>模块盒注释来提高代码的可读性</p>
-</li>
-<li><p>将自动化的类型检查工具和API生成工具部署在CI中，方便提前发现错误，方便新人员的理解</p>
-</li>
-</ul>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/497801684">Python中的泛型</a></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>编程思维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity】上下文管理器</title>
-    <url>/2023/09/12/unity-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</url>
-    <content><![CDATA[<h3 id="StreamingAssets方法"><a href="#StreamingAssets方法" class="headerlink" title="StreamingAssets方法"></a>StreamingAssets方法</h3><p>这是一个<strong>只读</strong>、<strong>不可写</strong>的目录；该文件夹的资源会保持原始格式（比如图片不会被引擎进行纹理压缩），dll文件或脚本放在该文件夹下也不会参与编译</p>
-<p>官方推荐使用<code>Application.streamingAssetsPath</code>来获取该文件夹的实际位置，其可规避平台差异：<br>对于UnityEditor，windows平台，其等价于：<code>Application.dataPath + &quot;/StreamingAssets&quot;</code><br>对于macOS，其等价于：<code>Application.dataPath+&quot;/Resources/Data/StreamingAssets&quot;</code><br>对于ios平台，其等价于：<code>Application.dataPath + &quot;/Raw&quot;;</code><br>对于android平台，其等价于：<code>&quot;jar:file://&quot; + Application.dataPath + &quot;!/assets/&quot;;</code></p>
-<h4 id="基础使用方法："><a href="#基础使用方法：" class="headerlink" title="基础使用方法："></a>基础使用方法：</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> jsonPath = Application.streamingAssetsPath + <span class="string">@&quot;/JSON/IP.json&quot;</span>;</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> jsonStr = System.IO.File.ReadAllText(jsonPath, Encoding.UTF8);</span><br></pre></td></tr></table></figure>
-
-<p>对于非Android和WebGL平台，支持File或者Stream的读取操作<br>但是对于Android和WebGL平台上无法访问StreamingAssets文件夹。在WebGL上没有文件访问权。Android使用压缩的.apk文件。这些平台无法返回URL。<br>解决方案：</p>
-<ol>
-<li>把StreamingAssets下的文件写入persistentDataPath，后续的读取和写入都在persistentDataPath进行</li>
-<li>使用UnityWebRequest对StreamingAssets下的文件进行读取</li>
+<h5 id="自定义配置文件的路径："><a href="#自定义配置文件的路径：" class="headerlink" title="自定义配置文件的路径："></a>自定义配置文件的路径：</h5><ol>
+<li>创建配置文件</li>
 </ol>
-<h4 id="使用UnityWebRequest读取"><a href="#使用UnityWebRequest读取" class="headerlink" title="使用UnityWebRequest读取"></a>使用UnityWebRequest读取</h4><p>UnityWebRequest读取文件需要传入文件的URL，StreamingAssets目录不同平台对应的URL是不一样的，如下：</p>
-<ul>
-<li>Window平台 <code>file:///D:/DATA/StreamingAssets/data.json</code></li>
-<li>WebGL平台 <code>http://localhost/StreamingAssets/data.json</code></li>
-<li>Android平台 <code>jar:file:///data/app/xxx!/assets/data.json</code></li>
-<li>IOS平台 <code>Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/xxx.app/Data/Raw</code></li>
-</ul>
-<p>这时候最好通过构造Uri()的方式来规避平台的差异，获得真正的请求URL。如：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> uri = <span class="keyword">new</span> System.Uri(Path.Combine(Application.streamingAssetsPath, <span class="string">&quot;data.json&quot;</span>)).AbsoluteUri;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nvim-linux64</span><br><span class="line"><span class="built_in">mkdir</span> ./config</span><br><span class="line"><span class="built_in">mkdir</span> ./config/nvim</span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line">nvim ./config/nvim/init.vim</span><br></pre></td></tr></table></figure>
 
-<p>方法<code>Path.Combine(Path1, Path2)</code>在检测到path1不是以分隔符结尾的话，会自动补充分隔符</p>
+<p><img src="/../images/linux/nvim/配置文件1.png"></img></p>
+<ol start="2">
+<li><code>nvim /etc/profile</code>修改环境变量</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># nvim配置文件</span></span><br><span class="line"><span class="built_in">export</span> XDG_CONFIG_HOME=/usr/local/nvim-linux64/config</span><br><span class="line"><span class="built_in">export</span> XDG_DATA_HOME=/usr/local/nvim-linux64/config</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/linux/nvim/配置文件2.png"></img></p>
+<ol start="3">
+<li>重载配置文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot; 基础键位映射</span></span><br><span class="line"><span class="string">imap jk &lt;Esc&gt;</span></span><br><span class="line"><span class="string">nmap &lt;space&gt; :</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> 显示相对行</span><br><span class="line"><span class="built_in">set</span> relativenumber</span><br><span class="line"><span class="built_in">set</span> number</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装vim-plug插件管理"><a href="#安装vim-plug插件管理" class="headerlink" title="安装vim-plug插件管理"></a>安装vim-plug插件管理</h4><p>前面不是命名了全局变量<code>XDG_DATA_HOME</code>吗，这个时候就用上了</p>
+<p>将<a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">plug.vim</a>文件放在以下路径</p>
+<p>windows: <code>./nvim-win64/config/nvim-data/site/autoload/</code></p>
+<p>linux: <code>./nvim-linux64/config/nvim/site/autoload/</code></p>
 <hr>
-<h3 id="PersistentDataPath方法"><a href="#PersistentDataPath方法" class="headerlink" title="PersistentDataPath方法"></a>PersistentDataPath方法</h3><p>该方法下的文件<strong>可读</strong>、<strong>可写</strong></p>
-<p>使用这个方法生成的文件所在路径为：<code>C:\Users\Administrator\AppData\LocalLow\DefaultCompany\项目名</code></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> filePath = Path.Combine(Application.persistentDataPath, <span class="string">&quot;config.json&quot;</span>);</span><br><span class="line"><span class="comment">// 判断文件是否存在</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(filePath))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span>		<span class="comment">//如果文件不存在，创建一个新文件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建文件并写入内容</span></span><br><span class="line">        File.WriteAllText(filePath, <span class="string">&quot;&#123; \&quot;settingCycle\&quot;, 999 &#125;&quot;</span>));</span><br><span class="line">        Debug.Log(<span class="string">&quot;Remark file created successfully.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception ex)		<span class="comment">// 如果创建失败会捕获错误</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.LogError(<span class="string">&quot;Failed to create remark file: &quot;</span> + ex.Message);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有了前面的兜底创建文件的步骤，这一步就可以直接读取该路径下的文件了</span></span><br><span class="line"><span class="built_in">string</span> jsonContent = File.ReadAllText(filePath);</span><br></pre></td></tr></table></figure>
+<h3 id="我的配置"><a href="#我的配置" class="headerlink" title="我的配置"></a>我的配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot; 基础键位映射</span><br><span class="line">imap jk &lt;Esc&gt;</span><br><span class="line">nmap &lt;space&gt; :</span><br><span class="line"></span><br><span class="line">&quot; 显示相对行</span><br><span class="line">set relativenumber</span><br><span class="line">set number</span><br><span class="line"></span><br><span class="line">&quot; nerdtree插件绑定</span><br><span class="line">map &lt;silent&gt; &lt;C-e&gt; :NERDTreeToggle&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; python补全</span><br><span class="line">filetype plugin on</span><br><span class="line">let g:pydiction_location = &#x27;$XDG_CONFIG_HOME\\nvim-data\\plugged\\pydiction\\complete-dict&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">call plug#begin()</span><br><span class="line"></span><br><span class="line">Plug &#x27;scrooloose/nerdtree&#x27;</span><br><span class="line">Plug &#x27;rkulla/pydiction&#x27;</span><br><span class="line"></span><br><span class="line">call plug#end()</span><br></pre></td></tr></table></figure>
 
-
-
-<hr>
-<h3 id="Resources方法"><a href="#Resources方法" class="headerlink" title="Resources方法"></a>Resources方法</h3><p>是存储资源的文件的方法，如音频、视频、预制体等<br>在读取文件时可以不加后缀<br>只可读<br>打包后文件夹内容会被加密，无法直接看到该文件夹下的内容</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 读取Resources文件夹下的内容</span></span><br><span class="line">prefab = UnityEngine.Resources.Load&lt;GameObject&gt;(<span class="string">&quot;BayWindow/prefabObject&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h3><p>这种方法可以将文件存储在与Assets同级路径下<br>可以读取文本文件和资源文件</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 先制定好根路径</span></span><br><span class="line"><span class="built_in">string</span> DynamicParent = Application.dataPath + <span class="string">&quot;/../资源/&quot;</span>;</span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> descriptionPath = <span class="string">&quot;文本文件/start.text&quot;</span>;</span><br><span class="line"><span class="comment">// 创建文件，后立刻释放相关资源</span></span><br><span class="line">File.Create(DynamicParent + descriptionPath).Dispose();</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> content = File.ReadAllText(DynamicParent + descriptionPath)</span><br></pre></td></tr></table></figure>
-
-<p>拓展：在创建文件前可以先创建该文件的父级文件夹</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取文件的父级文件夹路径</span></span><br><span class="line">parentPath = System.IO.Path.GetDirectoryName(DynamicParent + descriptionPath);</span><br><span class="line"><span class="comment">// 判断父级文件夹是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!Directory.Exists(parentPath))</span><br><span class="line">    Directory.CreateDirectory(parentPath)</span><br><span class="line"><span class="comment">// 判断该文件是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(DynamicParent + descriptionPath))</span><br><span class="line">    File.Create(DynamicParent + descriptionPath).Dispose();</span><br></pre></td></tr></table></figure>
-
-<p><code>Path.GetDirectoryName(path)</code>是获取path这个路径的父文件路径，具体用法如下：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> filePath = <span class="string">@&quot;C:\MyDir\MySubDir\myfile.ext&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> directoryName;</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (filePath != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    directoryName = Path.GetDirectoryName(filePath);</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;GetDirectoryName(&#x27;&#123;0&#125;&#x27;) returns &#x27;&#123;1&#125;&#x27;&quot;</span>,</span><br><span class="line">        filePath, directoryName);</span><br><span class="line">    filePath = directoryName;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        filePath = directoryName + <span class="string">@&quot;\&quot;</span>;  <span class="comment">// this will preserve the previous path</span></span><br><span class="line">    &#125;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">This code produces the following output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir\myfile.ext&#x27;) returns &#x27;C:\MyDir\MySubDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir&#x27;) returns &#x27;C:\&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\&#x27;) returns &#x27;&#x27;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/iningwei/article/details/89097130">详解Unity中的StreamingAssets文件夹</a></p>
 ]]></content>
       <tags>
-        <tag>Unity</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【MySQL】MySQL安装</title>
+    <url>/2023/08/21/mysql-MySQL%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>官网网址：<a href="https://dev.mysql.com/downloads/">MySQL :: MySQL Community Downloads</a></p>
+<p><img src="/../images/linux/mysql/安装网址1.png"></img></p>
+<p><img src="/../images/linux/mysql/安装网址2.png"></img></p>
+<p><img src="/../images/linux/mysql/安装网址3.png"></img></p>
+<p>将文件解压到一个新建的文件夹中<code>tar -xvf mysql-8.0.33-1.el7.x86_64.rpm-bundle.tar -C mysql-8.0.33</code></p>
+<p>安装<code>openssl-devel</code>插件，mysql里有些rpm的安装依赖于该插件</p>
+<h4 id="安装rpm包"><a href="#安装rpm包" class="headerlink" title="安装rpm包"></a>安装rpm包</h4><p>依次执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-common-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端插件，提供额外的功能和扩展。具体需要哪些插件取决于你的使用情况。你可以根据你的需要来决定是否安装这些插件。</span></span><br><span class="line">rpm -ivh mysql-community-client-plugins-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 库文件，用于在应用程序中连接到 MySQL 数据库。这是 MySQL 连接所必需的，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># 共享的 MySQL 通用文件，可能包括一些共享的配置文件等。这是 MySQL 安装的一部分，通常需要安装</span></span><br><span class="line">rpm -ivh mysql-community-libs-compat-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 开发包，包含开发所需的头文件和库文件。如果你打算在该系统上开发与 MySQL 相关的应用程序，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-devel-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 客户端工具，用于连接和管理 MySQL 服务器。通常情况下，如果你计划从该系统上远程连接到其他 MySQL 服务器，你需要安装此包。如果你的系统不需要连接其他 MySQL 服务器，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-client-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># ICU 数据文件，用于支持国际化和字符集处理。如果你的应用程序不需要特定的国际化功能，则可能不需要安装</span></span><br><span class="line">rpm -ivh mysql-community-icu-data-files-8.0.33-1.el7.x86_64.rpm</span><br><span class="line"><span class="comment"># MySQL 服务器，用于托管数据库实例。如果你计划在该系统上安装 MySQL 数据库服务器，你需要安装此包</span></span><br><span class="line">rpm -ivh mysql-community-server-8.0.33-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>使用<code>systemctl start mysqld</code>命令启动服务器</p>
+<p>rpm安装MySQL会自动生成一个随机密码，可以在<code>/var/log/mysqld.log</code>中查看</p>
+<img src="/../images/linux/mysql/随机密码.png">
+
+<p>使用<code>mysql -u root -p</code>进入客户端</p>
+<img src="/../images/linux/mysql/输入密码.png">
+
+<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>连接MySQL之后，使用<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456789&#39;;</code>修改密码</p>
+<img src="/../images/linux/mysql/设置密码.png">
+
+<p>出现<code>Your password does not satisfy the current policy requirements</code>提示，意思是您的密码不符合当前规定的要求，你要么就把你的密码设置得复杂点，要么就去降低密码的校验规则。</p>
+<p>在 Linux 上安装 MySQL 时会自动安装一个校验密码的插件，默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。修改密码时新密码是否符合当前的策略，不满足则会提示ERROR</p>
+<p>可以将这个限制密码位数设小一点，复杂度类型调底一点</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将密码复杂度校验调整简单类型</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.policy = 0;</span><br><span class="line"><span class="comment"># 设置密码最少位数限制为 4 位</span></span><br><span class="line"><span class="built_in">set</span> global validate_password.length = 4;</span><br></pre></td></tr></table></figure>
+
+<img src="/../images/linux/mysql/设置密码复杂度.png">
+
+<hr>
+<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>可能遇到的问题</p>
+<h4 id="MySQL自身原因"><a href="#MySQL自身原因" class="headerlink" title="MySQL自身原因"></a>MySQL自身原因</h4><p>MySQL默认不允许远程连接，修改配置</p>
+<ol>
+<li>使用<code>mysql -u root -p</code>链接服务器</li>
+<li><code>show databases;</code>查看当前所有数据库</li>
+<li><code>use mysql;</code>进入mysql数据库（配置mysql的一个数据库）</li>
+<li><code>select user,host from user;</code>查看用户的链接方式</li>
+</ol>
+<img src="/../images/linux/mysql/连接方式.png">
+
+<ol start="5">
+<li>使用<code>update user set host=&#39;%&#39; where user=&#39;root&#39;;</code>将root的链接方式修改为%</li>
+<li><code>systemctl restart mysqld</code>重启mysql服务器</li>
+</ol>
+<h4 id="外在原因"><a href="#外在原因" class="headerlink" title="外在原因"></a>外在原因</h4><ol>
+<li>MySQL是否关掉了</li>
+<li>防火墙的3306端口是否对外开放了</li>
+<li>如果你是云服务器还需要开放3306的安全组</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开放80端口，`--premanent`表示永久开放，重启后也依然开放</span></span><br><span class="line">sudo firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"><span class="comment"># 重新加载防火墙</span></span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>参考连接：<a href="https://blog.csdn.net/u013733643/article/details/128970496">Linux-安装MySQL（详细教程）</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1312,75 +1217,59 @@
       </tags>
   </entry>
   <entry>
-    <title>【Unity】【CSharp】多线程</title>
-    <url>/2023/09/18/unity-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<h3 id="Task和Thread的区别"><a href="#Task和Thread的区别" class="headerlink" title="Task和Thread的区别"></a>Task和Thread的区别</h3><ul>
-<li><p>基于不同的 .NET 框架：Thread 是基于 Windows 操作系统提供的 API 实现，而 Task 则是基于 .NET框架提供的 TPL（Task Parallel Library）实现。</p>
-</li>
-<li><p>默认执行线程池：Thread 默认使用前台线程，而 Task 默认使用后台线程。这意味着，Thread 会阻塞主线程，而 Task不会。</p>
-</li>
-<li><p>异步执行：Task 支持异步执行，而 Thread 不支持。这意味着，在使用 Task 时，可以通过 await 和 async关键字轻松实现异步编程，而 Thread 则需要手动管理线程的启动和等待。</p>
-</li>
-<li><p>异常处理：Task 提供了更好的异常处理机制，可以将异常传递给调用方，而 Thread 则需要在每个线程中处理异常。</p>
-</li>
-<li><p>任务调度器：Task 提供了任务调度器（TaskScheduler），可以控制任务的并发性和调度方式，而 Thread 则没有这个功能。</p>
-</li>
-<li><p>返回值：Task 可以有返回值，而 Thread 没有。这是因为 Task 是基于 TPL 实现的，可以利用 .NET框架提供的并发编程模型来实现任务之间的依赖和调度。</p>
-</li>
+    <title>【Unity】上下文管理器</title>
+    <url>/2023/09/12/unity-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/</url>
+    <content><![CDATA[<h3 id="StreamingAssets方法"><a href="#StreamingAssets方法" class="headerlink" title="StreamingAssets方法"></a>StreamingAssets方法</h3><p>这是一个<strong>只读</strong>、<strong>不可写</strong>的目录；该文件夹的资源会保持原始格式（比如图片不会被引擎进行纹理压缩），dll文件或脚本放在该文件夹下也不会参与编译</p>
+<p>官方推荐使用<code>Application.streamingAssetsPath</code>来获取该文件夹的实际位置，其可规避平台差异：<br>对于UnityEditor，windows平台，其等价于：<code>Application.dataPath + &quot;/StreamingAssets&quot;</code><br>对于macOS，其等价于：<code>Application.dataPath+&quot;/Resources/Data/StreamingAssets&quot;</code><br>对于ios平台，其等价于：<code>Application.dataPath + &quot;/Raw&quot;;</code><br>对于android平台，其等价于：<code>&quot;jar:file://&quot; + Application.dataPath + &quot;!/assets/&quot;;</code></p>
+<h4 id="基础使用方法："><a href="#基础使用方法：" class="headerlink" title="基础使用方法："></a>基础使用方法：</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> jsonPath = Application.streamingAssetsPath + <span class="string">@&quot;/JSON/IP.json&quot;</span>;</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> jsonStr = System.IO.File.ReadAllText(jsonPath, Encoding.UTF8);</span><br></pre></td></tr></table></figure>
+
+<p>对于非Android和WebGL平台，支持File或者Stream的读取操作<br>但是对于Android和WebGL平台上无法访问StreamingAssets文件夹。在WebGL上没有文件访问权。Android使用压缩的.apk文件。这些平台无法返回URL。<br>解决方案：</p>
+<ol>
+<li>把StreamingAssets下的文件写入persistentDataPath，后续的读取和写入都在persistentDataPath进行</li>
+<li>使用UnityWebRequest对StreamingAssets下的文件进行读取</li>
+</ol>
+<h4 id="使用UnityWebRequest读取"><a href="#使用UnityWebRequest读取" class="headerlink" title="使用UnityWebRequest读取"></a>使用UnityWebRequest读取</h4><p>UnityWebRequest读取文件需要传入文件的URL，StreamingAssets目录不同平台对应的URL是不一样的，如下：</p>
+<ul>
+<li>Window平台 <code>file:///D:/DATA/StreamingAssets/data.json</code></li>
+<li>WebGL平台 <code>http://localhost/StreamingAssets/data.json</code></li>
+<li>Android平台 <code>jar:file:///data/app/xxx!/assets/data.json</code></li>
+<li>IOS平台 <code>Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/xxx.app/Data/Raw</code></li>
 </ul>
-<h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><h4 id="Task和Task的创建"><a href="#Task和Task的创建" class="headerlink" title="Task和Task&lt;T&gt;的创建"></a><code>Task</code>和<code>Task&lt;T&gt;</code>的创建</h4><h5 id="Task的创建"><a href="#Task的创建" class="headerlink" title="Task的创建"></a>Task的创建</h5><p>使用<code>Task</code>的构造函数</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task task = <span class="keyword">new</span> Task(() =&gt; &#123;</span><br><span class="line">	<span class="comment">// 异步操作的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这时候最好通过构造Uri()的方式来规避平台的差异，获得真正的请求URL。如：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> uri = <span class="keyword">new</span> System.Uri(Path.Combine(Application.streamingAssetsPath, <span class="string">&quot;data.json&quot;</span>)).AbsoluteUri;</span><br></pre></td></tr></table></figure>
 
-<p>使用<code>Task.Run</code>的构造函数</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task task = Task.Run(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="Task的创建-1"><a href="#Task的创建-1" class="headerlink" title="Task&lt;T&gt;的创建"></a><code>Task&lt;T&gt;</code>的创建</h5><p><code>Task&lt;T&gt;</code>与会返回一个类型为T的结果</p>
-<p>使用<code>Task</code>的构造函数</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task&lt;<span class="built_in">int</span>&gt; task = <span class="keyword">new</span> Task&lt;<span class="built_in">int</span>&gt;(() =&gt;&#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码，返回int类型的结果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>Task.Run</code>的构造函数</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task&lt;<span class="built_in">int</span>&gt; task = Task.Run(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码，返回int类型的结果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="启动和等待Task和Task"><a href="#启动和等待Task和Task" class="headerlink" title="启动和等待Task和Task&lt;T&gt;"></a>启动和等待<code>Task</code>和<code>Task&lt;T&gt;</code></h4><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><p>使用<code>start</code>方法启动</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">task.Start();</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用Wait-阻塞等待"><a href="#使用Wait-阻塞等待" class="headerlink" title="使用Wait()阻塞等待"></a>使用<code>Wait()</code>阻塞等待</h5><p>直接控制<code>Task</code>，实现异步等待任务的完成<br>会阻塞主线程，类似于<code>thread1.Join()</code></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">task.Wait();	<span class="comment">// 阻塞当前线程，等待任务完成</span></span><br><span class="line"><span class="built_in">int</span> result = task.Result;  <span class="comment">// 阻塞当前线程，等待任务完成，并获取结果</span></span><br><span class="line"></span><br><span class="line">Task.WaitAll(<span class="keyword">new</span> Task[]&#123; task1, task2 &#125;);		<span class="comment">// 等待所有的task都执行完成再解除阻塞</span></span><br><span class="line">Task.WaitAny(<span class="keyword">new</span> Task[]&#123; task1, task2 &#125;);		<span class="comment">// 只要有一个task执行完毕就解除阻塞</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="使用WhenAll和WhenAny控制线程"><a href="#使用WhenAll和WhenAny控制线程" class="headerlink" title="使用WhenAll和WhenAny控制线程"></a>使用<code>WhenAll</code>和<code>WhenAny</code>控制线程</h5><p>不会阻塞主线程</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task.WhenAll(task1, task2).ContinueWith((t) =&gt; &#123; Console.Writeline(<span class="string">&quot;执行异步代码&quot;</span>); &#125;);	<span class="comment">// 当task1和task2执行完毕后，再执行后续代码</span></span><br><span class="line">Task.WhenAny(task1, task2).ContinueWith((t) =&gt; &#123; Console.Writeline(<span class="string">&quot;执行异步代码&quot;</span>); &#125;);	<span class="comment">// 只要有一个执行完毕，就执行后续代码</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="使用await等待Task和Task"><a href="#使用await等待Task和Task" class="headerlink" title="使用await等待Task和Task&lt;T&gt;"></a>使用<code>await</code>等待<code>Task</code>和<code>Task&lt;T&gt;</code></h5><p>在异步代码中使用<code>await</code>等待其他的任务完成（为.net5.0推出的方法）<br>不会阻塞主线程</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AsyncTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主线程开始&quot;</span>);</span><br><span class="line"></span><br><span class="line">            t().Start();</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主线程结束&quot;</span>);</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Task <span class="title">t</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Task(<span class="keyword">async</span> () =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">&quot;开始执行t&quot;</span>);</span><br><span class="line">                <span class="keyword">await</span> Task.Delay(<span class="number">2000</span>);			<span class="comment">// 等待两秒，模拟一个异步操作</span></span><br><span class="line">                Console.WriteLine(<span class="string">&quot;结束执行t&quot;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">主线程开始</span><br><span class="line">主线程结束</span><br><span class="line">开始执行t</span><br><span class="line">结束执行t</span><br></pre></td></tr></table></figure>
-
-<h5 id="三个等待的区别"><a href="#三个等待的区别" class="headerlink" title="三个等待的区别"></a>三个等待的区别</h5><ul>
-<li><code>Wait()</code>针对线程操作，会阻塞主线程</li>
-<li><code>WhenAll</code>针对线程操作，不会阻塞主线程</li>
-<li><code>await</code>在线程中针对其他线程操作，不会阻塞主线程</li>
-</ul>
+<p>方法<code>Path.Combine(Path1, Path2)</code>在检测到path1不是以分隔符结尾的话，会自动补充分隔符</p>
 <hr>
-<h3 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(A);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(B);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是A函数1&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是A函数2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">B</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是B函数1&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是B函数2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="PersistentDataPath方法"><a href="#PersistentDataPath方法" class="headerlink" title="PersistentDataPath方法"></a>PersistentDataPath方法</h3><p>该方法下的文件<strong>可读</strong>、<strong>可写</strong></p>
+<p>使用这个方法生成的文件所在路径为：<code>C:\Users\Administrator\AppData\LocalLow\DefaultCompany\项目名</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> filePath = Path.Combine(Application.persistentDataPath, <span class="string">&quot;config.json&quot;</span>);</span><br><span class="line"><span class="comment">// 判断文件是否存在</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(filePath))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span>		<span class="comment">//如果文件不存在，创建一个新文件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建文件并写入内容</span></span><br><span class="line">        File.WriteAllText(filePath, <span class="string">&quot;&#123; \&quot;settingCycle\&quot;, 999 &#125;&quot;</span>));</span><br><span class="line">        Debug.Log(<span class="string">&quot;Remark file created successfully.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception ex)		<span class="comment">// 如果创建失败会捕获错误</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.LogError(<span class="string">&quot;Failed to create remark file: &quot;</span> + ex.Message);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有了前面的兜底创建文件的步骤，这一步就可以直接读取该路径下的文件了</span></span><br><span class="line"><span class="built_in">string</span> jsonContent = File.ReadAllText(filePath);</span><br></pre></td></tr></table></figure>
 
-<p>此时的输出结果是不可控的，可能先执行A，也可能先执行B，这个是操作系统根据CPU自动计算出来的。<br>而且A和B是会嵌套交叉执行的</p>
-<p>如何让程序先执行A，执行完A之后在执行B；或者先执行完B再执行A：使用lock关键字</p>
-<h3 id="lock关键字"><a href="#lock关键字" class="headerlink" title="lock关键字"></a>lock关键字</h3><p>可以通过lock关键字来控制A和B的执行顺序。使用同一个lock参数的代码，程序会等待前面的代码执行完之后再执行后面的</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> Object o = <span class="keyword">new</span> <span class="built_in">object</span>();</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(A);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(B);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    Thread t3 = <span class="keyword">new</span> Thread(C);</span><br><span class="line">    t3.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">A</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">lock</span>(o)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是A函数1&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是A函数2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">B</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">lock</span>(o)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Thread.Sleep(1000);   // 暂停1秒</span></span><br><span class="line">        Debug.Log(<span class="string">&quot;我是B函数1&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是B函数2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">C</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    DEbug.Log(<span class="string">&quot;我是随机函数&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>此时可能会先执行A，执行完A后再执行B；也有可能先执行B，执行完B之后再执行A。C函数没有被锁住，所以他能出现在任意位置。</p>
-<p>补充：这里的o是Object类（基类）。所以，lock的参数可以是任意的类</p>
-<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>在unity中将子线程的代码转移到主线程中执行</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainThreadDispatcher</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MainThreadDispatcher instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Action&gt; actionQueue = <span class="keyword">new</span> Queue&lt;Action&gt;();		<span class="comment">// 初始化一个队列:先进先出的一个数据结构</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            instance = <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">lock</span> (actionQueue)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (actionQueue.Count &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                Action action = actionQueue.Dequeue();		<span class="comment">// 取出队列中的一个函数，并执行</span></span><br><span class="line">                action.Invoke();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RunOnMainThread</span>(<span class="params">Action action</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">lock</span> (instance.actionQueue)		<span class="comment">// 如果有其他的代码（包括自己）使用了lock(instance.actionQueue)，则会等待前面的执行完再执行自己</span></span><br><span class="line">        &#123;</span><br><span class="line">            instance.actionQueue.Enqueue(action);		<span class="comment">// 将传进来的action函数插入到队列中</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在其他函数中可以通过调用<code>RunOnMainThread()</code>函数将方法转移到主线程上执行<br>常用与数据请求上，接收到的数据一般都是在子线程上。但是在unity的子线程中无法访问transform属性等，故需要转移到主线程上执行</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">RunOnMainThread(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 转移到主线程上执行代码</span></span><br><span class="line">    textValue.text = <span class="string">&quot;你好&quot;</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Resources方法"><a href="#Resources方法" class="headerlink" title="Resources方法"></a>Resources方法</h3><p>是存储资源的文件的方法，如音频、视频、预制体等<br>在读取文件时可以不加后缀<br>只可读<br>打包后文件夹内容会被加密，无法直接看到该文件夹下的内容</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 读取Resources文件夹下的内容</span></span><br><span class="line">prefab = UnityEngine.Resources.Load&lt;GameObject&gt;(<span class="string">&quot;BayWindow/prefabObject&quot;</span>);</span><br></pre></td></tr></table></figure>
 
+
+
+<hr>
+<h3 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h3><p>这种方法可以将文件存储在与Assets同级路径下<br>可以读取文本文件和资源文件</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 先制定好根路径</span></span><br><span class="line"><span class="built_in">string</span> DynamicParent = Application.dataPath + <span class="string">&quot;/../资源/&quot;</span>;</span><br><span class="line"><span class="comment">// 设置路径</span></span><br><span class="line"><span class="built_in">string</span> descriptionPath = <span class="string">&quot;文本文件/start.text&quot;</span>;</span><br><span class="line"><span class="comment">// 创建文件，后立刻释放相关资源</span></span><br><span class="line">File.Create(DynamicParent + descriptionPath).Dispose();</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">string</span> content = File.ReadAllText(DynamicParent + descriptionPath)</span><br></pre></td></tr></table></figure>
+
+<p>拓展：在创建文件前可以先创建该文件的父级文件夹</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取文件的父级文件夹路径</span></span><br><span class="line">parentPath = System.IO.Path.GetDirectoryName(DynamicParent + descriptionPath);</span><br><span class="line"><span class="comment">// 判断父级文件夹是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!Directory.Exists(parentPath))</span><br><span class="line">    Directory.CreateDirectory(parentPath)</span><br><span class="line"><span class="comment">// 判断该文件是否存在，如果不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> (!File.Exists(DynamicParent + descriptionPath))</span><br><span class="line">    File.Create(DynamicParent + descriptionPath).Dispose();</span><br></pre></td></tr></table></figure>
+
+<p><code>Path.GetDirectoryName(path)</code>是获取path这个路径的父文件路径，具体用法如下：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> filePath = <span class="string">@&quot;C:\MyDir\MySubDir\myfile.ext&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> directoryName;</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (filePath != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    directoryName = Path.GetDirectoryName(filePath);</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;GetDirectoryName(&#x27;&#123;0&#125;&#x27;) returns &#x27;&#123;1&#125;&#x27;&quot;</span>,</span><br><span class="line">        filePath, directoryName);</span><br><span class="line">    filePath = directoryName;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        filePath = directoryName + <span class="string">@&quot;\&quot;</span>;  <span class="comment">// this will preserve the previous path</span></span><br><span class="line">    &#125;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">This code produces the following output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir\myfile.ext&#x27;) returns &#x27;C:\MyDir\MySubDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\MySubDir&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir\&#x27;) returns &#x27;C:\MyDir&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\MyDir&#x27;) returns &#x27;C:\&#x27;</span></span><br><span class="line"><span class="comment">GetDirectoryName(&#x27;C:\&#x27;) returns &#x27;&#x27;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/iningwei/article/details/89097130">详解Unity中的StreamingAssets文件夹</a></p>
 ]]></content>
       <tags>
         <tag>Unity</tag>
-        <tag>CSharp</tag>
       </tags>
   </entry>
   <entry>
@@ -1476,6 +1365,117 @@
 ]]></content>
       <tags>
         <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Linux】【Git】Linux系统安装Git</title>
+    <url>/2023/08/23/linux-Git%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://github.com/git/git/tags">下载包体</a></p>
+<h3 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install libcurl-devel</span><br><span class="line">sudo yum install expat-devel</span><br><span class="line">sudo yum install asciidoc</span><br><span class="line">sudo yum install xmlto</span><br><span class="line">sudo yum install docbook2X</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置软连接</span></span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+
+<p>根据git官网的指示，安装相关依赖包：<code>yum install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel libxslt asciidoc xmlto docbook2X autoconf install-info getopt</code></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>解压<code>tar -zxvf git-2.42.0.tar.gz</code></p>
+<p>编译<code>make prefix=/usr/local all doc info</code></p>
+<p>安装<code>make prefix=/usr/local install install-doc install-html install-info</code></p>
+<h3 id="可能会出现的问题"><a href="#可能会出现的问题" class="headerlink" title="可能会出现的问题"></a>可能会出现的问题</h3><p>提示找不到<code>docbook2x-texi</code>或者<code>docbook2texi</code></p>
+<p>在执行<code>yum install docbook2X</code>后设置软连接</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi</span><br><span class="line">ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2texi</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/qq_42108074/article/details/123027943">使用源码方法在阿里云服务器CentOS 7安装Git</a></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Linux】Nginx</title>
+    <url>/2023/08/21/linux-Nginx/</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="下载包体"><a href="#下载包体" class="headerlink" title="下载包体"></a>下载包体</h4><p>网站：<a href="https://nginx.org/en/download.html">nginx: download</a></p>
+<p><img src="/../images/linux/nginx/安装网站.png"></img></p>
+<h4 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h4><p><code>tar -zxvf nginx-1.24.0.tar.gz</code></p>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p><code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code></p>
+<p><code>make</code></p>
+<p><code>make install</code></p>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>设置快捷键</p>
+<p><code>ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</code></p>
+<p>这样执行&#x2F;usr&#x2F;bin&#x2F;nginx就相当于执行了&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
+<p>而&#x2F;usr&#x2F;bin&#x2F;是全局可用的，所以在任何地方输入nginx都可以执行&#x2F;usr&#x2F;lcoal&#x2F;nginx&#x2F;sbin&#x2F;nginx</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity】【CSharp】多线程</title>
+    <url>/2023/09/18/unity-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="Task和Thread的区别"><a href="#Task和Thread的区别" class="headerlink" title="Task和Thread的区别"></a>Task和Thread的区别</h3><ul>
+<li><p>基于不同的 .NET 框架：Thread 是基于 Windows 操作系统提供的 API 实现，而 Task 则是基于 .NET框架提供的 TPL（Task Parallel Library）实现。</p>
+</li>
+<li><p>默认执行线程池：Thread 默认使用前台线程，而 Task 默认使用后台线程。这意味着，Thread 会阻塞主线程，而 Task不会。</p>
+</li>
+<li><p>异步执行：Task 支持异步执行，而 Thread 不支持。这意味着，在使用 Task 时，可以通过 await 和 async关键字轻松实现异步编程，而 Thread 则需要手动管理线程的启动和等待。</p>
+</li>
+<li><p>异常处理：Task 提供了更好的异常处理机制，可以将异常传递给调用方，而 Thread 则需要在每个线程中处理异常。</p>
+</li>
+<li><p>任务调度器：Task 提供了任务调度器（TaskScheduler），可以控制任务的并发性和调度方式，而 Thread 则没有这个功能。</p>
+</li>
+<li><p>返回值：Task 可以有返回值，而 Thread 没有。这是因为 Task 是基于 TPL 实现的，可以利用 .NET框架提供的并发编程模型来实现任务之间的依赖和调度。</p>
+</li>
+</ul>
+<h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><h4 id="Task和Task的创建"><a href="#Task和Task的创建" class="headerlink" title="Task和Task&lt;T&gt;的创建"></a><code>Task</code>和<code>Task&lt;T&gt;</code>的创建</h4><h5 id="Task的创建"><a href="#Task的创建" class="headerlink" title="Task的创建"></a>Task的创建</h5><p>使用<code>Task</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task task = <span class="keyword">new</span> Task(() =&gt; &#123;</span><br><span class="line">	<span class="comment">// 异步操作的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Task.Run</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task task = Task.Run(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="Task的创建-1"><a href="#Task的创建-1" class="headerlink" title="Task&lt;T&gt;的创建"></a><code>Task&lt;T&gt;</code>的创建</h5><p><code>Task&lt;T&gt;</code>与会返回一个类型为T的结果</p>
+<p>使用<code>Task</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task&lt;<span class="built_in">int</span>&gt; task = <span class="keyword">new</span> Task&lt;<span class="built_in">int</span>&gt;(() =&gt;&#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码，返回int类型的结果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Task.Run</code>的构造函数</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task&lt;<span class="built_in">int</span>&gt; task = Task.Run(() =&gt; &#123;</span><br><span class="line">    <span class="comment">// 异步操作的代码，返回int类型的结果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动和等待Task和Task"><a href="#启动和等待Task和Task" class="headerlink" title="启动和等待Task和Task&lt;T&gt;"></a>启动和等待<code>Task</code>和<code>Task&lt;T&gt;</code></h4><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><p>使用<code>start</code>方法启动</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">task.Start();</span><br></pre></td></tr></table></figure>
+
+<h5 id="使用Wait-阻塞等待"><a href="#使用Wait-阻塞等待" class="headerlink" title="使用Wait()阻塞等待"></a>使用<code>Wait()</code>阻塞等待</h5><p>直接控制<code>Task</code>，实现异步等待任务的完成<br>会阻塞主线程，类似于<code>thread1.Join()</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">task.Wait();	<span class="comment">// 阻塞当前线程，等待任务完成</span></span><br><span class="line"><span class="built_in">int</span> result = task.Result;  <span class="comment">// 阻塞当前线程，等待任务完成，并获取结果</span></span><br><span class="line"></span><br><span class="line">Task.WaitAll(<span class="keyword">new</span> Task[]&#123; task1, task2 &#125;);		<span class="comment">// 等待所有的task都执行完成再解除阻塞</span></span><br><span class="line">Task.WaitAny(<span class="keyword">new</span> Task[]&#123; task1, task2 &#125;);		<span class="comment">// 只要有一个task执行完毕就解除阻塞</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用WhenAll和WhenAny控制线程"><a href="#使用WhenAll和WhenAny控制线程" class="headerlink" title="使用WhenAll和WhenAny控制线程"></a>使用<code>WhenAll</code>和<code>WhenAny</code>控制线程</h5><p>不会阻塞主线程</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Task.WhenAll(task1, task2).ContinueWith((t) =&gt; &#123; Console.Writeline(<span class="string">&quot;执行异步代码&quot;</span>); &#125;);	<span class="comment">// 当task1和task2执行完毕后，再执行后续代码</span></span><br><span class="line">Task.WhenAny(task1, task2).ContinueWith((t) =&gt; &#123; Console.Writeline(<span class="string">&quot;执行异步代码&quot;</span>); &#125;);	<span class="comment">// 只要有一个执行完毕，就执行后续代码</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用await等待Task和Task"><a href="#使用await等待Task和Task" class="headerlink" title="使用await等待Task和Task&lt;T&gt;"></a>使用<code>await</code>等待<code>Task</code>和<code>Task&lt;T&gt;</code></h5><p>在异步代码中使用<code>await</code>等待其他的任务完成（为.net5.0推出的方法）<br>不会阻塞主线程</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AsyncTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主线程开始&quot;</span>);</span><br><span class="line"></span><br><span class="line">            t().Start();</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主线程结束&quot;</span>);</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Task <span class="title">t</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Task(<span class="keyword">async</span> () =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">&quot;开始执行t&quot;</span>);</span><br><span class="line">                <span class="keyword">await</span> Task.Delay(<span class="number">2000</span>);			<span class="comment">// 等待两秒，模拟一个异步操作</span></span><br><span class="line">                Console.WriteLine(<span class="string">&quot;结束执行t&quot;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">主线程开始</span><br><span class="line">主线程结束</span><br><span class="line">开始执行t</span><br><span class="line">结束执行t</span><br></pre></td></tr></table></figure>
+
+<h5 id="三个等待的区别"><a href="#三个等待的区别" class="headerlink" title="三个等待的区别"></a>三个等待的区别</h5><ul>
+<li><code>Wait()</code>针对线程操作，会阻塞主线程</li>
+<li><code>WhenAll</code>针对线程操作，不会阻塞主线程</li>
+<li><code>await</code>在线程中针对其他线程操作，不会阻塞主线程</li>
+</ul>
+<hr>
+<h3 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(A);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(B);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是A函数1&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是A函数2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">B</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是B函数1&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;我是B函数2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时的输出结果是不可控的，可能先执行A，也可能先执行B，这个是操作系统根据CPU自动计算出来的。<br>而且A和B是会嵌套交叉执行的</p>
+<p>如何让程序先执行A，执行完A之后在执行B；或者先执行完B再执行A：使用lock关键字</p>
+<h3 id="lock关键字"><a href="#lock关键字" class="headerlink" title="lock关键字"></a>lock关键字</h3><p>可以通过lock关键字来控制A和B的执行顺序。使用同一个lock参数的代码，程序会等待前面的代码执行完之后再执行后面的</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> Object o = <span class="keyword">new</span> <span class="built_in">object</span>();</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(A);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(B);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    Thread t3 = <span class="keyword">new</span> Thread(C);</span><br><span class="line">    t3.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">A</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">lock</span>(o)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是A函数1&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是A函数2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">B</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">lock</span>(o)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Thread.Sleep(1000);   // 暂停1秒</span></span><br><span class="line">        Debug.Log(<span class="string">&quot;我是B函数1&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;我是B函数2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">C</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    DEbug.Log(<span class="string">&quot;我是随机函数&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时可能会先执行A，执行完A后再执行B；也有可能先执行B，执行完B之后再执行A。C函数没有被锁住，所以他能出现在任意位置。</p>
+<p>补充：这里的o是Object类（基类）。所以，lock的参数可以是任意的类</p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>在unity中将子线程的代码转移到主线程中执行</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainThreadDispatcher</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MainThreadDispatcher instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Action&gt; actionQueue = <span class="keyword">new</span> Queue&lt;Action&gt;();		<span class="comment">// 初始化一个队列:先进先出的一个数据结构</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            instance = <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">lock</span> (actionQueue)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (actionQueue.Count &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                Action action = actionQueue.Dequeue();		<span class="comment">// 取出队列中的一个函数，并执行</span></span><br><span class="line">                action.Invoke();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RunOnMainThread</span>(<span class="params">Action action</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">lock</span> (instance.actionQueue)		<span class="comment">// 如果有其他的代码（包括自己）使用了lock(instance.actionQueue)，则会等待前面的执行完再执行自己</span></span><br><span class="line">        &#123;</span><br><span class="line">            instance.actionQueue.Enqueue(action);		<span class="comment">// 将传进来的action函数插入到队列中</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在其他函数中可以通过调用<code>RunOnMainThread()</code>函数将方法转移到主线程上执行<br>常用与数据请求上，接收到的数据一般都是在子线程上。但是在unity的子线程中无法访问transform属性等，故需要转移到主线程上执行</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">RunOnMainThread(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 转移到主线程上执行代码</span></span><br><span class="line">    textValue.text = <span class="string">&quot;你好&quot;</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Unity</tag>
+        <tag>CSharp</tag>
       </tags>
   </entry>
 </search>
